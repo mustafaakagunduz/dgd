@@ -1,0 +1,20 @@
+{
+  "navbar": {
+    "about": "ABOUT US",
+    "activities": "OUR ACTIVITIES",
+    "partnerships": "OUR PARTNERSHIPS",
+    "news": "INDUSTRY NEWS",
+    "techClub": "DGD TECH CLUB",
+    "contact": "CONTACT",
+    "aboutDropdown": {
+      "visionMission": "Vision & Mission",
+      "whoWeAre": "Who We Are",
+      "history": "History",
+      "partners": "Solution Partners"
+    }
+  },
+  "languages": {
+    "tr": "Turkish",
+    "en": "English"
+  }
+}
