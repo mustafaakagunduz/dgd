@@ -11,6 +11,20 @@
       "whoWeAre": "Who We Are",
       "history": "History",
       "partners": "Solution Partners"
+    },
+    "aboutSubmenu": {
+      "founders": "Our Founders",
+      "team": "Our Team",
+      "advisors": "Our Advisors",
+      "partners": "Solution Partners"
+    },
+    "activitiesDropdown": {
+      "greenTech": "Green & Bio-Circular Technologies",
+      "hvacTech": "Heating & Ventilation Technologies",
+      "agricultureTech": "Next-Gen Agriculture & Greenhouse Systems",
+      "airPurification": "Next-Gen Air Purification Systems",
+      "architectureTech": "Building & Architecture Technologies",
+      "prConsulting": "Communication & PR Consulting"
     }
   },
   "languages": {

@@ -11,6 +11,20 @@
       "whoWeAre": "Biz Kimiz",
       "history": "Tarihçe",
       "partners": "Çözüm Ortaklarımız"
+    },
+    "aboutSubmenu": {
+      "founders": "Kurucularımız",
+      "team": "Ekibimiz",
+      "advisors": "Danışmanlarımız",
+      "partners": "Çözüm Ortaklarımız"
+    },
+    "activitiesDropdown": {
+      "greenTech": "Yeşil ve Biyo-Döngüsel Teknolojiler",
+      "hvacTech": "Isıtma ve Havalandırma Teknolojileri",
+      "agricultureTech": "Yeni Nesil Tarım ve Seracılık Sistemleri",
+      "airPurification": "Yeni Nesil Hava Temizleme Sistemleri",
+      "architectureTech": "Yapı ve Mimari Teknolojiler",
+      "prConsulting": "İletişim ve PR Danışmanlığı"
     }
   },
   "languages": {
