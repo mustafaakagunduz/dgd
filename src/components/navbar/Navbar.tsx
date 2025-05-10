@@ -77,9 +77,9 @@ const navItems = [
         ]
     },
     { key: "navbar.partnerships", href: "/is-birliklerimiz" },
-    { key: "navbar.news", href: "/sektorel-haberler" },
+
     { key: "navbar.techClub", href: "/tech-club" },
-    { key: "navbar.contact", href: "/iletisim" }
+    { key: "navbar.contact", href: "/contact" }
 ];
 
 const languages = [

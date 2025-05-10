@@ -3,7 +3,6 @@
     "about": "ABOUT US",
     "activities": "OUR ACTIVITIES",
     "partnerships": "OUR PARTNERSHIPS",
-    "news": "INDUSTRY NEWS",
     "techClub": "DGD TECH CLUB",
     "contact": "CONTACT",
     "aboutDropdown": {
@@ -21,7 +20,6 @@
     "activitiesDropdown": {
       "greenTech": "Green & Bio-Circular Technologies",
       "hvacTech": "Heating & Ventilation Technologies",
-
       "architectureTech": "Building & Architecture Technologies",
       "prConsulting": "Communication & PR Consulting"
     },
@@ -42,5 +40,75 @@
   "languages": {
     "tr": "Turkish",
     "en": "English"
+  },
+  "about": {
+    "sectionDescription": "Discover DGD Global's core values",
+    "circulation": {
+      "title": "CIRCULARITY",
+      "content": "Environmental and atmospheric problems, especially climate change, which are experienced globally and felt more intensely day by day, are a disaster scenario that developed countries try to tackle through numerous regulations and sanctions, primarily with carbon footprint approaches; however, which still cannot be prevented. DGD Global Technology Inc. is here with you to bring game-changing strategies to all areas of life through the 7Cbasalia complete circular waste management and complete circular technologies at product level projects that take bold steps to completely change waste management policies."
+    },
+    "innovation": {
+      "title": "INNOVATION",
+      "content": "Our company policy, which considers innovative and value-added products, services, and technologies as fundamental in all areas of life for all business fields, carries out intensive work to create global impacts starting from our immediate environment. We are delighted to be open to your participation in our goal of spreading this strategy to create national development policies by preparing and presenting the innovative approach tradition not in a single product or branch, but in a concept that includes sectoral differences spread across all areas of life, ensuring the creation of legislation in this strategy, and subsequently creating global impacts."
+    },
+    "partnership": {
+      "title": "SOLUTION PARTNERSHIP",
+      "content": "DGD Global Technology Inc., which records both next-generation technologies and complete circular waste management projects through strong protocols and agreements with all innovative technology hubs it partners with, is honored to work together with all individuals, companies, or institutions who wish to participate either as entrepreneurs or with know-how, both within its own organization and within the framework of full participation principle, towards common human values and common social and economic gains."
+    },
+    "showMore": "Read More",
+    "showLess": "Show Less"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with DGD Global Technology Inc. We're here to answer your questions and discuss your innovative technology needs.",
+    "getInTouch": "Get in Touch",
+    "address": {
+      "title": "Address",
+      "line1": "DGD Global Technology Inc.",
+      "line2": "123 Innovation Drive",
+      "city": "Istanbul, Turkey"
+    },
+    "phone": {
+      "title": "Phone",
+      "number": "+90 (212) 123 45 67"
+    },
+    "email": {
+      "title": "Email",
+      "address": "info@dgdglobal.com"
+    },
+    "mapPlaceholder": "Interactive map will be integrated here",
+    "form": {
+      "title": "Send us a Message",
+      "fullName": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "successMessage": "Thank you for your message! We'll get back to you soon.",
+      "kvkText": "Privacy Policy",
+      "kvkAgreement": "I have read and agree to",
+      "placeholders": {
+        "fullName": "Enter your full name",
+        "email": "Enter your email address",
+        "phone": "Enter your phone number",
+        "message": "Enter your message here..."
+      }
+    }
+  },
+  "kvk": {
+    "modal": {
+      "title": "Data Protection and Privacy Consent",
+      "introduction": "This disclosure text is prepared by DGD Global Technology Inc. in accordance with Law No. 6698 on Protection of Personal Data (\"PDPL\").",
+      "dataTypes": "Your personal data such as full name, email address, phone number, and message content submitted through this contact form;",
+      "purposes": {
+        "communication": "Execution of communication activities,",
+        "support": "Receiving and resolving your requests and complaints,",
+        "response": "Enabling feedback"
+      },
+      "dataSharing": "are processed exclusively for these purposes and shared only with authorized personnel.",
+      "rights": "If you wish to exercise your rights regarding your personal data under Article 11 of the PDPL, you can contact us at info@dgdglobal.com.",
+      "consentStatement": "By clicking the \"Send Message\" button, you declare that you consent to the processing of your personal data for the purposes specified above.",
+      "consent": "I have read the above information and give my explicit consent to the processing of my personal data."
+    }
   }
 }

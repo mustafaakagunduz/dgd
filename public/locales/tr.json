@@ -3,7 +3,6 @@
     "about": "HAKKIMIZDA",
     "activities": "FAALİYET ALANLARIMIZ",
     "partnerships": "İŞ BİRLİKLERİMİZ",
-    "news": "SEKTÖREL HABERLER",
     "techClub": "DGD TECH CLUB",
     "contact": "İLETİŞİM",
     "aboutDropdown": {
@@ -43,5 +42,75 @@
   "languages": {
     "tr": "Türkçe",
     "en": "English"
+  },
+  "about": {
+    "sectionDescription": "DGD Global'in temel değerlerini keşfedin..",
+    "circulation": {
+      "title": "DÖNGÜSELLİK",
+      "content": "Başta iklim değişimleri olmak üzere küresel çapta yaşanan ve günden güne kendisini daha çok hissettiren çevre ve atmosfer sorunları, tüm gelişmiş ülkelerce başta karbon ayak izi yaklaşımı olmak üzere çok sayıda düzenleme ve yaptırımlarla başa çıkılmaya çalışılan; ancak yine de önüne geçilemeyen bir felaket senaryosu olarak karşımızda duruyor. DGD Global teknoloji A.Ş. işte tam da bu noktada özellikle atık yönetim politikalarını tamamen değiştirmeye yönelik cesur adımlarını 7Cbasalia tam döngüsel atık yönetimi ve ürün bazında tam döngüsel teknolojileri yaşama kazandırma projeleri ile oyun değiştiren stratejileri yaşamın her alanına kazandırmak üzere sizlerle birlikte."
+    },
+    "innovation": {
+      "title": "İNOVASYON",
+      "content": "Tüm faaliyet konularında geçerli olmak üzere yaşamın tüm sahalarında yenilikçi ve katma değerli ürün, hizmet ve teknolojileri temel kabul eden şirket politikamız, yaşadığımız çevreden başlayıp küresel çapta etkiler oluşturmak üzere yoğun çalışmalar yürütür. İnovatif yaklaşım geleneğini tek bir ürün veya branşta değil, yaşamın tüm alanlarına yayılmış sektörel farklılıklar içeren konseptte hazırlayıp sunarak bu stratejiyi ülkesel kalkınma politikası oluşturmak hedefinde yaygınlaştırmak, bu stratejide mevzuatlar oluşmasını sağlamak, sonrasında da küresel etkiler oluşturmak hedefimizde sizlerin de katılımına açık olmaktan mutluluk duyarız."
+    },
+    "partnership": {
+      "title": "ÇÖZÜM ORTAKLIĞI",
+      "content": "Gerek yeni nesil teknolojiler gerekse tam döngüsel atık yönetimi projelerini çözüm ortağı olduğu tüm inovatif teknoloji odakları ile yaptığı güçlü protokoller ve sözleşmeler ile kayıt altına alan DGD Global Teknoloji A.Ş. hem kendi bünyesinde hem de tam paylaşımcılık ilkesi çerçevesinde gerek know-how gerekse girişimci sıfatıyla katılımcılık isteğinde bulunan tüm kişi, firma veya kurumlarla ortak insani değerler ile ortak toplumsal ve ekonomik kazanımlar hedefinde birlikte çalışmaktan onur duyar."
+    },
+    "showMore": "Devamını Oku",
+    "showLess": "Daha Az Göster"
+  },
+  "contact": {
+    "title": "İletişim",
+    "description": "DGD Global Teknoloji A.Ş. ile iletişime geçin. Sorularınızı yanıtlamak ve yenilikçi teknoloji ihtiyaçlarınızı konuşmak için buradayız.",
+    "getInTouch": "İletişime Geçin",
+    "address": {
+      "title": "Adres",
+      "line1": "DGD Global Teknoloji A.Ş.",
+      "line2": "İnovasyon Caddesi No:123",
+      "city": "İstanbul, Türkiye"
+    },
+    "phone": {
+      "title": "Telefon",
+      "number": "+90 (212) 123 45 67"
+    },
+    "email": {
+      "title": "E-posta",
+      "address": "info@dgdglobal.com"
+    },
+    "mapPlaceholder": "İnteraktif harita buraya entegre edilecek",
+    "form": {
+      "title": "Bize Mesaj Gönderin",
+      "fullName": "Ad Soyad",
+      "email": "E-posta Adresi",
+      "phone": "Telefon Numarası",
+      "message": "Mesajınız",
+      "submit": "Mesaj Gönder",
+      "successMessage": "Mesajınız için teşekkürler! En kısa sürede size dönüş yapacağız.",
+      "kvkText": "KVKK Aydınlatma Metni",
+      "kvkAgreement": "okudum ve onaylıyorum",
+      "placeholders": {
+        "fullName": "Adınızı ve soyadınızı girin",
+        "email": "E-posta adresinizi girin",
+        "phone": "Telefon numaranızı girin",
+        "message": "Mesajınızı buraya yazın..."
+      }
+    }
+  },
+  "kvk": {
+    "modal": {
+      "title": "Kişisel Verilerin Korunması Hakkında Aydınlatma ve Açık Rıza Metni",
+      "introduction": "İşbu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") uyarınca, DGD Global Teknoloji A.Ş. tarafından hazırlanmıştır.",
+      "dataTypes": "Tarafınızca bu iletişim formu aracılığıyla iletilen ad-soyad, e-posta adresi, telefon numarası ve mesaj içeriği gibi kişisel verileriniz;",
+      "purposes": {
+        "communication": "İletişim faaliyetlerinin yürütülmesi,",
+        "support": "Talep ve şikayetlerinizin alınması ve sonuçlandırılması,",
+        "response": "Geri dönüş sağlanabilmesi"
+      },
+      "dataSharing": "amaçlarıyla sınırlı olarak işlenmekte ve yalnızca yetkili kişilerle paylaşılmaktadır.",
+      "rights": "KVKK'nın 11. maddesi kapsamında kişisel verilerinize ilişkin haklarınızı kullanmak isterseniz, info@dgdglobal.com adresi üzerinden bizimle iletişime geçebilirsiniz.",
+      "consentStatement": "\"Mesaj Gönder\" butonuna basmadan önce, kişisel verilerinizin yukarıda belirtilen amaçlarla işlenmesine onay verdiğinizi beyan etmiş olursunuz.",
+      "consent": "Yukarıdaki bilgilendirmeyi okudum ve kişisel verilerimin işlenmesine açık rıza gösteriyorum."
+    }
   }
 }

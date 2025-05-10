@@ -28,11 +28,13 @@ export default function RootLayout({
         <html lang="tr">
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            style={{
+                background: 'linear-gradient(to bottom, #4b8224, #374151, #000000)'
+            }}
         >
         <LanguageProvider>
             <Navbar />
             {children}
-
         </LanguageProvider>
         </body>
         </html>
