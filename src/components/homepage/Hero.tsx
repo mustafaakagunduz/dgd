@@ -14,8 +14,8 @@ export default function Hero({}: HeroProps) {
                 priority
                 className="object-cover"
             />
-            {/* Optional overlay to improve navbar visibility */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent h-32 pointer-events-none" />
+            {/* Navbar görünürlüğü için geliştirilmiş overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-transparent h-56 pointer-events-none" />
         </div>
     );
 }

@@ -60,6 +60,7 @@ export default function Navbar() {
     const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
     const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
     const languageDropdownRef = useRef<HTMLDivElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -76,7 +77,11 @@ export default function Navbar() {
             ) {
                 setLanguageMenuOpen(false);
             }
-            if (activeDropdown) {
+            if (
+                activeDropdown &&
+                dropdownRef.current &&
+                !dropdownRef.current.contains(e.target as Node)
+            ) {
                 setActiveDropdown(null);
                 setActiveSubmenu(null);
             }
@@ -87,6 +92,11 @@ export default function Navbar() {
 
     const getNavText = (key: string) => t(key) || key.split('.').pop() || key;
 
+    const closeDropdowns = () => {
+        setActiveDropdown(null);
+        setActiveSubmenu(null);
+    };
+
     return (
         <nav
             className={cn(
@@ -96,88 +106,139 @@ export default function Navbar() {
         >
             <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
             <div className="container mx-auto px-4">
-                <div className="flex items-center justify-center relative">
-                    <div className="absolute left-4 lg:left-8">
-                        <Link href="/" className="text-white font-bold text-2xl">DGD</Link>
+                <div className="flex items-center justify-between">
+                    {/* Logo - Sol taraf */}
+                    <div>
+                        <Link href="/" className="text-white font-bold text-2xl">
+                            DGD-GLOBAL
+                        </Link>
                     </div>
 
-                    <div className="hidden lg:flex items-center space-x-10">
+                    {/* Navigation items - Ortada */}
+                    <div className="hidden lg:flex items-center space-x-6" ref={dropdownRef}>
                         {navItems.map((item) => (
                             <div
                                 key={item.key}
-                                className="relative group"
+                                className="relative"
                                 onMouseEnter={() => setActiveDropdown(item.key)}
-                                onMouseLeave={() => {
-                                    setActiveDropdown(null);
-                                    setActiveSubmenu(null);
+                                onMouseLeave={(e) => {
+                                    // Mouse'un dropdown'a mı yoksa submenu'ya mı hareket ettiğini kontrol et
+                                    setTimeout(() => {
+                                        // Eğer mouse hala dropdown veya submenu üzerindeyse menüyü açık tut
+                                        const dropdownContainsTarget = dropdownRef.current?.contains(e.relatedTarget as Node);
+                                        if (!dropdownContainsTarget) {
+                                            setActiveDropdown(null);
+                                            setActiveSubmenu(null);
+                                        }
+                                    }, 300);
                                 }}
                             >
                                 {item.hasDropdown ? (
                                     <>
-                                        <button className="flex items-center text-white font-medium hover:bg-white/10 px-5 py-3 rounded-md">
+                                        <button className="flex items-center text-white font-medium hover:bg-white/10 px-4 py-2 rounded-md transition-colors">
                                             {getNavText(item.key)}
-                                            <ChevronDown size={18} className="ml-2" />
+                                            <ChevronDown size={16} className="ml-1 transition-transform" style={{
+                                                transform: activeDropdown === item.key ? 'rotate(180deg)' : 'rotate(0)'
+                                            }} />
                                         </button>
 
-                                        {activeDropdown === item.key && (
-                                            <div className="absolute left-0 mt-2 w-64 bg-black/90 backdrop-blur-md rounded-md shadow-lg z-50">
-                                                <div className="py-1">
-                                                    {item.dropdownItems?.map((dropdownItem) => (
-                                                        <div
-                                                            key={dropdownItem.key}
-                                                            className="relative group"
-                                                            onMouseEnter={() =>
-                                                                dropdownItem.hasSubmenu && setActiveSubmenu(dropdownItem.key)
+                                        {/* Dropdown menü */}
+                                        <div
+                                            className={cn(
+                                                "absolute left-0 mt-0 w-64 bg-black/90 backdrop-blur-md rounded-md shadow-lg transition-all duration-200",
+                                                activeDropdown === item.key ? 'opacity-100 visible' : 'opacity-0 invisible'
+                                            )}
+                                            onMouseEnter={() => setActiveDropdown(item.key)}
+                                            onMouseLeave={(e) => {
+                                                // Mouse'un hala dropdown alanında mı olduğunu kontrol et
+                                                setTimeout(() => {
+                                                    const dropdownContainsTarget = dropdownRef.current?.contains(e.relatedTarget as Node);
+                                                    if (!dropdownContainsTarget) {
+                                                        setActiveDropdown(null);
+                                                        setActiveSubmenu(null);
+                                                    }
+                                                }, 300);
+                                            }}
+                                        >
+                                            <div className="py-2">
+                                                {item.dropdownItems?.map((dropdownItem) => (
+                                                    <div
+                                                        key={dropdownItem.key}
+                                                        className="relative"
+                                                        onMouseEnter={() =>
+                                                            dropdownItem.hasSubmenu && setActiveSubmenu(dropdownItem.key)
+                                                        }
+                                                        onMouseLeave={(e) => {
+                                                            if (dropdownItem.hasSubmenu) {
+                                                                // Mouse'un submenu alanında mı olduğunu kontrol et
+                                                                setTimeout(() => {
+                                                                    const rect = dropdownRef.current?.getBoundingClientRect();
+                                                                    const mouseX = e.clientX;
+                                                                    const mouseY = e.clientY;
+
+                                                                    // Eğer mouse submenu alanında değilse submenu'yu kapat
+                                                                    if (rect && (mouseX < rect.left || mouseX > rect.right || mouseY < rect.top || mouseY > rect.bottom)) {
+                                                                        setActiveSubmenu(null);
+                                                                    }
+                                                                }, 250);
                                                             }
-                                                            onMouseLeave={() =>
-                                                                dropdownItem.hasSubmenu && setActiveSubmenu(null)
-                                                            }
-                                                        >
-                                                            {dropdownItem.hasSubmenu ? (
-                                                                <>
-                                                                    <div className="flex items-center justify-between px-5 py-3 text-white hover:bg-white/10 cursor-pointer">
-                                                                        <span>{getNavText(dropdownItem.key)}</span>
-                                                                        <ChevronRight size={16} />
-                                                                    </div>
-                                                                    {activeSubmenu === dropdownItem.key && (
-                                                                        <div className="absolute left-full top-0 ml-2 w-64 bg-black/90 backdrop-blur-md rounded-md shadow-lg z-50">
-                                                                            <div className="py-1">
-                                                                                {dropdownItem.submenuItems?.map((submenuItem) => (
-                                                                                    <Link
-                                                                                        key={submenuItem.key}
-                                                                                        href={submenuItem.href}
-                                                                                        className="block px-5 py-3 text-white hover:bg-white/10"
-                                                                                        onClick={() => {
-                                                                                            setActiveDropdown(null);
-                                                                                            setActiveSubmenu(null);
-                                                                                        }}
-                                                                                    >
-                                                                                        {getNavText(submenuItem.key)}
-                                                                                    </Link>
-                                                                                ))}
-                                                                            </div>
-                                                                        </div>
+                                                        }}
+                                                    >
+                                                        {dropdownItem.hasSubmenu ? (
+                                                            <>
+                                                                <div className="flex items-center justify-between px-4 py-2 text-white hover:bg-white/10 cursor-pointer">
+                                                                    <span>{getNavText(dropdownItem.key)}</span>
+                                                                    <ChevronRight size={14} />
+                                                                </div>
+
+                                                                {/* Submenu */}
+                                                                <div
+                                                                    className={cn(
+                                                                        "absolute left-full top-0 ml-0 w-64 bg-black/90 backdrop-blur-md rounded-md shadow-lg transition-all duration-200",
+                                                                        activeSubmenu === dropdownItem.key ? 'opacity-100 visible' : 'opacity-0 invisible'
                                                                     )}
-                                                                </>
-                                                            ) : (
-                                                                <Link
-                                                                    href={dropdownItem.href}
-                                                                    className="block px-5 py-3 text-white hover:bg-white/10"
-                                                                    onClick={() => setActiveDropdown(null)}
+                                                                    onMouseEnter={() => setActiveSubmenu(dropdownItem.key)}
+                                                                    onMouseLeave={(e) => {
+                                                                        setTimeout(() => {
+                                                                            const dropdownContainsTarget = dropdownRef.current?.contains(e.relatedTarget as Node);
+                                                                            if (!dropdownContainsTarget) {
+                                                                                setActiveSubmenu(null);
+                                                                            }
+                                                                        }, 250);
+                                                                    }}
                                                                 >
-                                                                    {getNavText(dropdownItem.key)}
-                                                                </Link>
-                                                            )}
-                                                        </div>
-                                                    ))}
-                                                </div>
+                                                                    <div className="py-2">
+                                                                        {dropdownItem.submenuItems?.map((submenuItem) => (
+                                                                            <Link
+                                                                                key={submenuItem.key}
+                                                                                href={submenuItem.href}
+                                                                                className="block px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                                                                                onClick={closeDropdowns}
+                                                                            >
+                                                                                {getNavText(submenuItem.key)}
+                                                                            </Link>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+                                                            </>
+                                                        ) : (
+                                                            <Link
+                                                                href={dropdownItem.href}
+                                                                className="block px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                                                                onClick={closeDropdowns}
+                                                            >
+                                                                {getNavText(dropdownItem.key)}
+                                                            </Link>
+                                                        )}
+                                                    </div>
+                                                ))}
                                             </div>
-                                        )}
+                                        </div>
                                     </>
                                 ) : (
                                     <Link
                                         href={item.href}
-                                        className="text-white font-medium hover:bg-white/10 px-5 py-3 rounded-md"
+                                        className="text-white font-medium hover:bg-white/10 px-4 py-2 rounded-md transition-colors"
                                     >
                                         {getNavText(item.key)}
                                     </Link>
@@ -186,20 +247,21 @@ export default function Navbar() {
                         ))}
                     </div>
 
-                    <div className="absolute right-4 lg:right-8">
+                    {/* Language selector - Sağ taraf */}
+                    <div>
                         <div className="relative hidden lg:block" ref={languageDropdownRef}>
                             <button
                                 onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
-                                className="flex items-center text-white space-x-1 hover:bg-white/10 px-5 py-3 rounded-md"
+                                className="flex items-center text-white space-x-1 hover:bg-white/10 px-4 py-2 rounded-md transition-colors"
                             >
-                                <Globe size={20} />
-                                <span className="text-base font-medium ml-2">{language.toUpperCase()}</span>
-                                <ChevronDown size={18} />
+                                <Globe size={18} />
+                                <span className="text-sm font-medium ml-1">{language.toUpperCase()}</span>
+                                <ChevronDown size={14} />
                             </button>
 
                             {languageMenuOpen && (
-                                <div className="absolute right-0 mt-2 w-40 bg-black/90 backdrop-blur-md rounded-md shadow-lg z-50">
-                                    <div className="py-1">
+                                <div className="absolute right-0 mt-1 w-36 bg-black/90 backdrop-blur-md rounded-md shadow-lg z-50">
+                                    <div className="py-2">
                                         {languages.map((lang) => (
                                             <button
                                                 key={lang.code}
@@ -208,8 +270,8 @@ export default function Navbar() {
                                                     setLanguageMenuOpen(false);
                                                 }}
                                                 className={cn(
-                                                    "block w-full text-left px-4 py-3 text-white hover:bg-white/10",
-                                                    language === lang.code && "bg-white/20 font-medium"
+                                                    "block w-full text-left px-4 py-2 text-white hover:bg-white/10 transition-colors",
+                                                    language === lang.code && "bg-white/15 font-medium"
                                                 )}
                                             >
                                                 {t(lang.key) || lang.code}
