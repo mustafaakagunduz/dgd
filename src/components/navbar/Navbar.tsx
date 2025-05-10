@@ -34,12 +34,46 @@ const navItems = [
         href: "/faaliyet-alanlarimiz",
         hasDropdown: true,
         dropdownItems: [
-            { key: "navbar.activitiesDropdown.greenTech", href: "/green-tech" },
-            { key: "navbar.activitiesDropdown.hvacTech", href: "/hvac-tech" },
-            { key: "navbar.activitiesDropdown.agricultureTech", href: "/agriculture-tech" },
-            { key: "navbar.activitiesDropdown.airPurification", href: "/air-purification" },
-            { key: "navbar.activitiesDropdown.architectureTech", href: "/architecture-tech" },
-            { key: "navbar.activitiesDropdown.prConsulting", href: "/pr-consulting" }
+            {
+                key: "navbar.activitiesDropdown.greenTech",
+                href: "#",
+                hasSubmenu: true,
+                submenuItems: [
+                    { key: "navbar.activitiesSubmenu.bioCyrcularProcess", href: "/bio-circular-process" },
+                    { key: "navbar.activitiesSubmenu.nanoProducts", href: "/nano-products" }
+                ]
+            },
+            {
+                key: "navbar.activitiesDropdown.hvacTech",
+                href: "#",
+                hasSubmenu: true,
+                submenuItems: [
+                    { key: "navbar.activitiesSubmenu.radiatorSystems", href: "/radiator-systems" },
+                    { key: "navbar.activitiesSubmenu.agricultureGreenhouse", href: "/agriculture-greenhouse" },
+                    { key: "navbar.activitiesSubmenu.airPurification", href: "/air-purification" }
+                ]
+            },
+
+            {
+                key: "navbar.activitiesDropdown.architectureTech",
+                href: "#",
+                hasSubmenu: true,
+                submenuItems: [
+                    { key: "navbar.activitiesSubmenu.construction", href: "/construction" },
+                    { key: "navbar.activitiesSubmenu.architecture", href: "/architecture" }
+                ]
+            },
+            {
+                key: "navbar.activitiesDropdown.prConsulting",
+                href: "#",
+                hasSubmenu: true,
+                submenuItems: [
+                    { key: "navbar.activitiesSubmenu.consultingServices", href: "/consulting-services" },
+                    { key: "navbar.activitiesSubmenu.socialMedia", href: "/social-media" },
+                    { key: "navbar.activitiesSubmenu.adPR", href: "/advertising-pr" },
+                    { key: "navbar.activitiesSubmenu.production", href: "/production-services" }
+                ]
+            }
         ]
     },
     { key: "navbar.partnerships", href: "/is-birliklerimiz" },
@@ -61,6 +95,7 @@ export default function Navbar() {
     const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
     const languageDropdownRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const submenuRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -97,6 +132,30 @@ export default function Navbar() {
         setActiveSubmenu(null);
     };
 
+    const isNodeInstance = (target: any): target is Node => {
+        return target && typeof target === 'object' && 'nodeType' in target;
+    };
+
+    const checkIfStillInMenu = (e: MouseEvent | React.MouseEvent) => {
+        const relatedTarget = isNodeInstance(e.relatedTarget) ? e.relatedTarget : null;
+
+        if (!relatedTarget) return false;
+
+        // Check if mouse is still in the parent dropdown
+        if (dropdownRef.current?.contains(relatedTarget)) {
+            return true;
+        }
+
+        // Check if mouse is still in any submenu
+        for (const key in submenuRefs.current) {
+            if (submenuRefs.current[key]?.contains(relatedTarget)) {
+                return true;
+            }
+        }
+
+        return false;
+    };
+
     return (
         <nav
             className={cn(
@@ -122,15 +181,12 @@ export default function Navbar() {
                                 className="relative"
                                 onMouseEnter={() => setActiveDropdown(item.key)}
                                 onMouseLeave={(e) => {
-                                    // Mouse'un dropdown'a mı yoksa submenu'ya mı hareket ettiğini kontrol et
                                     setTimeout(() => {
-                                        // Eğer mouse hala dropdown veya submenu üzerindeyse menüyü açık tut
-                                        const dropdownContainsTarget = dropdownRef.current?.contains(e.relatedTarget as Node);
-                                        if (!dropdownContainsTarget) {
+                                        if (!checkIfStillInMenu(e)) {
                                             setActiveDropdown(null);
                                             setActiveSubmenu(null);
                                         }
-                                    }, 300);
+                                    }, 100);
                                 }}
                             >
                                 {item.hasDropdown ? (
@@ -150,14 +206,12 @@ export default function Navbar() {
                                             )}
                                             onMouseEnter={() => setActiveDropdown(item.key)}
                                             onMouseLeave={(e) => {
-                                                // Mouse'un hala dropdown alanında mı olduğunu kontrol et
                                                 setTimeout(() => {
-                                                    const dropdownContainsTarget = dropdownRef.current?.contains(e.relatedTarget as Node);
-                                                    if (!dropdownContainsTarget) {
+                                                    if (!checkIfStillInMenu(e)) {
                                                         setActiveDropdown(null);
                                                         setActiveSubmenu(null);
                                                     }
-                                                }, 300);
+                                                }, 100);
                                             }}
                                         >
                                             <div className="py-2">
@@ -170,17 +224,11 @@ export default function Navbar() {
                                                         }
                                                         onMouseLeave={(e) => {
                                                             if (dropdownItem.hasSubmenu) {
-                                                                // Mouse'un submenu alanında mı olduğunu kontrol et
                                                                 setTimeout(() => {
-                                                                    const rect = dropdownRef.current?.getBoundingClientRect();
-                                                                    const mouseX = e.clientX;
-                                                                    const mouseY = e.clientY;
-
-                                                                    // Eğer mouse submenu alanında değilse submenu'yu kapat
-                                                                    if (rect && (mouseX < rect.left || mouseX > rect.right || mouseY < rect.top || mouseY > rect.bottom)) {
+                                                                    if (!checkIfStillInMenu(e)) {
                                                                         setActiveSubmenu(null);
                                                                     }
-                                                                }, 250);
+                                                                }, 100);
                                                             }
                                                         }}
                                                     >
@@ -193,6 +241,9 @@ export default function Navbar() {
 
                                                                 {/* Submenu */}
                                                                 <div
+                                                                    ref={(el) => {
+                                                                        submenuRefs.current[dropdownItem.key] = el;
+                                                                    }}
                                                                     className={cn(
                                                                         "absolute left-full top-0 ml-0 w-64 bg-black/90 backdrop-blur-md rounded-md shadow-lg transition-all duration-200",
                                                                         activeSubmenu === dropdownItem.key ? 'opacity-100 visible' : 'opacity-0 invisible'
@@ -200,11 +251,10 @@ export default function Navbar() {
                                                                     onMouseEnter={() => setActiveSubmenu(dropdownItem.key)}
                                                                     onMouseLeave={(e) => {
                                                                         setTimeout(() => {
-                                                                            const dropdownContainsTarget = dropdownRef.current?.contains(e.relatedTarget as Node);
-                                                                            if (!dropdownContainsTarget) {
+                                                                            if (!checkIfStillInMenu(e)) {
                                                                                 setActiveSubmenu(null);
                                                                             }
-                                                                        }, 250);
+                                                                        }, 100);
                                                                     }}
                                                                 >
                                                                     <div className="py-2">

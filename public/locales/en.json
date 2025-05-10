@@ -21,10 +21,22 @@
     "activitiesDropdown": {
       "greenTech": "Green & Bio-Circular Technologies",
       "hvacTech": "Heating & Ventilation Technologies",
-      "agricultureTech": "Next-Gen Agriculture & Greenhouse Systems",
-      "airPurification": "Next-Gen Air Purification Systems",
+
       "architectureTech": "Building & Architecture Technologies",
       "prConsulting": "Communication & PR Consulting"
+    },
+    "activitiesSubmenu": {
+      "bioCyrcularProcess": "Complete Bio-Circular Process Installations",
+      "nanoProducts": "Next-Gen Strategic Nano Products",
+      "radiatorSystems": "Next-Gen Radiator Systems",
+      "agricultureGreenhouse": "Next-Gen Agriculture & Greenhouse Systems",
+      "airPurification": "Next-Gen Air Purification Systems",
+      "construction": "Construction",
+      "architecture": "Architecture",
+      "consultingServices": "Consulting Services",
+      "socialMedia": "Social Media Management",
+      "adPR": "Advertising & PR Management",
+      "production": "Production Services"
     }
   },
   "languages": {

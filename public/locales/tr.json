@@ -25,6 +25,19 @@
       "airPurification": "Yeni Nesil Hava Temizleme Sistemleri",
       "architectureTech": "Yapı ve Mimari Teknolojiler",
       "prConsulting": "İletişim ve PR Danışmanlığı"
+    },
+    "activitiesSubmenu": {
+      "bioCyrcularProcess": "Tam Biyo-Döngüsel Proses Kurulumları",
+      "nanoProducts": "Yeni Nesil Stratejik Nano Ürünler",
+      "radiatorSystems": "Yeni Nesil Radyatör Sistemleri",
+      "agricultureGreenhouse": "Yeni Nesil Tarım ve Seracılık Sistemleri",
+      "airPurification": "Yeni Nesil Hava Temizleme Sistemleri",
+      "construction": "İnşaat",
+      "architecture": "Mimarlık",
+      "consultingServices": "Danışmanlık Hizmetleri",
+      "socialMedia": "Sosyal Medya Yönetimi",
+      "adPR": "Reklam ve PR Yönetimi",
+      "production": "Prodüksiyon Hizmetleri"
     }
   },
   "languages": {
