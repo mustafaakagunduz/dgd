@@ -158,8 +158,27 @@
         "description": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt..."
       },
       "iqPartners": {
-        "description": "Duis aute irure dolor in reprehenderit in voluptate velit..."
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       }
+    }
+
+    },
+  "founders": {
+    "title": "KURUCULARIMIZ",
+    "dilek": {
+      "name": "Dilek Koca",
+      "title": "Kurucu",
+      "bio": "Uludağ Üniversitesi Mimarlık Fakültesi mezunu olan Dilek KOCA, mimarlık, iç mimarlık ve dış cephe tasarımı alanlarında uzman bir tasarımcıdır. Modern ve özgün bir tasarım anlayışıyla estetik, işlevsellik ve sürdürülebilirliği projelerinde bir araya getirerek yaşam alanlarına değer katmayı hedeflemektedir.\nUzun yıllara dayanan deneyimiyle inşaat ve dekorasyon sektöründe proje, taahhüt, danışmanlık ve proje yönetimi alanlarında hem ulusal hem de uluslararası ölçekte birçok başarılı çalışmaya imza atmıştır. Hâlen Dekor Center Mimarlık A.Ş. Yönetim Kurulu Başkanı olarak görev yapmakta olup, aynı zamanda iki kız çocuğu annesi ve girişimci bir iş kadınıdır."
+    },
+    "gokhan": {
+      "name": "Gökhan Çelik",
+      "title": "Kurucu",
+      "bio": "Türkçe özgeçmiş metni burada yer alacak. Gökhan Çelik, DGD Global Teknoloji A.Ş.'nin kurucu ortağıdır ve şirketin stratejik yönünü belirlemede önemli bir rol oynamaktadır. Uzun yıllar teknoloji ve inovasyon alanında deneyim kazanmış olan Gökhan, sürdürülebilir çözümler geliştirme konusundaki tutkusuyla tanınmaktadır. Eğitimini İstanbul Teknik Üniversitesi Elektrik Mühendisliği bölümünde tamamlamış ve kariyerine çeşitli teknoloji firmalarında mühendis olarak başlamıştır. Gökhan, DGD Global'in büyüme stratejilerini yönlendirmekte ve şirketin vizyonunu gerçekleştirmek için çalışmaktadır."
+    },
+    "devir": {
+      "name": "Devir Dinçer",
+      "title": "Kurucu",
+      "bio": "Ege Üniversitesi İletişim Fakültesi mezunu olan [Ad Soyad], gazeteci ve eğitimcidir. Reklam ve halkla ilişkiler sektörlerinde uzun yıllar eğitimci olarak görev yapmış, bu süreçte marka ve pazar araştırmaları, finans piyasaları analizi, kurumsal iletişim yönetimi ve senaryo yazarlığı gibi alanlarda da derinlemesine deneyim kazanmıştır. Çok yönlü bilgi birikimi ve sektörel tecrübesiyle, iletişim alanında kapsamlı katkılar sunmaktadır."
     }
   }
 }
