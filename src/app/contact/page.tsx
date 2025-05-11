@@ -37,7 +37,7 @@ export default function Contact() {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 pt-24 pb-8 max-h-screen overflow-auto">
+            <div className="relative z-10 pt-24 pb-8 min-h-screen">
                 <div className="container mx-auto px-4">
                     {/* Section Header - Animasyonlu */}
                     <div
