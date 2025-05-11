@@ -24,7 +24,12 @@
       "founders": "Our Founders",
       "team": "Our Team",
       "advisors": "Our Advisors",
-      "partners": "Solution Partners"
+      "partners": "Solution Partners",
+      "teamSubmenu": {
+        "productDevelopment": "Product Development and R&D",
+        "marketResearch": "Market Research",
+        "technicalTeam": "Technical Team"
+      }
     },
     "activitiesDropdown": {
       "greenTech": "Green & Bio-Circular Technologies",
@@ -175,7 +180,7 @@
     "devir": {
       "name": "Devir Dinçer",
       "title": "Co-Founder",
-      "bio": "A graduate of Ege University Faculty of Communication, [Full Name] is a journalist and educator. In addition to many years of teaching experience in the advertising and public relations sectors, she has also gained extensive expertise in brand and market research, financial market analysis, corporate communications management, and screenwriting. With her broad knowledge and multi-disciplinary background, she brings a holistic perspective to the field of communication."
+      "bio": "A graduate of Ege University Faculty of Communication, Devir DİNÇER is a journalist and educator. In addition to many years of teaching experience in the advertising and public relations sectors, she has also gained extensive expertise in brand and market research, financial market analysis, corporate communications management, and screenwriting. With her broad knowledge and multi-disciplinary background, she brings a holistic perspective to the field of communication."
     }
   }
 }

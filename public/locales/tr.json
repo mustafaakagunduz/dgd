@@ -24,7 +24,12 @@
       "founders": "Kurucularımız",
       "team": "Ekibimiz",
       "advisors": "Danışmanlarımız",
-      "partners": "Çözüm Ortaklarımız"
+      "partners": "Çözüm Ortaklarımız",
+      "teamSubmenu": {
+        "productDevelopment": "Ürün Geliştirme ve AR-Ge",
+        "marketResearch": "Pazar Araştırmaları",
+        "technicalTeam": "Teknik Ekip"
+      }
     },
     "activitiesDropdown": {
       "greenTech": "Yeşil ve Biyo-Döngüsel Teknolojiler",
@@ -178,7 +183,8 @@
     "devir": {
       "name": "Devir Dinçer",
       "title": "Kurucu",
-      "bio": "Ege Üniversitesi İletişim Fakültesi mezunu olan [Ad Soyad], gazeteci ve eğitimcidir. Reklam ve halkla ilişkiler sektörlerinde uzun yıllar eğitimci olarak görev yapmış, bu süreçte marka ve pazar araştırmaları, finans piyasaları analizi, kurumsal iletişim yönetimi ve senaryo yazarlığı gibi alanlarda da derinlemesine deneyim kazanmıştır. Çok yönlü bilgi birikimi ve sektörel tecrübesiyle, iletişim alanında kapsamlı katkılar sunmaktadır."
+      "bio": "Ege Üniversitesi İletişim Fakültesi mezunu olan Devir DİNÇER, gazeteci ve eğitimcidir. Reklam ve halkla ilişkiler sektörlerinde uzun yıllar eğitimci olarak görev yapmış, bu süreçte marka ve pazar araştırmaları, finans piyasaları analizi, kurumsal iletişim yönetimi ve senaryo yazarlığı gibi alanlarda da derinlemesine deneyim kazanmıştır. Çok yönlü bilgi birikimi ve sektörel tecrübesiyle, iletişim alanında kapsamlı katkılar sunmaktadır."
     }
   }
+
 }

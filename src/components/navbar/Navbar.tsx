@@ -21,7 +21,11 @@ const navItems = [
                 hasSubmenu: true,
                 submenuItems: [
                     { key: "navbar.aboutSubmenu.founders", href: "/founders" },
-                    { key: "navbar.aboutSubmenu.team", href: "/team" },
+                    { key: "navbar.aboutSubmenu.team", href: "/team", hasSubmenu: true, submenuItems: [
+                            { key: "navbar.aboutSubmenu.teamSubmenu.productDevelopment", href: "/product-development" },
+                            { key: "navbar.aboutSubmenu.teamSubmenu.marketResearch", href: "/market-research" },
+                            { key: "navbar.aboutSubmenu.teamSubmenu.technicalTeam", href: "/technical-team" }
+                        ]},
                     { key: "navbar.aboutSubmenu.advisors", href: "/advisors" },
                     { key: "navbar.aboutSubmenu.partners", href: "/solution-partners" }
                 ]
@@ -102,6 +106,7 @@ export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+    const [activeSecondSubmenu, setActiveSecondSubmenu] = useState<string | null>(null);
     const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
     const languageDropdownRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -129,6 +134,7 @@ export default function Navbar() {
             ) {
                 setActiveDropdown(null);
                 setActiveSubmenu(null);
+                setActiveSecondSubmenu(null);
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
@@ -140,6 +146,7 @@ export default function Navbar() {
     const closeDropdowns = () => {
         setActiveDropdown(null);
         setActiveSubmenu(null);
+        setActiveSecondSubmenu(null);
     };
 
     const isNodeInstance = (target: any): target is Node => {
@@ -201,6 +208,7 @@ export default function Navbar() {
                                         if (!checkIfStillInMenu(e)) {
                                             setActiveDropdown(null);
                                             setActiveSubmenu(null);
+                                            setActiveSecondSubmenu(null);
                                         }
                                     }, 100);
                                 }}
@@ -226,6 +234,7 @@ export default function Navbar() {
                                                     if (!checkIfStillInMenu(e)) {
                                                         setActiveDropdown(null);
                                                         setActiveSubmenu(null);
+                                                        setActiveSecondSubmenu(null);
                                                     }
                                                 }, 100);
                                             }}
@@ -243,6 +252,7 @@ export default function Navbar() {
                                                                 setTimeout(() => {
                                                                     if (!checkIfStillInMenu(e)) {
                                                                         setActiveSubmenu(null);
+                                                                        setActiveSecondSubmenu(null);
                                                                     }
                                                                 }, 100);
                                                             }
@@ -269,20 +279,79 @@ export default function Navbar() {
                                                                         setTimeout(() => {
                                                                             if (!checkIfStillInMenu(e)) {
                                                                                 setActiveSubmenu(null);
+                                                                                setActiveSecondSubmenu(null);
                                                                             }
                                                                         }, 100);
                                                                     }}
                                                                 >
                                                                     <div className="py-2">
                                                                         {dropdownItem.submenuItems?.map((submenuItem) => (
-                                                                            <Link
+                                                                            <div
                                                                                 key={submenuItem.key}
-                                                                                href={submenuItem.href}
-                                                                                className="block px-4 py-2 text-white hover:bg-white/10 transition-colors"
-                                                                                onClick={closeDropdowns}
+                                                                                className="relative"
+                                                                                onMouseEnter={() =>
+                                                                                    submenuItem.hasSubmenu && setActiveSecondSubmenu(submenuItem.key)
+                                                                                }
+                                                                                onMouseLeave={(e) => {
+                                                                                    if (submenuItem.hasSubmenu) {
+                                                                                        setTimeout(() => {
+                                                                                            if (!checkIfStillInMenu(e)) {
+                                                                                                setActiveSecondSubmenu(null);
+                                                                                            }
+                                                                                        }, 100);
+                                                                                    }
+                                                                                }}
                                                                             >
-                                                                                {getNavText(submenuItem.key)}
-                                                                            </Link>
+                                                                                {submenuItem.hasSubmenu ? (
+                                                                                    <>
+                                                                                        <div className="flex items-center justify-between px-4 py-2 text-white hover:bg-white/10 cursor-pointer">
+                                                                                            <span>{getNavText(submenuItem.key)}</span>
+                                                                                            <ChevronRight size={14} />
+                                                                                        </div>
+
+                                                                                        {/* Second level submenu */}
+                                                                                        <div
+                                                                                            ref={(el) => {
+                                                                                                submenuRefs.current[submenuItem.key] = el;
+                                                                                            }}
+                                                                                            className={cn(
+                                                                                                "absolute left-full top-0 ml-0 w-64 bg-black/90 backdrop-blur-md rounded-md shadow-lg transition-all duration-200",
+                                                                                                activeSecondSubmenu === submenuItem.key ? 'opacity-100 visible' : 'opacity-0 invisible'
+                                                                                            )}
+                                                                                            onMouseEnter={() => setActiveSecondSubmenu(submenuItem.key)}
+                                                                                            onMouseLeave={(e) => {
+                                                                                                setTimeout(() => {
+                                                                                                    if (!checkIfStillInMenu(e)) {
+                                                                                                        setActiveSecondSubmenu(null);
+                                                                                                    }
+                                                                                                }, 100);
+                                                                                            }}
+                                                                                        >
+                                                                                            <div className="py-2">
+                                                                                                {submenuItem.submenuItems?.map((secondSubmenuItem) => (
+                                                                                                    <Link
+                                                                                                        key={secondSubmenuItem.key}
+                                                                                                        href={secondSubmenuItem.href}
+                                                                                                        className="block px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                                                                                                        onClick={closeDropdowns}
+                                                                                                    >
+                                                                                                        {getNavText(secondSubmenuItem.key)}
+                                                                                                    </Link>
+                                                                                                ))}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </>
+                                                                                ) : (
+                                                                                    <Link
+                                                                                        key={submenuItem.key}
+                                                                                        href={submenuItem.href}
+                                                                                        className="block px-4 py-2 text-white hover:bg-white/10 transition-colors"
+                                                                                        onClick={closeDropdowns}
+                                                                                    >
+                                                                                        {getNavText(submenuItem.key)}
+                                                                                    </Link>
+                                                                                )}
+                                                                            </div>
                                                                         ))}
                                                                     </div>
                                                                 </div>
