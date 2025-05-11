@@ -194,7 +194,8 @@
       "name": "Metin BALCAN",
       "title": " ",
       "bio": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.\n\nEaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores."
-    },
+    }
+  },
   "team": {
   "title": "PRODUCT DEVELOPMENT AND R&D TEAM",
   "gurhan": {
@@ -227,9 +228,8 @@
     "title": "Post Production Director",
     "bio": "Biography text for the Post Production Director will be placed here..."
   }
-}
-},
- "history": {
+  },
+  "history": {
     "title": "OUR HISTORY",
     "content": "DGD Global Teknoloji Joint Stock Company is a next-generation, corporate company established in October 2024 by three founding partners who are experts in their fields. The company was founded with the goal of creating new lifestyle models focused on technology investments, financial sourcing, and environmental awareness. It brings together various areas of expertise such as architecture, construction, agriculture, and communication consultancy, along with the founders’ professional-level networks and business experience, all based on a foundation of technology."
   }
