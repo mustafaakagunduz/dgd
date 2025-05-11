@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "DGD GLOBAL",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
   },
   "navbar": {
     "about": "ABOUT US",
@@ -67,6 +67,23 @@
     "showMore": "Read More",
     "showLess": "Show Less"
   },
+  "visionMission": {
+    "pageTitle": "Vision & Mission",
+    "pageDescription": "Discover DGD Global's core values and future vision",
+    "vision": {
+      "title": "Our Vision",
+      "content": "We are an organization with contemporary, strong, and innovative foundational perspectives, respectful to humanity and nature on a national and planetary scale, providing opportunities for all ideas and approaches, principled, competitive, and centered on ethical values."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "content": "DGD Global Technology Inc. is a company that conducts project, product and investment activities, as well as technology and knowledge consulting, based on a green and bio-circular, sustainable life model focused on environmental sensitivity and domestic production."
+    },
+    "cta": {
+      "title": "Contact Us",
+      "description": "Join us in building a sustainable future",
+      "button": "Get in Touch"
+    }
+  },
   "contact": {
     "title": "Contact Us",
     "description": "Get in touch with DGD Global Technology Inc. We're here to answer your questions and discuss your innovative technology needs.",
@@ -124,22 +141,22 @@
     "title": "OUR COMMERCIAL PARTNERS",
     "partners": {
       "7cbasalia": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
       },
       "alba": {
-        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit..."
       },
       "dc": {
-        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem..."
       },
       "dps": {
-        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
+        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur..."
       },
       "element": {
-        "description": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "description": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt..."
       },
       "iqPartners": {
-        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit..."
       }
     }
   }
