@@ -5,9 +5,20 @@ import { ContactForm } from "./ContactForm";
 import { ContactInfo } from "./ContactInfo";
 import { ContactMap } from "./ContactMap";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Contact() {
     const { t } = useLanguage();
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        // Tüm componentler aynı anda animasyon yapacak
+        const timer = setTimeout(() => {
+            setIsVisible(true);
+        }, 300);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <div className="relative min-h-screen">
@@ -28,8 +39,16 @@ export default function Contact() {
             {/* Content */}
             <div className="relative z-10 pt-24 pb-8 max-h-screen overflow-auto">
                 <div className="container mx-auto px-4">
-                    {/* Section Header */}
-                    <div className="text-center mb-6">
+                    {/* Section Header - Animasyonlu */}
+                    <div
+                        className={`
+                            text-center mb-6 transition-all duration-1000 ease-out
+                            ${isVisible
+                            ? 'opacity-100 translate-y-0'
+                            : 'opacity-0 translate-y-20'
+                        }
+                        `}
+                    >
                         <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
                             {t("contact.title")}
                         </h1>
@@ -40,17 +59,41 @@ export default function Contact() {
 
                     {/* Layout: Form on left, Address and Map on right */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-                        {/* Contact Form */}
-                        <div className="h-full">
+                        {/* Contact Form - Sol yan animasyon */}
+                        <div
+                            className={`
+                                h-full transition-all duration-1000 ease-out
+                                ${isVisible
+                                ? 'opacity-100 translate-x-0'
+                                : 'opacity-0 -translate-x-20'
+                            }
+                            `}
+                        >
                             <ContactForm />
                         </div>
 
-                        {/* Contact Info and Map */}
+                        {/* Contact Info and Map - Sağ yan animasyon */}
                         <div className="flex flex-col gap-6 h-full">
-                            <div className="min-h-[200px]">
+                            <div
+                                className={`
+                                    min-h-[200px] transition-all duration-1000 ease-out
+                                    ${isVisible
+                                    ? 'opacity-100 translate-x-0'
+                                    : 'opacity-0 translate-x-20'
+                                }
+                                `}
+                            >
                                 <ContactInfo />
                             </div>
-                            <div className="flex-1 min-h-[300px]">
+                            <div
+                                className={`
+                                    flex-1 min-h-[300px] transition-all duration-1000 ease-out
+                                    ${isVisible
+                                    ? 'opacity-100 translate-x-0'
+                                    : 'opacity-0 translate-x-20'
+                                }
+                                `}
+                            >
                                 <ContactMap />
                             </div>
                         </div>

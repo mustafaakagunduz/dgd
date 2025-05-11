@@ -1,8 +1,17 @@
 {
+  "hero": {
+    "title": "DGD GLOBAL",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  },
   "navbar": {
     "about": "ABOUT US",
     "activities": "OUR ACTIVITIES",
-    "partnerships": "OUR PARTNERSHIPS",
+    "commercial-partnerships": "OUR PARTNERSHIPS",
+    "partnershipsDropdown": {
+      "solutionPartnerships": "Solution Partnership Collaborations",
+      "commercialPartnerships": "Commercial Partnerships",
+      "socialPartnerships": "Social Partnerships"
+    },
     "techClub": "DGD TECH CLUB",
     "contact": "CONTACT",
     "aboutDropdown": {
@@ -109,6 +118,29 @@
       "rights": "If you wish to exercise your rights regarding your personal data under Article 11 of the PDPL, you can contact us at info@dgdglobal.com.",
       "consentStatement": "By clicking the \"Send Message\" button, you declare that you consent to the processing of your personal data for the purposes specified above.",
       "consent": "I have read the above information and give my explicit consent to the processing of my personal data."
+    }
+  },
+  "partnerships": {
+    "title": "OUR COMMERCIAL PARTNERS",
+    "partners": {
+      "7cbasalia": {
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      "alba": {
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      "dc": {
+        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+      },
+      "dps": {
+        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
+      },
+      "element": {
+        "description": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      "iqPartners": {
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
     }
   }
 }

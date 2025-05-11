@@ -47,26 +47,35 @@ export function ContactForm() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Form gönderme simülasyonu
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
 
-        setIsSubmitting(false);
-        setSubmitted(true);
+            if (!response.ok) {
+                throw new Error("Mail gönderilemedi");
+            }
 
-        // Formu sıfırla
-        setFormData({
-            fullName: "",
-            email: "",
-            phone: "",
-            message: "",
-            kvkApproval: false
-        });
+            setSubmitted(true);
+            setFormData({
+                fullName: "",
+                email: "",
+                phone: "",
+                message: "",
+                kvkApproval: false
+            });
 
-        // Başarı mesajını 3 saniye sonra gizle
-        setTimeout(() => {
-            setSubmitted(false);
-        }, 3000);
+            setTimeout(() => setSubmitted(false), 3000);
+        } catch (error) {
+            alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+            console.error(error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
+
 
     const handleKvkClose = () => {
         setShowKvkModal(false);

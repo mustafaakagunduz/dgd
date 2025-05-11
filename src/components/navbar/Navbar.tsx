@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronDown, ChevronRight, Globe, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Image from "next/image";
 
 // Navigation config
 const navItems = [
@@ -76,7 +77,16 @@ const navItems = [
             }
         ]
     },
-    { key: "navbar.partnerships", href: "/is-birliklerimiz" },
+    {
+        key: "navbar.commercial-partnerships",
+        href: "#",
+        hasDropdown: true,
+        dropdownItems: [
+            { key: "navbar.partnershipsDropdown.solutionPartnerships", href: "/solution-partnerships" },
+            { key: "navbar.partnershipsDropdown.commercialPartnerships", href: "/commercial-partnerships" },
+            { key: "navbar.partnershipsDropdown.socialPartnerships", href: "/social-partnerships" }
+        ]
+    },
 
     { key: "navbar.techClub", href: "/tech-club" },
     { key: "navbar.contact", href: "/contact" }
@@ -168,8 +178,14 @@ export default function Navbar() {
                 <div className="flex items-center justify-between">
                     {/* Logo - Sol taraf */}
                     <div>
-                        <Link href="/" className="text-white font-bold text-2xl">
-                            DGD-GLOBAL
+                        <Link href="/" className="flex items-center">
+                            <Image
+                                src="/assets/images/logo.png"
+                                alt="DGD-GLOBAL"
+                                width={120}
+                                height={40}
+                                className="object-contain"
+                            />
                         </Link>
                     </div>
 
