@@ -194,6 +194,39 @@
       "name": "Metin BALCAN",
       "title": " ",
       "bio": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.\n\nEaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores."
-    }
+    },
+  "team": {
+  "title": "PRODUCT DEVELOPMENT AND R&D TEAM",
+  "gurhan": {
+    "name": "GÜRHAN DURAL",
+    "title": "Projects and R&D Director",
+    "bio": "Biography text for the Projects and R&D Director will be placed here..."
+  },
+  "ferkan": {
+    "name": "FERKAN ÇELİK",
+    "title": "Business Development and Market Director",
+    "bio": "Biography text for the Business Development and Market Director will be placed here..."
+  },
+  "mucahit": {
+    "name": "MÜCAHİT ÜNAL",
+    "title": "Director",
+    "bio": "Biography text for the Director will be placed here..."
+  },
+  "baris": {
+    "name": "BARIŞ DİNÇER",
+    "title": "Artificial Intelligence Director",
+    "bio": "Biography text for the Artificial Intelligence Director will be placed here..."
+  },
+  "ugur": {
+    "name": "UĞUR ZEKİ AKSOY",
+    "title": "Production Manager",
+    "bio": "Biography text for the Production Manager will be placed here..."
+  },
+  "ahmet": {
+    "name": "AHMET FİDANCI",
+    "title": "Post Production Director",
+    "bio": "Biography text for the Post Production Director will be placed here..."
   }
+}
+}
 }

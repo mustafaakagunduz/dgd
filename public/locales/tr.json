@@ -198,7 +198,39 @@
       "title": " ",
       "bio": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.\n\nEaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores."
     }
+  
+  },
+  "team": {
+  "title": "ÜRETİM GELİŞTİRME VE AR-GE EKİBİMİZ",
+  "gurhan": {
+    "name": "GÜRHAN DURAL",
+    "title": "Projeler ve AR-GE Direktörü",
+    "bio": "Projeler ve AR-GE direktörü olarak görev yapmak üzere hazırlanacak biyografi metni buraya gelecek..."
+  },
+  "ferkan": {
+    "name": "FERKAN ÇELİK",
+    "title": "İş Geliştirme ve Pazar Direktörü",
+    "bio": "İş geliştirme ve pazar direktörü olarak görev yapmak üzere hazırlanacak biyografi metni buraya gelecek..."
+  },
+  "mucahit": {
+    "name": "MÜCAHİT ÜNAL",
+    "title": "Direktör",
+    "bio": "Direktör olarak görev yapmak üzere hazırlanacak biyografi metni buraya gelecek..."
+  },
+  "baris": {
+    "name": "BARIŞ DİNÇER",
+    "title": "Yapay Zeka Direktörü",
+    "bio": "Yapay zeka direktörü olarak görev yapmak üzere hazırlanacak biyografi metni buraya gelecek..."
+  },
+  "ugur": {
+    "name": "UĞUR ZEKİ AKSOY",
+    "title": "Prodüksiyon Amiri",
+    "bio": "Prodüksiyon amiri olarak görev yapmak üzere hazırlanacak biyografi metni buraya gelecek..."
+  },
+  "ahmet": {
+    "name": "AHMET FİDANCI",
+    "title": "Post Prodüksiyon Direktörü",
+    "bio": "Post prodüksiyon direktörü olarak görev yapmak üzere hazırlanacak biyografi metni buraya gelecek..."
   }
-
-
+  }
 }
