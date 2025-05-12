@@ -252,6 +252,19 @@
       "submit": "Bir hata oluştu. Lütfen tekrar deneyin.",
       "invalid": "Geçerli bir e-posta adresi girin."
     }
+  },
+  "techClub": {
+    "title": "DGD TECH CLUB",
+    "description": "Teknoloji dünyasından en güncel yazılar, analizler ve görüşler"
+  },
+  "comments": {
+    "title": "Yorumlar",
+    "placeholder": "Yorumunu yazabilirsin...",
+    "submit": "Yorumla",
+    "empty": "Henüz yorum yapılmamış. İlk yorumu sen yap!"
+  },
+  "essay": {
+    "backButton": "Geri Dön"
   }
 }
   

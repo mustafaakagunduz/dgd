@@ -248,6 +248,19 @@
       "submit": "An error occurred. Please try again.",
       "invalid": "Please enter a valid email address."
     }
+  },
+  "techClub": {
+    "title": "DGD TECH CLUB",
+    "description": "Latest articles, analyses and insights from the world of technology"
+  },
+  "comments": {
+    "title": "Comments",
+    "placeholder": "Write your comment...",
+    "submit": "Comment",
+    "empty": "No comments yet. Be the first to comment!"
+  },
+  "essay": {
+    "backButton": "Go Back"
   }
 
 }
