@@ -232,6 +232,23 @@
   "history": {
     "title": "OUR HISTORY",
     "content": "DGD Global Teknoloji Joint Stock Company is a next-generation, corporate company established in October 2024 by three founding partners who are experts in their fields. The company was founded with the goal of creating new lifestyle models focused on technology investments, financial sourcing, and environmental awareness. It brings together various areas of expertise such as architecture, construction, agriculture, and communication consultancy, along with the founders’ professional-level networks and business experience, all based on a foundation of technology."
-  }
+  },
+  "newsletter": {
+    "title": "Subscribe to Our Newsletter",
+    "description": "Stay updated with our latest news, exclusive content, and announcements. You can unsubscribe at any time.",
+    "placeholder": "Your email address",
+    "subscribe": "Subscribe",
+    "sending": "Sending...",
+    "privacy": "We respect your privacy and don't send spam. You can unsubscribe at any time.",
+    "success": {
+      "title": "Success!",
+      "message": "You've successfully subscribed to our newsletter. Your first update will arrive soon."
+    },
+    "error": {
+      "submit": "An error occurred. Please try again.",
+      "invalid": "Please enter a valid email address."
     }
+  }
+
+}
   

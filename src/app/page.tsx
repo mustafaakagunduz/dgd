@@ -1,9 +1,14 @@
 import Hero from "@/components/homepage/Hero";
 import About from "@/components/homepage/About";
+import Newsletter from "@/components/homepage/Newsletter";
 
 export default function Home() {
     return (
-        <main>
+        <main
+            style={{
+                background: 'linear-gradient(to bottom, #4b8224, #374151, #000000, #000000)'
+            }}
+        >
             <div className="relative">
                 <Hero />
                 <div
@@ -13,7 +18,10 @@ export default function Home() {
                     }}
                 />
             </div>
+
+            {/* About ve Newsletter'ın arka plan stillerini kaldırın */}
             <About />
+            <Newsletter />
         </main>
     );
 }

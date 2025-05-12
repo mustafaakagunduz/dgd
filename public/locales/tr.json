@@ -236,6 +236,22 @@
   "history": {
     "title": "TARİHÇE",
     "content": "DGD Global Teknoloji Anonim Şirketi, alanında uzman 3 kurucu ortağın başta teknoloji yatırımları,finansman tedariği ve çevre duyarlılığında yeni yaşam modelleri oluşturmak hedefiyle,teknoloji temelinde  mimari,inşaat,tarım,iletişim danışmanlığı gibi diğer uzmanlık alanları ve profesyonel düzeydeki ilişki ve iş deneyimlerini birleştirerek 2024 yılı Ekim ayında oluşturdukları yeni nesil, kurumsal bir şirkettir."
+  },
+  "newsletter": {
+    "title": "Bültenimize Abone Olun",
+    "description": "En son güncellemeler, özel içerikler ve haberler için e-posta adresinizi bırakın. İstediğiniz zaman aboneliğinizi iptal edebilirsiniz.",
+    "placeholder": "E-posta adresiniz",
+    "subscribe": "Abone Ol",
+    "sending": "Gönderiliyor...",
+    "privacy": "Gizliliğinize saygı duyuyor, spam göndermiyoruz. İstediğiniz zaman abonelikten çıkabilirsiniz.",
+    "success": {
+      "title": "Başarılı!",
+      "message": "Bültenimize başarıyla abone oldunuz. İlk bülten yakında gelen kutunuzda olacak."
+    },
+    "error": {
+      "submit": "Bir hata oluştu. Lütfen tekrar deneyin.",
+      "invalid": "Geçerli bir e-posta adresi girin."
+    }
   }
 }
   
