@@ -265,6 +265,11 @@
   },
   "essay": {
     "backButton": "Geri Dön"
+  },
+  "addEssay": {
+    "title": "Kendi Makaleni Oluştur",
+    "description": "Teknoloji dünyasındaki düşüncelerini ve deneyimlerini bizimle paylaş. Yeni makalen toplulukta yayınlanacak.",
+    "button": "Makale Oluştur"
   }
 }
   

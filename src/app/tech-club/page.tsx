@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { essays } from '@/lib/essays';
 import EssayCard from "@/app/tech-club/EssayCard";
+import AddEssayCard from "@/app/tech-club/AddEssayCard";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const TechClubPage = () => {
@@ -48,6 +49,11 @@ const TechClubPage = () => {
                         />
                     ))}
                 </motion.div>
+
+                {/* Add Essay Section */}
+                <div className="mt-16">
+                    <AddEssayCard />
+                </div>
             </div>
         </div>
     );

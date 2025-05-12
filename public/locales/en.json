@@ -261,6 +261,11 @@
   },
   "essay": {
     "backButton": "Go Back"
+  },
+  "addEssay": {
+    "title": "Create Your Own Article",
+    "description": "Share your thoughts and experiences from the tech world with us. Your new article will be published in the community.",
+    "button": "Create Article"
   }
 
 }
