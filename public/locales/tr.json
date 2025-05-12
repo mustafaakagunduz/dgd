@@ -261,7 +261,8 @@
     "title": "Yorumlar",
     "placeholder": "Yorumunu yazabilirsin...",
     "submit": "Yorumla",
-    "empty": "Henüz yorum yapılmamış. İlk yorumu sen yap!"
+    "empty": "Henüz yorum yapılmamış. İlk yorumu sen yap!",
+    "loginRequired": "Yorum yapabilmek için giriş yapmanız gerekmektedir."
   },
   "essay": {
     "backButton": "Geri Dön"
@@ -270,6 +271,41 @@
     "title": "Kendi Makaleni Oluştur",
     "description": "Teknoloji dünyasındaki düşüncelerini ve deneyimlerini bizimle paylaş. Yeni makalen toplulukta yayınlanacak.",
     "button": "Makale Oluştur"
+  },
+  "auth": {
+    "logout": "Çıkış Yap",
+    "notice": "Makale eklemek ve yorum yapabilmek için üye girişi yapmanız gerekmektedir.",
+    "email": "E-posta",
+    "password": "Şifre",
+    "confirmPassword": "Şifre Tekrar",
+    "login": {
+      "title": "Giriş Yap",
+      "button": "Giriş Yap"
+    },
+    "signup": {
+      "title": "Üye Ol",
+      "button": "Üye Ol"
+    },
+    "switchToSignup": "Hesabın yok mu? Üye ol",
+    "switchToLogin": "Zaten hesabın var mı? Giriş yap",
+    "error": {
+      "invalidCredentials": "E-posta veya şifre hatalı",
+      "passwordMismatch": "Şifreler eşleşmiyor",
+      "userExists": "Bu e-posta zaten kullanımda"
+    }
+  },
+  "createEssay": {
+    "title": "Yeni Makale Oluştur",
+    "titleField": "Başlık",
+    "summary": "Özet",
+    "author": "Yazar Adı",
+    "image": "Resim",
+    "chooseImage": "Resim Seç",
+    "removeImage": "Resmi Kaldır",
+    "imageFormats": "JPG, PNG, GIF formatları desteklenir",
+    "content": "İçerik",
+    "create": "Makale Oluştur"
   }
+
 }
   

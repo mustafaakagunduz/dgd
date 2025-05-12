@@ -257,7 +257,8 @@
     "title": "Comments",
     "placeholder": "Write your comment...",
     "submit": "Comment",
-    "empty": "No comments yet. Be the first to comment!"
+    "empty": "No comments yet. Be the first to comment!",
+    "loginRequired": "You need to login to comment."
   },
   "essay": {
     "backButton": "Go Back"
@@ -266,6 +267,40 @@
     "title": "Create Your Own Article",
     "description": "Share your thoughts and experiences from the tech world with us. Your new article will be published in the community.",
     "button": "Create Article"
+  },
+  "auth": {
+    "logout": "Log out",
+    "notice": "You need to login to add articles and make comments.",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "login": {
+      "title": "Login",
+      "button": "Login"
+    },
+    "signup": {
+      "title": "Sign Up",
+      "button": "Sign Up"
+    },
+    "switchToSignup": "Don't have an account? Sign up",
+    "switchToLogin": "Already have an account? Login",
+    "error": {
+      "invalidCredentials": "Invalid email or password",
+      "passwordMismatch": "Passwords don't match",
+      "userExists": "This email is already taken"
+    }
+  },
+  "createEssay": {
+    "title": "Create New Article",
+    "titleField": "Title",
+    "summary": "Summary",
+    "author": "Author Name",
+    "image": "Image",
+    "chooseImage": "Choose Image",
+    "removeImage": "Remove Image",
+    "imageFormats": "JPG, PNG, GIF formats supported",
+    "content": "Content",
+    "create": "Create Article"
   }
 
 }

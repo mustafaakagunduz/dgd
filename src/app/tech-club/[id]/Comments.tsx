@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Comment, getCommentsByEssayId } from '@/lib/comments';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface CommentsProps {
     essayId: string;
@@ -30,11 +31,17 @@ const CommentItem: React.FC<{ comment: Comment }> = ({ comment }) => {
 
 const Comments: React.FC<CommentsProps> = ({ essayId }) => {
     const { t } = useLanguage();
+    const { isLoggedIn } = useAuth();
     const comments = getCommentsByEssayId(essayId);
     const [newComment, setNewComment] = useState('');
 
     const handleSubmitComment = (e: React.FormEvent) => {
         e.preventDefault();
+        if (!isLoggedIn) {
+            // Login gerekli mesajı göster
+            console.log('Login required for commenting');
+            return;
+        }
         // Yeni yorum ekleme logic'i burada olacak
         console.log('Yeni yorum:', newComment);
         setNewComment('');
@@ -58,30 +65,8 @@ const Comments: React.FC<CommentsProps> = ({ essayId }) => {
                 {t("comments.title")} ({comments.length})
             </h2>
 
-            {/* Comment Form */}
-            <form onSubmit={handleSubmitComment} className="mb-8">
-                <div className="bg-white/5 rounded-lg p-4">
-                    <textarea
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        placeholder={t("comments.placeholder")}
-                        className="w-full bg-transparent text-white placeholder-gray-400 resize-none rounded-lg p-3 border border-white/20 focus:border-green-400 focus:outline-none"
-                        rows={3}
-                    />
-                    <div className="flex justify-end mt-3">
-                        <button
-                            type="submit"
-                            disabled={!newComment.trim()}
-                            className="px-6 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            {t("comments.submit")}
-                        </button>
-                    </div>
-                </div>
-            </form>
-
             {/* Comments List */}
-            <div className="space-y-4">
+            <div className="space-y-4 mb-8">
                 {comments.length > 0 ? (
                     comments.map((comment) => (
                         <CommentItem key={comment.id} comment={comment} />
@@ -92,6 +77,36 @@ const Comments: React.FC<CommentsProps> = ({ essayId }) => {
                     </div>
                 )}
             </div>
+
+            {/* Comment Form */}
+            {isLoggedIn ? (
+                <form onSubmit={handleSubmitComment}>
+                    <div className="bg-white/5 rounded-lg p-4">
+                        <textarea
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            placeholder={t("comments.placeholder")}
+                            className="w-full bg-transparent text-white placeholder-gray-400 resize-none rounded-lg p-3 border border-white/20 focus:border-green-400 focus:outline-none"
+                            rows={3}
+                        />
+                        <div className="flex justify-end mt-3">
+                            <button
+                                type="submit"
+                                disabled={!newComment.trim()}
+                                className="px-6 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {t("comments.submit")}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            ) : (
+                <div className="bg-white/5 rounded-lg p-4 text-center">
+                    <p className="text-gray-400">
+                        {t("comments.loginRequired")}
+                    </p>
+                </div>
+            )}
         </motion.div>
     );
 };
