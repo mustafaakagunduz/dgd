@@ -27,7 +27,7 @@ const ArticleModal: React.FC<ArticleModalProps> = ({
 
     if (!isOpen) return null;
 
-    // Modal dışına tıklama handler'ı
+    // Modal dışına tıklama handler'ıııı
     const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             onClose();
