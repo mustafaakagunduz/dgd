@@ -203,12 +203,12 @@ const ArticleModal: React.FC<ArticleModalProps> = ({
                                         İçerik:
                                     </h3>
                                     <div
-                                        className="prose prose-invert max-w-none space-y-4"
+                                        className="prose prose-invert max-w-none space-y-4 essay-content"
                                         dangerouslySetInnerHTML={{
                                             __html: essay.content
                                                 .replace(/<h2>/g, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">')
                                                 .replace(/<h3>/g, '<h3 class="text-xl font-semibold text-white mt-6 mb-3">')
-                                                .replace(/<p>/g, '<p class="text-gray-200 leading-relaxed mb-4">')
+                                                .replace(/<p>/g, '<p class="leading-relaxed mb-4">')
                                         }}
                                     />
                                 </div>

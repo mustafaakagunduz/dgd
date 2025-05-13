@@ -3,6 +3,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.essay-content,
+.essay-content p,
+.essay-content div,
+.essay-content span,
+.essay-content li {
+  color: white !important;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

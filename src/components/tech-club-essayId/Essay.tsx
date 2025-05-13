@@ -78,12 +78,12 @@ const EssayComponent: React.FC<EssayProps> = ({ essay }) => {
                     className="max-w-none"
                 >
                     <div
-                        className="space-y-4"
+                        className="space-y-4 essay-content"
                         dangerouslySetInnerHTML={{
                             __html: essay.content
                                 .replace(/<h2>/g, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">')
                                 .replace(/<h3>/g, '<h3 class="text-xl font-semibold text-white mt-6 mb-3">')
-                                .replace(/<p>/g, '<p style="color: white !important" class="leading-relaxed mb-4">')
+                                .replace(/<p>/g, '<p class="leading-relaxed mb-4">')
                         }}
                     />
                 </motion.div>
