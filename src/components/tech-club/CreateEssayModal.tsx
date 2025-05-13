@@ -44,7 +44,7 @@ const CreateEssayModal: React.FC<CreateEssayModalProps> = ({ isOpen, onClose }) 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Makale oluşturma logic'i burada olacak
-        console.log('Creating essay:', { formData, image });
+        console.log('Creating tech-club:', { formData, image });
         onClose();
         // Form'u sıfırla
         setFormData({

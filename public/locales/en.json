@@ -301,6 +301,103 @@
     "imageFormats": "JPG, PNG, GIF formats supported",
     "content": "Content",
     "create": "Create Article"
+  },
+  "admin": {
+    "pendingArticles": "Pending Articles",
+    "allArticles": "All Articles"
+  },
+  "waitlist": {
+    "title": "Pending Articles",
+    "description": "Admins can review and approve pending articles here.",
+    "backToArticles": "Back to Articles",
+    "table": {
+      "title": "Title",
+      "author": "Author",
+      "summary": "Summary",
+      "actions": "Actions"
+    },
+    "approve": "Approve",
+    "reject": "Reject",
+    "view": "View",
+    "content": "Content",
+    "noAccess": {
+      "title": "Access Denied",
+      "message": "You do not have permission to access this page."
+    },
+    "empty": {
+      "title": "No Pending Articles",
+      "message": "There are currently no articles waiting for approval."
+    },
+    "modal": {
+      "title": "Article Review"
+    }
+  },
+  "myArticles": {
+    "title": "My Articles",
+    "button": "My Articles",
+    "description": "View and manage your published articles here.",
+    "backToArticles": "Back to Articles",
+    "table": {
+      "title": "Title",
+      "summary": "Summary",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending",
+      "rejected": "Rejected"
+    },
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "content": "Content",
+    "empty": {
+      "title": "No Articles Yet",
+      "message": "Start writing your first article!"
+    },
+    "modal": {
+      "title": "Article Details",
+      "edit": "Edit Article",
+      "delete": {
+        "title": "Delete Article",
+        "message": "Are you sure you want to delete this article? This action cannot be undone.",
+        "confirm": "Yes, Delete",
+        "cancel": "Cancel"
+      },
+      "save": "Save",
+      "editTitle": "Title",
+      "editSummary": "Summary",
+      "editAuthor": "Author",
+      "editContent": "Content"
+    }
+  },
+  "allArticles": {
+    "title": "All Articles",
+    "description": "View and manage all articles in the system.",
+    "backToArticles": "Back to Articles",
+    "table": {
+      "title": "Title",
+      "author": "Author",
+      "summary": "Summary",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "approved": "Approved",
+      "pending": "Pending"
+    },
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "empty": {
+      "title": "No Articles Yet",
+      "message": "No articles have been added to the system yet."
+    },
+    "modal": {
+      "title": "Article Details",
+      "edit": "Edit Article"
+    }
   }
 
 }

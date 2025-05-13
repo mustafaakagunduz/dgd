@@ -65,12 +65,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             return false;
         }
 
-        // Yeni kullanıcı oluştur (default olarak "user" rolü)
+        // Yeni kullanıcı oluştur (default olarak "user" rolü ve emailVerified: false)
         const newUser: User = {
             id: String(users.length + 1),
             email,
             password,
-            role: "user" // Default role
+            role: "user", // Default role
+            emailVerified: false // Default emailVerified
         };
 
         users.push(newUser);

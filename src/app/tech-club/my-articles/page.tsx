@@ -1,35 +1,12 @@
 "use client";
 
 import React from 'react';
-import { notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { essays } from '@/lib/essays';
-import { useParams } from 'next/navigation';
-import EssayComponent from './Essay';
-import Comments from './Comments';
 import { useLanguage } from '@/contexts/LanguageContext';
+import EssayList from '../../../components/my-articles/EssayList';
 
-const EssayDetailPage = () => {
+const MyArticlesPage = () => {
     const { t } = useLanguage();
-    const params = useParams();
-    const id = params.id as string;
-
-    // Find the essay by id
-    const essay = essays.find(essay => essay.id === id);
-
-    // If essay not found, return 404
-    if (!essay) {
-        notFound();
-    }
-
-    const staggerContainer = {
-        initial: {},
-        animate: {
-            transition: {
-                staggerChildren: 0.3
-            }
-        }
-    };
 
     const fadeInUp = {
         initial: { opacity: 0, y: 30 },
@@ -39,17 +16,28 @@ const EssayDetailPage = () => {
 
     return (
         <motion.div
-            variants={staggerContainer}
             initial="initial"
             animate="animate"
             className="min-h-screen py-20"
         >
-            <div className="container mx-auto px-4 max-w-4xl space-y-8">
-                {/* Essay Component */}
-                <EssayComponent essay={essay} />
+            <div className="container mx-auto px-4 max-w-6xl space-y-8">
+                {/* Header */}
+                <motion.div
+                    variants={fadeInUp}
+                    className="text-center"
+                >
+                    <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                        {t("myArticles.title")}
+                    </h1>
+                    <p className="text-gray-200">
+                        {t("myArticles.description")}
+                    </p>
+                </motion.div>
 
-                {/* Comments Component */}
-                <Comments essayId={id} />
+                {/* EssayList Component */}
+                <motion.div variants={fadeInUp}>
+                    <EssayList />
+                </motion.div>
 
                 {/* Back Button */}
                 <motion.div
@@ -73,7 +61,7 @@ const EssayDetailPage = () => {
                                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
                             />
                         </svg>
-                        {t("essay.backButton")}
+                        {t("myArticles.backToArticles")}
                     </a>
                 </motion.div>
             </div>
@@ -81,4 +69,4 @@ const EssayDetailPage = () => {
     );
 };
 
-export default EssayDetailPage;
+export default MyArticlesPage;

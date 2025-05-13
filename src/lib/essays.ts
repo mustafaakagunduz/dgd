@@ -5,7 +5,8 @@ export interface Essay {
     author: string;
     image: string;
     content: string;
-
+    userId: string; // Hangi kullanıcının essayi
+    approved: boolean; // Admin onayı
 }
 
 export const essays: Essay[] = [
@@ -24,7 +25,8 @@ export const essays: Essay[] = [
       
       <h3>Gelecek Öngörüleri</h3>
       <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>`,
-
+        userId: "1", // Dr. Mehmet Yılmaz (admin)
+        approved: true // Admin kendi makalelerini otomatik onaylar
     },
     {
         id: "2",
@@ -41,7 +43,8 @@ export const essays: Essay[] = [
       
       <h3>Gelecek Planları</h3>
       <p>Fusce vitae mauris nec massa sodales eleifend. Cras quis lectus et leo tempor sodales. Quisque vehicula massa vel elit vehicula, vel bibendum erat tincidunt.</p>`,
-
+        userId: "2", // Prof. Ayşe Demir
+        approved: true // Admin tarafından onaylanmış
     },
     {
         id: "3",
@@ -58,7 +61,8 @@ export const essays: Essay[] = [
       
       <h3>Avantajları ve Dezavantajları</h3>
       <p>Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>`,
-
+        userId: "3", // Mühendis Can Özkan
+        approved: true // Admin tarafından onaylanmış
     },
     {
         id: "4",
@@ -75,7 +79,8 @@ export const essays: Essay[] = [
       
       <h3>Çevresel Etkiler</h3>
       <p>Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.</p>`,
-
+        userId: "4", // Dr. Zehra Aktaş
+        approved: true // Admin tarafından onaylanmış
     },
     {
         id: "5",
@@ -92,6 +97,38 @@ export const essays: Essay[] = [
       
       <h3>Gelecekteki Uygulamalar</h3>
       <p>Curabitur dignissim blandit turpis, sit amet rhoncus nisi congue ut. Integer in dolor ut lorem vehicula gravida non eget nulla.</p>`,
-
+        userId: "5", // Prof. Dr. Ali Kaya
+        approved: true // Admin tarafından onaylanmış
+    },
+    // Onaylanmamış makale örneği
+    {
+        id: "6",
+        title: "Yeni Makale - Onay Bekliyor",
+        summary: "Bu makale henüz admin tarafından onaylanmamış ve görüntülenmiyor.",
+        author: "Zeynep Yücel",
+        image: "/assets/images/pending.jpg",
+        content: "<p>Bu makale içeriği henüz admin tarafından incelenmemiş.</p>",
+        userId: "6", // Zeynep Yücel
+        approved: false // Onay bekliyor
     }
 ];
+
+// Sadece onaylanmış tech-club'leri getiren helper fonksiyon
+export const getApprovedEssays = (): Essay[] => {
+    return essays.filter(essay => essay.approved);
+};
+
+// Onay bekleyen tech-club'leri getiren helper fonksiyon (admin için)
+export const getPendingEssays = (): Essay[] => {
+    return essays.filter(essay => !essay.approved);
+};
+
+// Belirli bir kullanıcının tech-club'lerini getiren helper fonksiyon
+export const getEssaysByUserId = (userId: string): Essay[] => {
+    return essays.filter(essay => essay.userId === userId);
+};
+
+// Belirli bir kullanıcının onaylanmış tech-club'lerini getiren helper fonksiyon
+export const getApprovedEssaysByUserId = (userId: string): Essay[] => {
+    return essays.filter(essay => essay.userId === userId && essay.approved);
+};

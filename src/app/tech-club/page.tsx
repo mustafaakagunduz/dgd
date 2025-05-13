@@ -2,13 +2,14 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { essays } from '@/lib/essays';
-import EssayCard from "@/app/tech-club/EssayCard";
-import AddEssayCard from "@/app/tech-club/AddEssayCard";
+import { getApprovedEssays } from '@/lib/essays';
+import EssayCard from "@/components/tech-club/EssayCard";
+import AddEssayCard from "@/components/tech-club/AddEssayCard";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const TechClubPage = () => {
     const { t } = useLanguage();
+    const approvedEssays = getApprovedEssays(); // Sadece onaylanmış makaleleri al
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -41,7 +42,7 @@ const TechClubPage = () => {
                     animate="visible"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                 >
-                    {essays.map((essay, index) => (
+                    {approvedEssays.map((essay, index) => (
                         <EssayCard
                             key={essay.id}
                             essay={essay}

@@ -305,7 +305,103 @@
     "imageFormats": "JPG, PNG, GIF formatları desteklenir",
     "content": "İçerik",
     "create": "Makale Oluştur"
+  },
+  "admin": {
+    "pendingArticles": "Onay Bekleyen Makaleler",
+    "allArticles": "Tüm Makaleler"
+  },
+  "waitlist": {
+    "title": "Onay Bekleyen Makaleler",
+    "description": "Admin onayı bekleyen makaleleri buradan inceleyebilir ve onaylayabilirsiniz.",
+    "backToArticles": "Makalelere Geri Dön",
+    "table": {
+      "title": "Başlık",
+      "author": "Yazar",
+      "summary": "Özet",
+      "actions": "İşlemler"
+    },
+    "approve": "Onayla",
+    "reject": "Reddet",
+    "view": "Görüntüle",
+    "content": "İçerik",
+    "noAccess": {
+      "title": "Erişim Reddedildi",
+      "message": "Bu sayfaya erişim yetkiniz bulunmamaktadır."
+    },
+    "empty": {
+      "title": "Onay Bekleyen Makale Yok",
+      "message": "Şu anda onay bekleyen herhangi bir makale bulunmamaktadır."
+    },
+    "modal": {
+      "title": "Makale İncelemesi"
+    }
+  },
+  "myArticles": {
+    "title": "Makalelerim",
+    "button": "Makalelerim",
+    "description": "Tarafınızca yazılmış makaleleri buradan görüntüleyebilirsiniz.",
+    "backToArticles": "Makalelere Geri Dön",
+    "table": {
+      "title": "Başlık",
+      "summary": "Özet",
+      "status": "Durum",
+      "actions": "İşlemler"
+    },
+    "status": {
+      "approved": "Onaylandı",
+      "pending": "Onay Bekliyor",
+      "rejected": "Reddedildi"
+    },
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "view": "Görüntüle",
+    "content": "İçerik",
+    "empty": {
+      "title": "Henüz Makale Yazmamışsın",
+      "message": "İlk makaleni yazmaya başla!"
+    },
+    "modal": {
+      "title": "Makale Detayı",
+      "edit": "Makale Düzenle",
+      "delete": {
+        "title": "Makaleyi Sil",
+        "message": "Bu makaleyi silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+        "confirm": "Evet, Sil",
+        "cancel": "İptal"
+      },
+      "save": "Kaydet",
+      "editTitle": "Başlık",
+      "editSummary": "Özet",
+      "editAuthor": "Yazar",
+      "editContent": "İçerik"
+    }
+  },
+  "allArticles": {
+    "title": "Tüm Makaleler",
+    "description": "Sistemdeki tüm makaleleri buradan görüntüleyebilir ve yönetebilirsiniz.",
+    "backToArticles": "Makalelere Geri Dön",
+    "table": {
+      "title": "Başlık",
+      "author": "Yazar",
+      "summary": "Özet",
+      "status": "Durum",
+      "actions": "İşlemler"
+    },
+    "status": {
+      "approved": "Onaylandı",
+      "pending": "Onay Bekliyor"
+    },
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "view": "Görüntüle",
+    "empty": {
+      "title": "Henüz Makale Yok",
+      "message": "Sisteme henüz makale eklenmemiş."
+    },
+    "modal": {
+      "title": "Makale Detayı",
+      "edit": "Makale Düzenle"
+    }
   }
-
 }
   
