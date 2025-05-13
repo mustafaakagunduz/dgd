@@ -28,18 +28,40 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Initial session check
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setUser(session?.user ?? null);
-            if (session?.user) {
-                fetchUserProfile(session.user.id);
-            } else {
-                setLoading(false);
+        let isMounted = true;
+
+        // Initial session check - non-blocking
+        const initializeAuth = async () => {
+            try {
+                const { data: { session }, error } = await supabase.auth.getSession();
+
+                if (error) {
+                    console.error('Auth initialization error:', error);
+                    if (isMounted) setLoading(false);
+                    return;
+                }
+
+                if (isMounted) {
+                    setUser(session?.user ?? null);
+                    if (session?.user) {
+                        await fetchUserProfile(session.user.id);
+                    } else {
+                        setLoading(false);
+                    }
+                }
+            } catch (error) {
+                console.error('Error in auth initialization:', error);
+                if (isMounted) setLoading(false);
             }
-        });
+        };
+
+        // Async initialization
+        const timeoutId = setTimeout(initializeAuth, 0);
 
         // Auth state listener
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+            if (!isMounted) return;
+
             setUser(session?.user ?? null);
 
             if (session?.user) {
@@ -50,7 +72,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             }
         });
 
-        return () => subscription.unsubscribe();
+        return () => {
+            isMounted = false;
+            clearTimeout(timeoutId);
+            subscription.unsubscribe();
+        };
     }, []);
 
     const fetchUserProfile = async (userId: string) => {

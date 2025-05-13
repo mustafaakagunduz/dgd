@@ -10,7 +10,23 @@ interface LoadingProviderProps {
 const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) => {
     const { loading } = useAuth();
 
-    if (loading) {
+    // Sadece gerçekten uzun sürerse loading screen göster
+    const [showLoading, setShowLoading] = React.useState(false);
+
+    React.useEffect(() => {
+        if (loading) {
+            // 500ms bekle sonra loading screen göster
+            const timer = setTimeout(() => {
+                setShowLoading(true);
+            }, 500);
+
+            return () => clearTimeout(timer);
+        } else {
+            setShowLoading(false);
+        }
+    }, [loading]);
+
+    if (loading && showLoading) {
         return (
             <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
                 <div className="text-center">

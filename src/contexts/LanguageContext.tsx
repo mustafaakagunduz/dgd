@@ -25,14 +25,19 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
 
     // Handle localStorage - must be in useEffect due to SSR
     useEffect(() => {
-        try {
-            const savedLanguage = localStorage.getItem("language") as Language;
-            if (savedLanguage && (savedLanguage === "en" || savedLanguage === "tr")) {
-                setLanguage(savedLanguage);
+        // Async localStorage erişimi, sayfa bloke olmadan yüklensin
+        const timeoutId = setTimeout(() => {
+            try {
+                const savedLanguage = localStorage.getItem("language") as Language;
+                if (savedLanguage && (savedLanguage === "en" || savedLanguage === "tr")) {
+                    setLanguage(savedLanguage);
+                }
+            } catch (error) {
+                console.error("Error accessing localStorage:", error);
             }
-        } catch (error) {
-            console.error("Error accessing localStorage:", error);
-        }
+        }, 0);
+
+        return () => clearTimeout(timeoutId);
     }, []);
 
     useEffect(() => {
