@@ -23,7 +23,7 @@ const Navbar = dynamic(() => import("@/components/navbar/Navbar"), {
     ssr: true, // Server-side rendering için gerekli
 });
 
-// Provider'ları ayrı component'e çıkar
+// Provider'ları ayrı component'e çıkarr
 const Providers = dynamic(() => import("@/components/providers/Providers"), {
     ssr: true,
 });
