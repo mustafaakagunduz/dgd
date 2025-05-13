@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             email,
             password,
             role: "user", // Default role
-            emailVerified: false, // Default emailVerified
+            emailVerified: false, // Default emailVerifiedasdsad
             name: name || email // Use provided name or fallback to email
         };
 
