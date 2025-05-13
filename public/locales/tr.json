@@ -403,6 +403,28 @@
       "title": "Makale Detayı",
       "edit": "Makale Düzenle"
     }
+  },
+  "newArticle": {
+    "title": "Yeni Makale Oluştur",
+    "description": "Teknoloji kulübü için yeni bir makale yazın ve toplulukla paylaşın.",
+    "backToClub": "Teknoloji Kulübüne Geri Dön",
+    "titleField": "Makale Başlığı",
+    "titlePlaceholder": "Makalenizin başlığını yazın...",
+    "summary": "Özet",
+    "summaryPlaceholder": "Makalenizin kısa bir özetini yazın...",
+    "author": "Yazar",
+    "image": "Resim (Opsiyonel)",
+    "chooseImage": "Resim Seç",
+    "removeImage": "Resmi Kaldır",
+    "imageFormats": "JPG, PNG ya da GIF formatında dosya yükleyebilirsiniz",
+    "content": "İçerik",
+    "contentPlaceholder": "Makalenizin içeriğini buraya yazın...",
+    "cancel": "İptal",
+    "create": "Makale Oluştur",
+    "processing": "İşleniyor...",
+    "loginRequired": "Giriş yapmanız gerekiyor",
+    "createError": "Makale oluşturulamadı",
+    "unexpectedError": "Beklenmeyen bir hata oluştu"
   }
 }
   

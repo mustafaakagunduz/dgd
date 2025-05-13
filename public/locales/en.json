@@ -399,7 +399,30 @@
       "title": "Article Details",
       "edit": "Edit Article"
     }
+  },
+  "newArticle": {
+    "title": "Create New Article",
+    "description": "Write a new article for the tech club and share it with the community.",
+    "backToClub": "Back to Tech Club",
+    "titleField": "Article Title",
+    "titlePlaceholder": "Write your article title...",
+    "summary": "Summary",
+    "summaryPlaceholder": "Write a brief summary of your article...",
+    "author": "Author",
+    "image": "Image (Optional)",
+    "chooseImage": "Choose Image",
+    "removeImage": "Remove Image",
+    "imageFormats": "You can upload files in JPG, PNG or GIF format",
+    "content": "Content",
+    "contentPlaceholder": "Write your article content here...",
+    "cancel": "Cancel",
+    "create": "Create Article",
+    "processing": "Processing...",
+    "loginRequired": "You need to log in",
+    "createError": "Article could not be created",
+    "unexpectedError": "An unexpected error occurred"
   }
+
 
 }
   

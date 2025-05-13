@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from "@/components/authorization/AuthModal";
-import CreateEssayModal from "@/components/tech-club/CreateEssayModal";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface AddEssayCardProps {
     onEssayCreated?: () => void;
@@ -16,25 +16,18 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
     const { t } = useLanguage();
     const { isLoggedIn, logout, isAdmin } = useAuth();
     const [showAuthModal, setShowAuthModal] = useState(false);
-    const [showCreateModal, setShowCreateModal] = useState(false);
+    const router = useRouter();
 
     const handleCreateArticle = () => {
         if (!isLoggedIn) {
             setShowAuthModal(true);
         } else {
-            setShowCreateModal(true);
+            router.push('/tech-club/new-article');
         }
     };
 
     const handleLogout = () => {
         logout();
-    };
-
-    const handleEssayCreated = () => {
-        setShowCreateModal(false);
-        if (onEssayCreated) {
-            onEssayCreated();
-        }
     };
 
     return (
@@ -125,8 +118,6 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
                             </Link>
                         )}
 
-
-
                         {/* Logout Button - sadece login olduysa göster */}
                         {isLoggedIn && (
                             <button
@@ -156,12 +147,6 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
             <AuthModal
                 isOpen={showAuthModal}
                 onClose={() => setShowAuthModal(false)}
-            />
-
-            <CreateEssayModal
-                isOpen={showCreateModal}
-                onClose={() => setShowCreateModal(false)}
-                onEssayCreated={handleEssayCreated}
             />
         </>
     );
