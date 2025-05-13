@@ -9,7 +9,7 @@ interface AuthContextType {
     userRole: UserRole | null;
     isAdmin: boolean;
     login: (email: string, password: string) => boolean;
-    signup: (email: string, password: string) => boolean;
+    signup: (email: string, password: string, name?: string) => boolean;
     logout: () => void;
 }
 
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         return false;
     };
 
-    const signup = (email: string, password: string): boolean => {
+    const signup = (email: string, password: string, name?: string): boolean => {
         // Kullanıcı zaten var mı kontrol et
         const existingUser = users.find(
             u => u.email === email
@@ -71,7 +71,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             email,
             password,
             role: "user", // Default role
-            emailVerified: false // Default emailVerified
+            emailVerified: false, // Default emailVerified
+            name: name || email // Use provided name or fallback to email
         };
 
         users.push(newUser);
