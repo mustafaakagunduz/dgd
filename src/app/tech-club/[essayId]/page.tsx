@@ -1,9 +1,9 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { essays } from '@/lib/essays';
+import { getEssayById, Essay } from '@/lib/essays';
 import { useParams } from 'next/navigation';
 import EssayComponent from '../../../components/tech-club-essayId/Essay';
 import Comments from '../../../components/tech-club-essayId/Comments';
@@ -12,15 +12,29 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const EssayDetailPage = () => {
     const { t } = useLanguage();
     const params = useParams();
-    const id = params.id as string;
+    const id = params.essayId as string;
+    const [essay, setEssay] = useState<Essay | null>(null);
+    const [loading, setLoading] = useState(true);
 
-    // Find the tech-club by id
-    const essay = essays.find(essay => essay.id === id);
+    useEffect(() => {
+        loadEssay();
+    }, [id]);
 
-    // If tech-club not found, return 404
-    if (!essay) {
-        notFound();
-    }
+    const loadEssay = async () => {
+        try {
+            const fetchedEssay = await getEssayById(id);
+            if (!fetchedEssay) {
+                notFound();
+                return;
+            }
+            setEssay(fetchedEssay);
+        } catch (error) {
+            console.error('Error loading essay:', error);
+            notFound();
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const staggerContainer = {
         initial: {},
@@ -36,6 +50,19 @@ const EssayDetailPage = () => {
         animate: { opacity: 1, y: 0 },
         transition: { duration: 0.6 }
     };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen py-20 flex items-center justify-center">
+                <div className="text-white text-xl">Makale yükleniyor...</div>
+            </div>
+        );
+    }
+
+    if (!essay) {
+        notFound();
+        return null;
+    }
 
     return (
         <motion.div
@@ -73,7 +100,7 @@ const EssayDetailPage = () => {
                                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
                             />
                         </svg>
-                        {t("tech-club.backButton")}
+                        {t("techClub.backButton")}
                     </a>
                 </motion.div>
             </div>

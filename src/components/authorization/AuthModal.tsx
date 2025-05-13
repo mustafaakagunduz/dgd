@@ -17,37 +17,46 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        name: ''
     });
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     if (!isOpen) return null;
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+        setLoading(true);
 
-        if (isLoginMode) {
-            const success = login(formData.email, formData.password);
-            if (success) {
-                onClose();
-                setFormData({ email: '', password: '', confirmPassword: '' });
+        try {
+            if (isLoginMode) {
+                const result = await login(formData.email, formData.password);
+                if (result.success) {
+                    onClose();
+                    setFormData({ email: '', password: '', confirmPassword: '', name: '' });
+                } else {
+                    setError(result.error || t("auth.error.invalidCredentials"));
+                }
             } else {
-                setError(t("auth.error.invalidCredentials"));
-            }
-        } else {
-            if (formData.password !== formData.confirmPassword) {
-                setError(t("auth.error.passwordMismatch"));
-                return;
-            }
+                if (formData.password !== formData.confirmPassword) {
+                    setError(t("auth.error.passwordMismatch"));
+                    setLoading(false);
+                    return;
+                }
 
-            const success = signup(formData.email, formData.password);
-            if (success) {
-                onClose();
-                setFormData({ email: '', password: '', confirmPassword: '' });
-            } else {
-                setError(t("auth.error.userExists"));
+                const result = await signup(formData.email, formData.password, formData.name);
+                if (result.success) {
+                    onClose();
+                    setFormData({ email: '', password: '', confirmPassword: '', name: '' });
+                    // Kullanıcıya başarı mesajı gösterebilirsin
+                } else {
+                    setError(result.error || t("auth.error.userExists"));
+                }
             }
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -88,6 +97,22 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-4">
+                    {!isLoginMode && (
+                        <div>
+                            <label className="block text-gray-300 text-sm font-medium mb-2">
+                                İsim Soyisim
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400"
+                                required={!isLoginMode}
+                            />
+                        </div>
+                    )}
+
                     <div>
                         <label className="block text-gray-300 text-sm font-medium mb-2">
                             {t("auth.email")}
@@ -127,7 +152,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                                 value={formData.confirmPassword}
                                 onChange={handleInputChange}
                                 className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400"
-                                required
+                                required={!isLoginMode}
                             />
                         </div>
                     )}
@@ -138,9 +163,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
                     <button
                         type="submit"
-                        className="w-full py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-500 transition-all duration-300"
+                        disabled={loading}
+                        className="w-full py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {isLoginMode ? t("auth.login.button") : t("auth.signup.button")}
+                        {loading ? 'İşlem yapılıyor...' :
+                            isLoginMode ? t("auth.login.button") : t("auth.signup.button")}
                     </button>
                 </form>
 
@@ -150,7 +177,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         onClick={() => {
                             setIsLoginMode(!isLoginMode);
                             setError('');
-                            setFormData({ email: '', password: '', confirmPassword: '' });
+                            setFormData({ email: '', password: '', confirmPassword: '', name: '' });
                         }}
                         className="text-green-400 hover:text-green-300 transition-colors"
                     >

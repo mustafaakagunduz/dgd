@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { getEssaysByUserId, Essay } from '@/lib/essays';
+import { getEssaysByUserId, Essay, updateEssay, deleteEssay } from '@/lib/essays';
 import {
     Table,
     TableBody,
@@ -13,7 +13,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Eye, Edit, Trash2 } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import EssayModal from './EssayModal';
 import DeleteConfirmModal from './DeleteConfirmModal';
 
@@ -25,26 +25,32 @@ const EssayList = () => {
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [essayToDelete, setEssayToDelete] = useState<Essay | null>(null);
-    const [modalMode, setModalMode] = useState<'view' | 'edit'>('view');
+    const [loading, setLoading] = useState(true);
 
-    // useEffect ile currentUser değiştiğinde essays'leri yeniden yükle
     useEffect(() => {
         if (currentUser) {
-            setUserEssays(getEssaysByUserId(currentUser.id));
+            loadUserEssays();
         } else {
             setUserEssays([]);
+            setLoading(false);
         }
     }, [currentUser]);
 
-    const handleViewEssay = (essay: Essay) => {
-        setSelectedEssay(essay);
-        setModalMode('view');
-        setShowModal(true);
+    const loadUserEssays = async () => {
+        if (!currentUser) return;
+
+        try {
+            const essays = await getEssaysByUserId(currentUser.id);
+            setUserEssays(essays);
+        } catch (error) {
+            console.error('Error loading user essays:', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const handleEditEssay = (essay: Essay) => {
+    const handleViewEssay = (essay: Essay) => {
         setSelectedEssay(essay);
-        setModalMode('edit');
         setShowModal(true);
     };
 
@@ -53,13 +59,44 @@ const EssayList = () => {
         setShowDeleteModal(true);
     };
 
-    const confirmDelete = () => {
-        if (essayToDelete) {
-            // Essay silme logic'i burada olacak
-            console.log('Deleting tech-club:', essayToDelete.id);
-            setUserEssays(prev => prev.filter(essay => essay.id !== essayToDelete.id));
-            setShowDeleteModal(false);
-            setEssayToDelete(null);
+    const confirmDelete = async () => {
+        if (!essayToDelete) return;
+
+        try {
+            const result = await deleteEssay(essayToDelete.id);
+            if (result.success) {
+                setUserEssays(prev => prev.filter(essay => essay.id !== essayToDelete.id));
+                setShowDeleteModal(false);
+                setEssayToDelete(null);
+            } else {
+                alert('Silme işlemi başarısız: ' + result.error);
+            }
+        } catch (error) {
+            console.error('Error deleting essay:', error);
+            alert('Silme işlemi sırasında bir hata oluştu');
+        }
+    };
+
+    const handleSaveEssay = async (updatedEssay: Essay) => {
+        try {
+            const result = await updateEssay(updatedEssay.id, {
+                title: updatedEssay.title,
+                summary: updatedEssay.summary,
+                content: updatedEssay.content
+            });
+
+            if (result.success) {
+                setUserEssays(prev => prev.map(essay =>
+                    essay.id === updatedEssay.id ? updatedEssay : essay
+                ));
+                setShowModal(false);
+                setSelectedEssay(null);
+            } else {
+                alert('Güncelleme başarısız: ' + result.error);
+            }
+        } catch (error) {
+            console.error('Error updating essay:', error);
+            alert('Güncelleme sırasında bir hata oluştu');
         }
     };
 
@@ -78,6 +115,14 @@ const EssayList = () => {
             );
         }
     };
+
+    if (loading) {
+        return (
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 text-center">
+                <div className="text-white">Makaleler yükleniyor...</div>
+            </div>
+        );
+    }
 
     if (!currentUser) {
         return (
@@ -155,15 +200,6 @@ const EssayList = () => {
                                             <Button
                                                 size="sm"
                                                 variant="outline"
-                                                onClick={() => handleEditEssay(essay)}
-                                                className="h-8 w-8 p-0 border-yellow-500 hover:bg-yellow-500/20 hover:border-yellow-400"
-                                                title={t("myArticles.edit")}
-                                            >
-                                                <Edit className="h-4 w-4 text-yellow-500" />
-                                            </Button>
-                                            <Button
-                                                size="sm"
-                                                variant="outline"
                                                 onClick={() => handleDeleteEssay(essay)}
                                                 className="h-8 w-8 p-0 border-red-500 hover:bg-red-500/20 hover:border-red-400"
                                                 title={t("myArticles.delete")}
@@ -188,16 +224,7 @@ const EssayList = () => {
                         setSelectedEssay(null);
                     }}
                     essay={selectedEssay}
-                    mode={modalMode}
-                    onSave={(updatedEssay) => {
-                        // Essay güncelleme logic'i burada olacak
-                        console.log('Updating tech-club:', updatedEssay);
-                        setUserEssays(prev => prev.map(essay =>
-                            essay.id === updatedEssay.id ? updatedEssay : essay
-                        ));
-                        setShowModal(false);
-                        setSelectedEssay(null);
-                    }}
+                    onSave={handleSaveEssay}
                     onDelete={() => {
                         setShowModal(false);
                         handleDeleteEssay(selectedEssay);

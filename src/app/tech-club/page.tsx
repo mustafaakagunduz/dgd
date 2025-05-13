@@ -1,15 +1,31 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { getApprovedEssays } from '@/lib/essays';
+import { getApprovedEssays, Essay } from '@/lib/essays';
 import EssayCard from "@/components/tech-club/EssayCard";
 import AddEssayCard from "@/components/tech-club/AddEssayCard";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const TechClubPage = () => {
     const { t } = useLanguage();
-    const approvedEssays = getApprovedEssays(); // Sadece onaylanmış makaleleri al
+    const [essays, setEssays] = useState<Essay[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        loadEssays();
+    }, []);
+
+    const loadEssays = async () => {
+        try {
+            const approvedEssays = await getApprovedEssays();
+            setEssays(approvedEssays);
+        } catch (error) {
+            console.error('Error loading essays:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -21,6 +37,14 @@ const TechClubPage = () => {
             }
         }
     };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen py-20 flex items-center justify-center">
+                <div className="text-white text-xl">Makaleler yükleniyor...</div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen py-20">
@@ -42,7 +66,7 @@ const TechClubPage = () => {
                     animate="visible"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                 >
-                    {approvedEssays.map((essay, index) => (
+                    {essays.map((essay, index) => (
                         <EssayCard
                             key={essay.id}
                             essay={essay}
@@ -53,7 +77,7 @@ const TechClubPage = () => {
 
                 {/* Add Essay Section */}
                 <div className="mt-16">
-                    <AddEssayCard />
+                    <AddEssayCard onEssayCreated={loadEssays} />
                 </div>
             </div>
         </div>

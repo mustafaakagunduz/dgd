@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Essay } from '@/lib/essays';
 import { Button } from "@/components/ui/button";
-import { Edit, Trash2, Save } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -12,7 +12,6 @@ interface EssayModalProps {
     isOpen: boolean;
     onClose: () => void;
     essay: Essay;
-    mode: 'view' | 'edit';
     onSave: (updatedEssay: Essay) => void;
     onDelete: () => void;
 }
@@ -21,17 +20,10 @@ const EssayModal: React.FC<EssayModalProps> = ({
                                                    isOpen,
                                                    onClose,
                                                    essay,
-                                                   mode,
                                                    onSave,
                                                    onDelete
                                                }) => {
     const { t } = useLanguage();
-    const [editMode, setEditMode] = useState(mode);
-    const [formData, setFormData] = useState({
-        title: essay.title,
-        summary: essay.summary,
-        content: essay.content
-    });
 
     if (!isOpen) return null;
 
@@ -42,22 +34,9 @@ const EssayModal: React.FC<EssayModalProps> = ({
         }
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
-    };
-
-    const handleSave = () => {
-        const updatedEssay: Essay = {
-            ...essay,
-            title: formData.title,
-            summary: formData.summary,
-            content: formData.content
-        };
-        onSave(updatedEssay);
-    };
+    // Author bilgisini güvenli şekilde al
+    const authorName = essay.profiles?.name || 'Unknown Author';
+    const authorInitials = authorName.split(' ').map((name: string) => name[0]).join('');
 
     return (
         <div
@@ -74,7 +53,7 @@ const EssayModal: React.FC<EssayModalProps> = ({
                 {/* Header */}
                 <div className="flex justify-between items-center p-6 border-b border-white/20">
                     <h2 className="text-2xl font-bold text-white">
-                        {editMode === 'edit' ? t("myArticles.modal.edit") : t("myArticles.modal.title")}
+                        {t("myArticles.modal.title")}
                     </h2>
                     <button
                         onClick={onClose}
@@ -86,168 +65,66 @@ const EssayModal: React.FC<EssayModalProps> = ({
                     </button>
                 </div>
 
-                {/* Content */}
+                {/* Content - View Mode Only */}
                 <div className="p-6">
-                    {editMode === 'edit' ? (
-                        /* Edit Mode */
-                        <div className="space-y-6">
-                            {/* Title */}
-                            <div>
-                                <label className="block text-gray-300 text-sm font-medium mb-2">
-                                    {t("myArticles.modal.editTitle")}
-                                </label>
-                                <input
-                                    type="text"
-                                    name="title"
-                                    value={formData.title}
-                                    onChange={handleInputChange}
-                                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400"
-                                />
-                            </div>
+                    {/* Hero Image */}
+                    {essay.image_url && (
+                        <div className="relative h-64 md:h-80 w-full rounded-lg overflow-hidden mb-6">
+                            <Image
+                                src={essay.image_url}
+                                alt={essay.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 800px"
+                            />
+                        </div>
+                    )}
 
-                            {/* Author - Read Only */}
-                            <div>
-                                <label className="block text-gray-300 text-sm font-medium mb-2">
-                                    Yazar (Değiştirilemez)
-                                </label>
-                                <input
-                                    type="text"
-                                    value={essay.author}
-                                    readOnly
-                                    className="w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded-lg text-gray-300 cursor-not-allowed"
-                                />
-                            </div>
+                    {/* Article Info */}
+                    <div className="space-y-4">
+                        <h1 className="text-3xl font-bold text-white">{essay.title}</h1>
 
-                            {/* Summary */}
-                            <div>
-                                <label className="block text-gray-300 text-sm font-medium mb-2">
-                                    {t("myArticles.modal.editSummary")}
-                                </label>
-                                <textarea
-                                    name="summary"
-                                    value={formData.summary}
-                                    onChange={handleInputChange}
-                                    rows={3}
-                                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400 resize-none"
-                                />
+                        <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
+                                <span className="text-white font-semibold text-sm">
+                                    {authorInitials}
+                                </span>
                             </div>
-
-                            {/* Content */}
                             <div>
-                                <label className="block text-gray-300 text-sm font-medium mb-2">
-                                    {t("myArticles.modal.editContent")}
-                                </label>
-                                <textarea
-                                    name="content"
-                                    value={formData.content}
-                                    onChange={handleInputChange}
-                                    rows={12}
-                                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400 resize-none"
-                                />
+                                <p className="text-green-400 font-semibold">{authorName}</p>
                             </div>
                         </div>
-                    ) : (
-                        /* View Mode */
-                        <>
-                            {/* Hero Image */}
-                            <div className="relative h-64 md:h-80 w-full rounded-lg overflow-hidden mb-6">
-                                <Image
-                                    src={essay.image}
-                                    alt={essay.title}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 800px"
-                                />
-                            </div>
 
-                            {/* Article Info */}
-                            <div className="space-y-4">
-                                <h1 className="text-3xl font-bold text-white">{essay.title}</h1>
+                        <p className="text-gray-300 text-lg leading-relaxed">{essay.summary}</p>
 
-                                <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
-                                        <span className="text-white font-semibold text-sm">
-                                            {essay.author.split(' ').map(name => name[0]).join('')}
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <p className="text-green-400 font-semibold">{essay.author}</p>
-                                    </div>
-                                </div>
-
-                                <p className="text-gray-300 text-lg leading-relaxed">{essay.summary}</p>
-
-                                {/* Article Content */}
-                                <div className="mt-6">
-                                    <h3 className="text-xl font-semibold text-white mb-4">
-                                        {t("myArticles.content")}:
-                                    </h3>
-                                    <div
-                                        className="prose prose-invert max-w-none space-y-4"
-                                        dangerouslySetInnerHTML={{
-                                            __html: essay.content
-                                                .replace(/<h2>/g, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">')
-                                                .replace(/<h3>/g, '<h3 class="text-xl font-semibold text-white mt-6 mb-3">')
-                                                .replace(/<p>/g, '<p class="text-gray-200 leading-relaxed mb-4">')
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        </>
-                    )}
+                        {/* Article Content */}
+                        <div className="mt-6">
+                            <h3 className="text-xl font-semibold text-white mb-4">
+                                {t("myArticles.content")}:
+                            </h3>
+                            <div
+                                className="prose prose-invert max-w-none space-y-4"
+                                dangerouslySetInnerHTML={{
+                                    __html: essay.content
+                                        .replace(/<h2>/g, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">')
+                                        .replace(/<h3>/g, '<h3 class="text-xl font-semibold text-white mt-6 mb-3">')
+                                        .replace(/<p>/g, '<p class="text-gray-200 leading-relaxed mb-4">')
+                                }}
+                            />
+                        </div>
+                    </div>
                 </div>
 
-                {/* Footer Actions */}
-                <div className="flex justify-between p-6 border-t border-white/20">
-                    <div>
-                        {editMode === 'view' && (
-                            <Button
-                                variant="outline"
-                                onClick={() => setEditMode('edit')}
-                                className="border-yellow-500 text-yellow-500 hover:bg-yellow-500/20 hover:border-yellow-400"
-                            >
-                                <Edit className="w-4 h-4 mr-2" />
-                                {t("myArticles.edit")}
-                            </Button>
-                        )}
-                    </div>
-
-                    <div className="flex gap-3">
-                        {editMode === 'edit' ? (
-                            <>
-                                <Button
-                                    variant="outline"
-                                    onClick={() => {
-                                        setEditMode('view');
-                                        setFormData({
-                                            title: essay.title,
-                                            summary: essay.summary,
-                                            content: essay.content
-                                        });
-                                    }}
-                                    className="border-gray-500 text-gray-400 hover:bg-gray-500/20 hover:border-gray-400"
-                                >
-                                    İptal
-                                </Button>
-                                <Button
-                                    onClick={handleSave}
-                                    className="bg-green-600 hover:bg-green-700 text-white"
-                                >
-                                    <Save className="w-4 h-4 mr-2" />
-                                    {t("myArticles.modal.save")}
-                                </Button>
-                            </>
-                        ) : (
-                            <Button
-                                variant="outline"
-                                onClick={onDelete}
-                                className="border-red-500 text-red-500 hover:bg-red-500/20 hover:border-red-400"
-                            >
-                                <Trash2 className="w-4 h-4 mr-2" />
-                                {t("myArticles.delete")}
-                            </Button>
-                        )}
-                    </div>
+                {/* Footer Actions - Only Delete Button */}
+                <div className="flex justify-end p-6 border-t border-white/20">
+                    <Button
+                        variant="outline"
+                        onClick={onDelete}
+                        className="border-red-500 text-red-500 hover:bg-red-500/20 hover:border-red-400"
+                    >
+                        <Trash2 className="w-4 h-4 mr-2" />
+                        {t("myArticles.delete")}
+                    </Button>
                 </div>
             </motion.div>
         </div>

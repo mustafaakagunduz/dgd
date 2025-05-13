@@ -73,6 +73,10 @@ const ArticleModal: React.FC<ArticleModalProps> = ({
         onModeChange('view');
     };
 
+    // Author bilgisini güvenli şekilde al
+    const authorName = essay.profiles?.name || 'Unknown Author';
+    const authorInitials = authorName.split(' ').map((name: string) => name[0]).join('');
+
     return (
         <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
@@ -126,7 +130,7 @@ const ArticleModal: React.FC<ArticleModalProps> = ({
                                 </label>
                                 <input
                                     type="text"
-                                    value={essay.author}
+                                    value={authorName}
                                     readOnly
                                     className="w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded-lg text-gray-300 cursor-not-allowed"
                                 />
@@ -164,15 +168,17 @@ const ArticleModal: React.FC<ArticleModalProps> = ({
                         /* View Mode */
                         <>
                             {/* Hero Image */}
-                            <div className="relative h-64 md:h-80 w-full rounded-lg overflow-hidden mb-6">
-                                <Image
-                                    src={essay.image}
-                                    alt={essay.title}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 800px"
-                                />
-                            </div>
+                            {essay.image_url && (
+                                <div className="relative h-64 md:h-80 w-full rounded-lg overflow-hidden mb-6">
+                                    <Image
+                                        src={essay.image_url}
+                                        alt={essay.title}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 800px"
+                                    />
+                                </div>
+                            )}
 
                             {/* Article Info */}
                             <div className="space-y-4">
@@ -181,11 +187,11 @@ const ArticleModal: React.FC<ArticleModalProps> = ({
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
                                         <span className="text-white font-semibold text-sm">
-                                            {essay.author.split(' ').map(name => name[0]).join('')}
+                                            {authorInitials}
                                         </span>
                                     </div>
                                     <div>
-                                        <p className="text-green-400 font-semibold">{essay.author}</p>
+                                        <p className="text-green-400 font-semibold">{authorName}</p>
                                     </div>
                                 </div>
 

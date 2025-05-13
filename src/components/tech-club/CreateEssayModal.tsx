@@ -3,22 +3,31 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
+import { createEssay, uploadEssayImage } from '@/lib/essays';
 
 interface CreateEssayModalProps {
     isOpen: boolean;
     onClose: () => void;
+    onEssayCreated?: () => void;
 }
 
-const CreateEssayModal: React.FC<CreateEssayModalProps> = ({ isOpen, onClose }) => {
+const CreateEssayModal: React.FC<CreateEssayModalProps> = ({
+                                                               isOpen,
+                                                               onClose,
+                                                               onEssayCreated
+                                                           }) => {
     const { t } = useLanguage();
+    const { currentUser } = useAuth();
     const [formData, setFormData] = useState({
         title: '',
         summary: '',
-        author: '',
         content: ''
     });
     const [image, setImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     if (!isOpen) return null;
 
@@ -41,20 +50,66 @@ const CreateEssayModal: React.FC<CreateEssayModalProps> = ({ isOpen, onClose }) 
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Makale oluşturma logic'i burada olacak
-        console.log('Creating tech-club:', { formData, image });
-        onClose();
-        // Form'u sıfırla
-        setFormData({
-            title: '',
-            summary: '',
-            author: '',
-            content: ''
-        });
-        setImage(null);
-        setImagePreview(null);
+        setError('');
+        setLoading(true);
+
+        if (!currentUser) {
+            setError('Giriş yapmanız gerekiyor');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            let imageUrl: string | undefined;
+
+            // Önce resim varsa onu yükle
+            if (image) {
+                // Geçici bir ID oluştur resim yükleme için
+                const tempId = Date.now().toString();
+                const imageResult = await uploadEssayImage(image, tempId);
+
+                if (imageResult.success && imageResult.url) {
+                    imageUrl = imageResult.url;
+                }
+            }
+
+            // Essay'i resim URL'si ile birlikte oluştur
+            const essayResult = await createEssay({
+                title: formData.title,
+                summary: formData.summary,
+                content: formData.content,
+                author_id: currentUser.id,
+                image_url: imageUrl, // Resim URL'sini doğrudan ekle
+            });
+
+            if (!essayResult.success || !essayResult.essay) {
+                setError(essayResult.error || 'Makale oluşturulamadı');
+                setLoading(false);
+                return;
+            }
+
+            // Başarılı, modalı kapat ve formu temizle
+            onClose();
+            setFormData({
+                title: '',
+                summary: '',
+                content: ''
+            });
+            setImage(null);
+            setImagePreview(null);
+
+            // Parent component'e yeni makale oluşturulduğunu bildir
+            if (onEssayCreated) {
+                onEssayCreated();
+            }
+        } catch (error) {
+            console.error('Error creating essay:', error);
+            setError('Beklenmeyen bir hata oluştu');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -73,6 +128,7 @@ const CreateEssayModal: React.FC<CreateEssayModalProps> = ({ isOpen, onClose }) 
                     <button
                         onClick={onClose}
                         className="text-gray-400 hover:text-white transition-colors"
+                        disabled={loading}
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -94,6 +150,7 @@ const CreateEssayModal: React.FC<CreateEssayModalProps> = ({ isOpen, onClose }) 
                             onChange={handleInputChange}
                             className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400"
                             required
+                            disabled={loading}
                         />
                     </div>
 
@@ -109,21 +166,20 @@ const CreateEssayModal: React.FC<CreateEssayModalProps> = ({ isOpen, onClose }) 
                             rows={3}
                             className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400 resize-none"
                             required
+                            disabled={loading}
                         />
                     </div>
 
-                    {/* Author */}
+                    {/* Author (Gösterim amaçlı, değiştirilemez) */}
                     <div>
                         <label className="block text-gray-300 text-sm font-medium mb-2">
-                            {t("createEssay.author")}
+                            Yazar
                         </label>
                         <input
                             type="text"
-                            name="author"
-                            value={formData.author}
-                            onChange={handleInputChange}
-                            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400"
-                            required
+                            value={currentUser?.name || ''}
+                            className="w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded-lg text-gray-300 cursor-not-allowed"
+                            readOnly
                         />
                     </div>
 
@@ -147,6 +203,7 @@ const CreateEssayModal: React.FC<CreateEssayModalProps> = ({ isOpen, onClose }) 
                                             setImagePreview(null);
                                         }}
                                         className="text-red-400 hover:text-red-300 text-sm"
+                                        disabled={loading}
                                     >
                                         {t("createEssay.removeImage")}
                                     </button>
@@ -159,6 +216,7 @@ const CreateEssayModal: React.FC<CreateEssayModalProps> = ({ isOpen, onClose }) 
                                         onChange={handleImageChange}
                                         className="hidden"
                                         id="image-upload"
+                                        disabled={loading}
                                     />
                                     <label
                                         htmlFor="image-upload"
@@ -189,18 +247,36 @@ const CreateEssayModal: React.FC<CreateEssayModalProps> = ({ isOpen, onClose }) 
                             rows={12}
                             className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400 resize-none"
                             required
+                            disabled={loading}
                         />
                     </div>
+
+                    {/* Error Message */}
+                    {error && (
+                        <div className="p-3 bg-red-500/20 border border-red-500 rounded-lg">
+                            <p className="text-red-400 text-sm">{error}</p>
+                        </div>
+                    )}
 
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-500 transition-all duration-300 flex items-center justify-center gap-2"
+                        disabled={loading}
+                        className="w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg hover:from-green-400 hover:to-green-500 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                        </svg>
-                        {t("createEssay.create")}
+                        {loading ? (
+                            <>
+                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                İşleniyor...
+                            </>
+                        ) : (
+                            <>
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                                {t("createEssay.create")}
+                            </>
+                        )}
                     </button>
                 </form>
             </motion.div>

@@ -27,12 +27,16 @@ const ArticleModal: React.FC<ArticleModalProps> = ({
 
     if (!isOpen) return null;
 
-    // Modal dışına tıklama handler'ıııı
+    // Modal dışına tıklama handler'ı
     const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             onClose();
         }
     };
+
+    // Author name'i güvenli bir şekilde al
+    const authorName = essay.profiles?.name || 'Unknown Author';
+    const authorInitials = authorName.split(' ').map((name: string) => name[0]).join('');
 
     return (
         <div
@@ -64,15 +68,17 @@ const ArticleModal: React.FC<ArticleModalProps> = ({
                 {/* Content */}
                 <div className="p-6">
                     {/* Hero Image */}
-                    <div className="relative h-64 md:h-80 w-full rounded-lg overflow-hidden mb-6">
-                        <Image
-                            src={essay.image}
-                            alt={essay.title}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 800px"
-                        />
-                    </div>
+                    {essay.image_url && (
+                        <div className="relative h-64 md:h-80 w-full rounded-lg overflow-hidden mb-6">
+                            <Image
+                                src={essay.image_url}
+                                alt={essay.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 800px"
+                            />
+                        </div>
+                    )}
 
                     {/* Article Info */}
                     <div className="space-y-4">
@@ -81,11 +87,11 @@ const ArticleModal: React.FC<ArticleModalProps> = ({
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
                                 <span className="text-white font-semibold text-sm">
-                                    {essay.author.split(' ').map(name => name[0]).join('')}
+                                    {authorInitials}
                                 </span>
                             </div>
                             <div>
-                                <p className="text-green-400 font-semibold">{essay.author}</p>
+                                <p className="text-green-400 font-semibold">{authorName}</p>
                             </div>
                         </div>
 

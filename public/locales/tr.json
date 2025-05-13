@@ -255,7 +255,8 @@
   },
   "techClub": {
     "title": "DGD TECH CLUB",
-    "description": "Teknoloji dünyasından en güncel yazılar, analizler ve görüşler"
+    "description": "Teknoloji dünyasından en güncel yazılar, analizler ve görüşler",
+    "backButton" : "Geri Dön"
   },
   "comments": {
     "title": "Yorumlar",

@@ -8,7 +8,11 @@ import AuthModal from "@/components/authorization/AuthModal";
 import CreateEssayModal from "@/components/tech-club/CreateEssayModal";
 import Link from 'next/link';
 
-const AddEssayCard = () => {
+interface AddEssayCardProps {
+    onEssayCreated?: () => void;
+}
+
+const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
     const { t } = useLanguage();
     const { isLoggedIn, logout, isAdmin } = useAuth();
     const [showAuthModal, setShowAuthModal] = useState(false);
@@ -24,6 +28,13 @@ const AddEssayCard = () => {
 
     const handleLogout = () => {
         logout();
+    };
+
+    const handleEssayCreated = () => {
+        setShowCreateModal(false);
+        if (onEssayCreated) {
+            onEssayCreated();
+        }
     };
 
     return (
@@ -171,6 +182,7 @@ const AddEssayCard = () => {
             <CreateEssayModal
                 isOpen={showCreateModal}
                 onClose={() => setShowCreateModal(false)}
+                onEssayCreated={handleEssayCreated}
             />
         </>
     );

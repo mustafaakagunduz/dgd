@@ -251,7 +251,8 @@
   },
   "techClub": {
     "title": "DGD TECH CLUB",
-    "description": "Latest articles, analyses and insights from the world of technology"
+    "description": "Latest articles, analyses and insights from the world of technology",
+    "backButton" : "Back to Articles"
   },
   "comments": {
     "title": "Comments",

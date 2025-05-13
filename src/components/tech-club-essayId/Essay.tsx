@@ -16,23 +16,29 @@ const EssayComponent: React.FC<EssayProps> = ({ essay }) => {
         transition: { duration: 0.6 }
     };
 
+    // Author bilgisini güvenli şekilde al
+    const authorName = essay.profiles?.name || 'Unknown Author';
+    const authorInitials = authorName.split(' ').map((name: string) => name[0]).join('');
+
     return (
         <>
             {/* Hero Image */}
-            <motion.div
-                variants={fadeInUp}
-                className="relative h-64 md:h-80 lg:h-96 w-full rounded-2xl overflow-hidden mb-8"
-            >
-                <Image
-                    src={essay.image}
-                    alt={essay.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            </motion.div>
+            {essay.image_url && (
+                <motion.div
+                    variants={fadeInUp}
+                    className="relative h-64 md:h-80 lg:h-96 w-full rounded-2xl overflow-hidden mb-8"
+                >
+                    <Image
+                        src={essay.image_url}
+                        alt={essay.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                </motion.div>
+            )}
 
             {/* Article Content */}
             <motion.article
@@ -55,14 +61,13 @@ const EssayComponent: React.FC<EssayProps> = ({ essay }) => {
                     <div className="flex items-center gap-4 mb-4 sm:mb-0">
                         <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center">
                             <span className="text-white font-semibold text-lg">
-                                {essay.author.split(' ').map(name => name[0]).join('')}
+                                {authorInitials}
                             </span>
                         </div>
                         <div>
                             <p className="text-green-400 font-semibold">
-                                {essay.author}
+                                {authorName}
                             </p>
-
                         </div>
                     </div>
                 </motion.div>
@@ -78,7 +83,7 @@ const EssayComponent: React.FC<EssayProps> = ({ essay }) => {
                             __html: essay.content
                                 .replace(/<h2>/g, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">')
                                 .replace(/<h3>/g, '<h3 class="text-xl font-semibold text-white mt-6 mb-3">')
-                                .replace(/<p>/g, '<p class="text-gray-200 leading-relaxed mb-4">')
+                                .replace(/<p>/g, '<p style="color: white !important" class="leading-relaxed mb-4">')
                         }}
                     />
                 </motion.div>

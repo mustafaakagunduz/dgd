@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { getPendingEssays, Essay } from '@/lib/essays';
+import { getPendingEssays, Essay, updateEssayApproval } from '@/lib/essays';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
@@ -20,9 +20,27 @@ import ArticleModal from './ArticleModal';
 const WaitList = () => {
     const { isAdmin } = useAuth();
     const { t } = useLanguage();
-    const [pendingArticles, setPendingArticles] = useState<Essay[]>(getPendingEssays());
+    const [pendingArticles, setPendingArticles] = useState<Essay[]>([]);
     const [selectedArticle, setSelectedArticle] = useState<Essay | null>(null);
     const [showModal, setShowModal] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (isAdmin) {
+            loadPendingEssays();
+        }
+    }, [isAdmin]);
+
+    const loadPendingEssays = async () => {
+        try {
+            const essays = await getPendingEssays();
+            setPendingArticles(essays);
+        } catch (error) {
+            console.error('Error loading pending essays:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     // Admin kontrolü
     if (!isAdmin) {
@@ -38,22 +56,51 @@ const WaitList = () => {
         );
     }
 
-    const handleApprove = (essayId: string) => {
-        // Essay onaylama logic'i burada olacak
-        console.log('Approving tech-club:', essayId);
-        setPendingArticles(prev => prev.filter(essay => essay.id !== essayId));
+    const handleApprove = async (essayId: string) => {
+        try {
+            const result = await updateEssayApproval(essayId, true);
+            if (result.success) {
+                setPendingArticles(prev => prev.filter(essay => essay.id !== essayId));
+                setShowModal(false);
+                setSelectedArticle(null);
+            } else {
+                alert('Onaylama işlemi başarısız: ' + result.error);
+            }
+        } catch (error) {
+            console.error('Error approving essay:', error);
+            alert('Onaylama sırasında bir hata oluştu');
+        }
     };
 
-    const handleReject = (essayId: string) => {
-        // Essay reddetme logic'i burada olacak
-        console.log('Rejecting tech-club:', essayId);
-        setPendingArticles(prev => prev.filter(essay => essay.id !== essayId));
+    const handleReject = async (essayId: string) => {
+        try {
+            // Reject yerine silme işlemi yapıyoruz (veya approved: false yapabilirsin)
+            const result = await updateEssayApproval(essayId, false);
+            if (result.success) {
+                setPendingArticles(prev => prev.filter(essay => essay.id !== essayId));
+                setShowModal(false);
+                setSelectedArticle(null);
+            } else {
+                alert('Reddetme işlemi başarısız: ' + result.error);
+            }
+        } catch (error) {
+            console.error('Error rejecting essay:', error);
+            alert('Reddetme sırasında bir hata oluştu');
+        }
     };
 
     const handleViewArticle = (essay: Essay) => {
         setSelectedArticle(essay);
         setShowModal(true);
     };
+
+    if (loading) {
+        return (
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 text-center">
+                <div className="text-white">Bekleyiş listesi yükleniyor...</div>
+            </div>
+        );
+    }
 
     if (pendingArticles.length === 0) {
         return (
@@ -103,7 +150,7 @@ const WaitList = () => {
                                         {essay.title}
                                     </TableCell>
                                     <TableCell className="text-gray-300">
-                                        {essay.author}
+                                        {essay.profiles?.name || 'Unknown'}
                                     </TableCell>
                                     <TableCell className="text-gray-300 max-w-xs truncate">
                                         {essay.summary}
@@ -155,16 +202,8 @@ const WaitList = () => {
                         setSelectedArticle(null);
                     }}
                     essay={selectedArticle}
-                    onApprove={() => {
-                        handleApprove(selectedArticle.id);
-                        setShowModal(false);
-                        setSelectedArticle(null);
-                    }}
-                    onReject={() => {
-                        handleReject(selectedArticle.id);
-                        setShowModal(false);
-                        setSelectedArticle(null);
-                    }}
+                    onApprove={() => handleApprove(selectedArticle.id)}
+                    onReject={() => handleReject(selectedArticle.id)}
                 />
             )}
         </>

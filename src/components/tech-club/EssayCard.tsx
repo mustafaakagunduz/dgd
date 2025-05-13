@@ -32,6 +32,9 @@ const EssayCard: React.FC<EssayCardProps> = ({ essay, index }) => {
         }
     };
 
+    // Author name'i güvenli şekilde al
+    const authorName = essay.profiles?.name || 'Unknown Author';
+
     return (
         <motion.div
             variants={cardVariants}
@@ -49,7 +52,7 @@ const EssayCard: React.FC<EssayCardProps> = ({ essay, index }) => {
                     {/* Image */}
                     <div className="relative h-48 w-full overflow-hidden">
                         <Image
-                            src={essay.image}
+                            src={essay.image_url || '/api/placeholder/400/300'}
                             alt={essay.title}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -65,14 +68,12 @@ const EssayCard: React.FC<EssayCardProps> = ({ essay, index }) => {
                         </h3>
 
                         <p className="text-green-400 text-sm mb-3 font-medium">
-                            {essay.author}
+                            {authorName}
                         </p>
 
                         <p className="text-gray-200 text-sm leading-relaxed line-clamp-3">
                             {essay.summary}
                         </p>
-
-
                     </div>
                 </div>
             </Link>

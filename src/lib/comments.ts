@@ -1,116 +1,134 @@
-export interface Comment {
-    id: string;
-    essayId: string;
-    userId: string; // Hangi kullanıcının yorumu
-    author: string;
-    content: string;
-}
+import { supabase, Comment as SupabaseComment, Profile } from './supabase';
 
-export const comments: Comment[] = [
-    // Yapay Zeka ve Geleceğin Teknolojileri (essayId: "1")
-    {
-        id: "c1",
-        essayId: "1",
-        userId: "6", // Zeynep Yücel
-        author: "Zeynep Yücel",
-        content: "Yapay zeka konusundaki bu analiz gerçekten çok kapsamlı. Özellikle günlük hayata olan etkileri bölümü çok düşündürücü."
-    },
-    {
-        id: "c2",
-        essayId: "1",
-        userId: "7", // Emre Karagöz
-        author: "Emre Karagöz",
-        content: "GPT modelleri hakkındaki kısmı çok beğendim. Gelecekteki etik sorunlar konusunda da daha detaylı bilgi alabilir miyiz?"
-    },
-    {
-        id: "c3",
-        essayId: "1",
-        userId: "8", // Aylin Özdemir
-        author: "Aylin Özdemir",
-        content: "Bu makale yapay zeka alanında çalışan herkesin okuması gereken bir kaynak. Paylaştığınız için teşekkürler."
-    },
+// Re-export Comment from supabase
+export type Comment = SupabaseComment;
 
-    // Yeşil Teknoloji İnovasyonları (essayId: "2")
-    {
-        id: "c4",
-        essayId: "2",
-        userId: "9", // Oğuz Serdar
-        author: "Oğuz Serdar",
-        content: "Sürdürülebilir teknolojiler konusunda çok bilgilendirici bir yazı. Özellikle yenilenebilir enerji kısmı harika."
-    },
-    {
-        id: "c5",
-        essayId: "2",
-        userId: "10", // Selin Aktaş
-        author: "Selin Aktaş",
-        content: "Rüzgar enerjisi konusundaki veriler çok güncel. Türkiye'deki potansiyel hakkında da bilgi alabilir miyiz?"
-    },
+// Yorumları getirme fonksiyonları
+export const getCommentsByEssayId = async (essayId: string): Promise<Comment[]> => {
+    const { data, error } = await supabase
+        .from('comments')
+        .select(`
+            *,
+            profiles(name)
+        `)
+        .eq('essay_id', essayId)
+        .order('created_at', { ascending: true });
 
-    // Blockchain Teknolojisi ve Uygulamaları (essayId: "3")
-    {
-        id: "c6",
-        essayId: "3",
-        userId: "1", // Dr. Mehmet Yılmaz (admin)
-        author: "Dr. Mehmet Yılmaz",
-        content: "Blockchain'in finans sektörü dışındaki uygulamaları gerçekten etkileyici. DeFi konusunda da makale bekliyoruz!"
-    },
-    {
-        id: "c7",
-        essayId: "3",
-        userId: "7", // Emre Karagöz
-        author: "Emre Karagöz",
-        content: "Smart contract'lar konusunda daha detaylı örnekler verebilir misiniz? Çok ilginç geliyor."
-    },
-
-    // IoT ve Akıllı Şehirler (essayId: "4")
-    {
-        id: "c8",
-        essayId: "4",
-        userId: "6", // Zeynep Yücel
-        author: "Zeynep Yücel",
-        content: "Akıllı şehir projeleri konusunda Istanbul'dan örnekler paylaşır mısınız? Çok merak ediyorum."
-    },
-    {
-        id: "c9",
-        essayId: "4",
-        userId: "8", // Aylin Özdemir
-        author: "Aylin Özdemir",
-        content: "IoT sensörlerinin güvenlik açısından riskleri neler? Bu konuda endişelerim var."
-    },
-
-    // Kuantum Bilgisayarlar ve Kriptografi (essayId: "5")
-    {
-        id: "c10",
-        essayId: "5",
-        userId: "9", // Oğuz Serdar
-        author: "Oğuz Serdar",
-        content: "Kuantum bilgisayarların mevcut kriptografi algoritmalarını nasıl etkileyeceği konusu gerçekten kritik."
-    },
-    {
-        id: "c11",
-        essayId: "5",
-        userId: "10", // Selin Aktaş
-        author: "Selin Aktaş",
-        content: "IBM ve Google'ın kuantum bilgisayar yarışı hakkında ne düşünüyorsunuz? Hangisi önde?"
+    if (error) {
+        console.error('Error fetching comments:', error);
+        return [];
     }
-];
 
-// Belirli bir tech-club için yorumları getiren helper fonksiyon
-export const getCommentsByEssayId = (essayId: string): Comment[] => {
-    return comments.filter(comment => comment.essayId === essayId);
+    return data || [];
 };
 
-// Yorum sayısını getiren helper fonksiyon
-export const getCommentCount = (essayId: string): number => {
-    return getCommentsByEssayId(essayId).length;
+export const getCommentsByUserId = async (userId: string): Promise<Comment[]> => {
+    const { data, error } = await supabase
+        .from('comments')
+        .select(`
+            *,
+            profiles(name)
+        `)
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching user comments:', error);
+        return [];
+    }
+
+    return data || [];
 };
 
-// Belirli bir kullanıcının yorumlarını getiren helper fonksiyon
-export const getCommentsByUserId = (userId: string): Comment[] => {
-    return comments.filter(comment => comment.userId === userId);
+export const getCommentsByEssayAndUser = async (
+    essayId: string,
+    userId: string
+): Promise<Comment[]> => {
+    const { data, error } = await supabase
+        .from('comments')
+        .select(`
+            *,
+            profiles(name)
+        `)
+        .eq('essay_id', essayId)
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching comments by essay and user:', error);
+        return [];
+    }
+
+    return data || [];
 };
 
-// Belirli bir tech-club ve kullanıcıya ait yorumları getiren helper fonksiyon
-export const getCommentsByEssayAndUser = (essayId: string, userId: string): Comment[] => {
-    return comments.filter(comment => comment.essayId === essayId && comment.userId === userId);
+// Yorum sayısını getirme
+export const getCommentCount = async (essayId: string): Promise<number> => {
+    const { count, error } = await supabase
+        .from('comments')
+        .select('*', { count: 'exact', head: true })
+        .eq('essay_id', essayId);
+
+    if (error) {
+        console.error('Error getting comment count:', error);
+        return 0;
+    }
+
+    return count || 0;
+};
+
+// Yorum oluşturma
+export const createComment = async (comment: {
+    essay_id: string;
+    user_id: string;
+    content: string;
+}): Promise<{ success: boolean; error?: string; comment?: Comment }> => {
+    const { data, error } = await supabase
+        .from('comments')
+        .insert(comment)
+        .select(`
+            *,
+            profiles(name)
+        `)
+        .single();
+
+    if (error) {
+        console.error('Error creating comment:', error);
+        return { success: false, error: error.message };
+    }
+
+    return { success: true, comment: data };
+};
+
+// Yorum güncelleme
+export const updateComment = async (
+    id: string,
+    content: string
+): Promise<{ success: boolean; error?: string }> => {
+    const { error } = await supabase
+        .from('comments')
+        .update({ content })
+        .eq('id', id);
+
+    if (error) {
+        console.error('Error updating comment:', error);
+        return { success: false, error: error.message };
+    }
+
+    return { success: true };
+};
+
+// Yorum silme
+export const deleteComment = async (id: string): Promise<{ success: boolean; error?: string }> => {
+    const { error } = await supabase
+        .from('comments')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        console.error('Error deleting comment:', error);
+        return { success: false, error: error.message };
+    }
+
+    return { success: true };
 };
