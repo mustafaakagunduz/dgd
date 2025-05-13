@@ -160,9 +160,7 @@ const EssayList = () => {
                                 <TableHead className="text-white font-medium">
                                     {t("myArticles.table.title")}
                                 </TableHead>
-                                <TableHead className="text-white font-medium">
-                                    {t("myArticles.table.summary")}
-                                </TableHead>
+
                                 <TableHead className="text-white font-medium text-center">
                                     {t("myArticles.table.status")}
                                 </TableHead>
@@ -180,9 +178,7 @@ const EssayList = () => {
                                     >
                                         {essay.title}
                                     </TableCell>
-                                    <TableCell className="text-gray-300 max-w-xs truncate">
-                                        {essay.summary}
-                                    </TableCell>
+
                                     <TableCell className="text-center">
                                         {getStatusBadge(essay.approved)}
                                     </TableCell>

@@ -198,9 +198,7 @@ const AllArticlesList = () => {
                                 <TableHead className="text-white font-medium">
                                     {t("allArticles.table.author")}
                                 </TableHead>
-                                <TableHead className="text-white font-medium">
-                                    {t("allArticles.table.summary")}
-                                </TableHead>
+
                                 <TableHead className="text-white font-medium text-center">
                                     {t("allArticles.table.status")}
                                 </TableHead>
@@ -221,9 +219,7 @@ const AllArticlesList = () => {
                                     <TableCell className="text-gray-300">
                                         {essay.profiles?.name || 'Unknown'}
                                     </TableCell>
-                                    <TableCell className="text-gray-300 max-w-xs truncate">
-                                        {essay.summary}
-                                    </TableCell>
+
                                     <TableCell className="text-center">
                                         {getStatusBadge(essay.approved)}
                                     </TableCell>
