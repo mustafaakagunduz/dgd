@@ -16,6 +16,25 @@ export interface StaticHomeData {
     // Diğer bölümler için de eklenebilir
 }
 
+// Vision Mission için interface (güncellenmiş - CTA eklendi)
+export interface StaticVisionMissionData {
+    pageTitle: string;
+    pageDescription: string;
+    vision: {
+        title: string;
+        content: string;
+    };
+    mission: {
+        title: string;
+        content: string;
+    };
+    cta: {
+        title: string;
+        description: string;
+        button: string;
+    };
+}
+
 // Türkçe statik veriler
 export const staticDataTR: StaticHomeData = {
     hero: {
@@ -66,7 +85,49 @@ export const staticDataEN: StaticHomeData = {
     }
 };
 
+// Vision Mission statik veri - Türkçe
+export const staticVisionMissionDataTR: StaticVisionMissionData = {
+    pageTitle: "Vizyon & Misyon",
+    pageDescription: "DGD Global'in temel değerlerini ve gelecek vizyonunu keşfedin",
+    vision: {
+        title: "Vizyonumuz",
+        content: "Çağdaş, güçlü ve yenilikçi bakış açısına sahip kuruluş temelleri olan, ülke ve tüm gezegen ölçeğinde insana ve doğaya saygılı, her düşünce ve yaklaşıma fırsat veren, ilkeli, rekabetçi ve etik değerler merkezli bir yapılanma sahibiyiz."
+    },
+    mission: {
+        title: "Misyonumuz",
+        content: "DGD Global Teknoloji A.Ş. çevre duyarlılığı odağında yerli üretim ekseninde yeşil ve biyo-döngüsel, sürdürülebilir bir yaşam modeli temelinde teknoloji ve bilgi danışmanlığı yanı sıra proje, ürün ve yatırım faaliyetleri yürüten bir şirkettir."
+    },
+    cta: {
+        title: "Bizimle İletişime Geçin",
+        description: "Sürdürülebilir geleceğin inşasında bizimle yer alın",
+        button: "İletişime Geç"
+    }
+};
+
+// Vision Mission statik veri - İngilizce
+export const staticVisionMissionDataEN: StaticVisionMissionData = {
+    pageTitle: "Vision & Mission",
+    pageDescription: "Discover DGD Global's core values and future vision",
+    vision: {
+        title: "Our Vision",
+        content: "We are an organization with contemporary, strong, and innovative foundational perspectives, respectful to humanity and nature on a national and planetary scale, providing opportunities for all ideas and approaches, principled, competitive, and centered on ethical values."
+    },
+    mission: {
+        title: "Our Mission",
+        content: "DGD Global Technology Inc. is a company that conducts project, product and investment activities, as well as technology and knowledge consulting, based on a green and bio-circular, sustainable life model focused on environmental sensitivity and domestic production."
+    },
+    cta: {
+        title: "Contact Us",
+        description: "Join us in building a sustainable future",
+        button: "Get in Touch"
+    }
+};
+
 // Dil bazında veri getirme fonksiyonu
 export function getStaticHomeData(language: 'tr' | 'en'): StaticHomeData {
     return language === 'en' ? staticDataEN : staticDataTR;
+}
+
+export function getStaticVisionMissionData(language: 'tr' | 'en'): StaticVisionMissionData {
+    return language === 'en' ? staticVisionMissionDataEN : staticVisionMissionDataTR;
 }
