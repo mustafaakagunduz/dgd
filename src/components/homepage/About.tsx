@@ -1,6 +1,7 @@
+// src/components/homepage/About.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -13,6 +14,7 @@ interface AboutItem {
     altText: string;
 }
 
+// İçeriği static olarak tanımla
 const aboutItems: AboutItem[] = [
     {
         imageSrc: "/assets/images/dongusellik.png",
@@ -34,7 +36,18 @@ const aboutItems: AboutItem[] = [
     }
 ];
 
-export default function About() {
+interface AboutProps {
+    // Statik veri için prop
+    initialData?: {
+        sectionDescription?: string;
+        items?: Array<{
+            title: string;
+            content: string;
+        }>;
+    };
+}
+
+const About: React.FC<AboutProps> = ({ initialData }) => {
     const { t } = useLanguage();
     const [expandedItems, setExpandedItems] = useState<boolean[]>([false, false, false]);
 
@@ -46,16 +59,19 @@ export default function About() {
         });
     };
 
-    const truncateText = (text: string, maxLength: number) => {
+    // Memoized text truncation
+    const truncateText = useMemo(() => (text: string, maxLength: number) => {
         if (text.length <= maxLength) return { truncated: text, hasMore: false };
 
-        // Kelime sınırlarını koruyarak kes
         const truncated = text.substr(0, maxLength);
         const lastSpace = truncated.lastIndexOf(' ');
         const finalText = lastSpace > 0 ? truncated.substr(0, lastSpace) : truncated;
 
         return { truncated: finalText, hasMore: true };
-    };
+    }, []);
+
+    // Fallback content
+    const sectionDescription = initialData?.sectionDescription || t("about.sectionDescription");
 
     return (
         <section
@@ -66,17 +82,17 @@ export default function About() {
         >
             <div className="container mx-auto px-4">
                 {/* Section Header */}
-                {/* Section Header */}
                 <div className="text-center mb-16">
                     <p className="text-white text-2xl font-bold max-w-full mx-auto">
-                        {t("about.sectionDescription")}
+                        {sectionDescription}
                     </p>
                 </div>
 
                 {/* Three Column Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
                     {aboutItems.map((item, index) => {
-                        const content = t(item.contentKey);
+                        const content = initialData?.items?.[index]?.content || t(item.contentKey);
+                        const title = initialData?.items?.[index]?.title || t(item.titleKey);
                         const { truncated, hasMore } = truncateText(content, 300);
                         const isExpanded = expandedItems[index];
 
@@ -85,13 +101,15 @@ export default function About() {
                                 key={item.titleKey}
                                 className="bg-gradient-to-br from-green-800/80 to-green-900/90 backdrop-blur-sm rounded-xl overflow-hidden transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/30 border border-green-600/30"
                             >
-                                {/* Image */}
+                                {/* Image with priority loading for above-fold content */}
                                 <div className="relative h-64 w-full overflow-hidden">
                                     <Image
                                         src={item.imageSrc}
                                         alt={item.altText}
                                         fill
                                         className="object-cover transition-transform duration-300 hover:scale-110"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        priority={index === 0} // İlk resim için priority
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-green-900/60 to-transparent opacity-60" />
                                 </div>
@@ -99,7 +117,7 @@ export default function About() {
                                 {/* Content */}
                                 <div className="p-6">
                                     <h3 className="text-xl font-bold text-white mb-4 flex justify-center">
-                                        {t(item.titleKey)}
+                                        {title}
                                     </h3>
 
                                     <div className="relative">
@@ -114,6 +132,7 @@ export default function About() {
                                             <button
                                                 onClick={() => toggleExpansion(index)}
                                                 className="mt-4 flex items-center justify-center w-full py-2 text-green-400 hover:text-green-300 transition-all duration-300 group"
+                                                aria-label={isExpanded ? "Daha az göster" : "Daha fazla göster"}
                                             >
                                                 <span className="mr-2 transform transition-transform duration-300 group-hover:translate-x-1">
                                                     {isExpanded ? t("about.showLess") : t("about.showMore")}
@@ -147,4 +166,6 @@ export default function About() {
             </div>
         </section>
     );
-}
+};
+
+export default About;
