@@ -3,7 +3,7 @@ import VisionMissionClient from './VisionMissionClient';
 import { getStaticVisionMissionData } from '@/lib/static-data';
 import { Metadata } from 'next';
 
-// SSG için gerekli exportlar
+// SSG için gerekli exportlarr
 export const dynamic = 'force-static';
 export const revalidate = false;
 
