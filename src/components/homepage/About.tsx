@@ -1,3 +1,4 @@
+// src/components/homepage/About.tsx
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
@@ -6,16 +7,6 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
 import { getStaticHomeData } from "@/lib/static-data";
-
-interface AboutProps {
-    initialData?: {
-        sectionDescription: string;
-        items: Array<{
-            title: string;
-            content: string;
-        }>;
-    };
-}
 
 // Resim verilerini bir sabit olarak tutuyoruz
 const aboutImages = [
@@ -33,28 +24,24 @@ const aboutImages = [
     }
 ];
 
-const About: React.FC<AboutProps> = ({ initialData }) => {
+const About: React.FC = () => {
     const { language, t } = useLanguage();
     const [expandedItems, setExpandedItems] = useState<boolean[]>([false, false, false]);
     const [content, setContent] = useState({
-        sectionDescription: initialData?.sectionDescription || "",
-        items: initialData?.items || []
+        sectionDescription: "",
+        items: [] as {title: string, content: string}[]
     });
     const [mounted, setMounted] = useState(false);
 
-    // Dil değiştiğinde içeriği güncelle
+    // Dil değiştiğinde içeriği güncelle - language dependency'sini ekleyelim
     useEffect(() => {
         setMounted(true);
-
-        // Only fetch data if initialData is not provided
-        if (!initialData) {
-            const data = getStaticHomeData(language as 'tr' | 'en');
-            setContent({
-                sectionDescription: data.about.sectionDescription,
-                items: data.about.items
-            });
-        }
-    }, [language, initialData]);
+        const data = getStaticHomeData(language as 'tr' | 'en');
+        setContent({
+            sectionDescription: data.about.sectionDescription,
+            items: data.about.items
+        });
+    }, [language]); // language dependency ekledik
 
     const toggleExpansion = (index: number) => {
         setExpandedItems(prev => {

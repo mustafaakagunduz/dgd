@@ -1,4 +1,4 @@
-// src/contexts/LanguageContext.tsx (güncelleme)
+// src/contexts/LanguageContext.tsx
 "use client";
 
 import React, { createContext, useState, useContext, useEffect, ReactNode } from "react";
@@ -24,9 +24,11 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     const [language, setLanguage] = useState<Language>("tr");
     const [translations, setTranslations] = useState<Translations>({});
     const [isLoading, setIsLoading] = useState(true);
+    const [mounted, setMounted] = useState(false);
 
     // Handle localStorage - must be in useEffect due to SSR
     useEffect(() => {
+        setMounted(true);
         try {
             const savedLanguage = localStorage.getItem("language") as Language;
             if (savedLanguage && (savedLanguage === "en" || savedLanguage === "tr")) {
@@ -38,12 +40,14 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     }, []);
 
     useEffect(() => {
+        if (!mounted) return;
+
         const loadTranslations = async () => {
             try {
                 setIsLoading(true);
-                // Preload edilmiş çevirileri kullanmak için
+                // Use absolute path to ensure correct resolution
                 const response = await fetch(`/locales/${language}.json`, {
-                    cache: "no-store",
+                    cache: "no-store", // Prevent caching issues
                     headers: {
                         "Content-Type": "application/json",
                         "Cache-Control": "no-cache"
@@ -57,6 +61,7 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
                 const data = await response.json();
                 setTranslations(data);
 
+                // Save to localStorage inside try/catch
                 try {
                     localStorage.setItem("language", language);
                 } catch (error) {
@@ -64,19 +69,18 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
                 }
             } catch (error) {
                 console.error("Failed to load translations:", error);
+                // Fallback to empty translations rather than blocking render
                 setTranslations({});
             } finally {
-                // Çok kısa bir gecikme ekleyelim ki kullanıcı arayüzü kendini toparlayabilsin
-                setTimeout(() => {
-                    setIsLoading(false);
-                }, 300);
+                setIsLoading(false);
             }
         };
 
         loadTranslations();
-    }, [language]);
+    }, [language, mounted]);
 
     const changeLanguage = (lang: Language) => {
+        console.log("Changing language to:", lang); // Debug log
         setLanguage(lang);
     };
 
@@ -99,17 +103,22 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
         return typeof result === "string" ? result : key;
     };
 
+    const contextValue = {
+        language,
+        translations,
+        setLanguage: changeLanguage,
+        t,
+        isLoading
+    };
+
     return (
-        <LanguageContext.Provider
-            value={{
-                language,
-                translations,
-                setLanguage: changeLanguage,
-                t,
-                isLoading
-            }}
-        >
-            {children}
+        <LanguageContext.Provider value={contextValue}>
+            {mounted ? children :
+                <div className="fixed inset-0 bg-black/90 z-50 flex flex-col items-center justify-center">
+                    <div className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+                    <p className="mt-4 text-white text-lg">Yükleniyor...</p>
+                </div>
+            }
         </LanguageContext.Provider>
     );
 };

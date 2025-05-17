@@ -1,9 +1,8 @@
-// src/components/providers/Providers.tsx (güncelleme)
+// src/components/providers/Providers.tsx
 "use client";
 
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
-import LoadingProvider from "@/components/providers/LoadingProvider";
 import LoadingOverlay from "@/components/providers/LoadingOverlay";
 
 interface ProvidersProps {
@@ -14,11 +13,9 @@ export default function Providers({ children }: ProvidersProps) {
     return (
         <LanguageProvider>
             <AuthProvider>
-                <LoadingProvider>
-                    <LoadingOverlay>
-                        {children}
-                    </LoadingOverlay>
-                </LoadingProvider>
+                <LoadingOverlay>
+                    {children}
+                </LoadingOverlay>
             </AuthProvider>
         </LanguageProvider>
     );

@@ -6,7 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function LoadingOverlay({ children }: { children: React.ReactNode }) {
     const [fontsLoaded, setFontsLoaded] = useState(false);
-    const { language } = useLanguage();
+    const { language, isLoading } = useLanguage();
     const [isReady, setIsReady] = useState(false);
 
     // Font yükleme kontrolü
@@ -19,25 +19,25 @@ export default function LoadingOverlay({ children }: { children: React.ReactNode
                     setFontsLoaded(true);
                 } catch (e) {
                     console.error('Font yükleme hatası:', e);
-                    // Hata durumunda bile 3 saniye sonra true yap
-                    setTimeout(() => setFontsLoaded(true), 3000);
+                    // Hata durumunda bile 2 saniye sonra true yap
+                    setTimeout(() => setFontsLoaded(true), 2000);
                 }
             };
 
             checkFonts();
         } else {
             // document.fonts API yoksa timeout ile geç
-            setTimeout(() => setFontsLoaded(true), 1000);
+            setTimeout(() => setFontsLoaded(true), 800);
         }
     }, []);
 
     // Dil verilerinin hazır olup olmadığını kontrol et
     useEffect(() => {
-        if (language && fontsLoaded) {
+        if (fontsLoaded && !isLoading) {
             // Hem dil hem fontlar yüklendiyse, isReady'i true yap
-            setTimeout(() => setIsReady(true), 300);
+            setTimeout(() => setIsReady(true), 200);
         }
-    }, [language, fontsLoaded]);
+    }, [fontsLoaded, isLoading]);
 
     if (!isReady) {
         return (
