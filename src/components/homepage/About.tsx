@@ -24,12 +24,23 @@ const aboutImages = [
     }
 ];
 
-const About: React.FC = () => {
+// Add initialData prop type
+interface AboutProps {
+    initialData?: {
+        sectionDescription: string;
+        items: Array<{
+            title: string;
+            content: string;
+        }>;
+    };
+}
+
+const About: React.FC<AboutProps> = ({ initialData }) => {
     const { language, t } = useLanguage();
     const [expandedItems, setExpandedItems] = useState<boolean[]>([false, false, false]);
     const [content, setContent] = useState({
-        sectionDescription: "",
-        items: [] as {title: string, content: string}[]
+        sectionDescription: initialData?.sectionDescription || "",
+        items: initialData?.items || []
     });
     const [mounted, setMounted] = useState(false);
 

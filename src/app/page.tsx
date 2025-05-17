@@ -49,7 +49,6 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
     // Statik verileri al (build time'da)
     const staticDataTR = getStaticHomeData('tr');
-    const staticDataEN = getStaticHomeData('en');
 
     return (
         <main

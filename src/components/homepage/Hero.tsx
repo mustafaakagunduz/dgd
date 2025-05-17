@@ -5,13 +5,21 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import { getStaticHomeData } from "@/lib/static-data";
 
-export default function Hero() {
+// Add the initialData prop to the component
+interface HeroProps {
+    initialData?: {
+        title: string;
+        description: string;
+    };
+}
+
+export default function Hero({ initialData }: HeroProps) {
     const { language, isLoading } = useLanguage();
     const [isVisible, setIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [content, setContent] = useState({
-        title: "",
-        description: ""
+        title: initialData?.title || "",
+        description: initialData?.description || ""
     });
 
     // Dil değişimini izleyen effect
