@@ -423,6 +423,254 @@
     "loginRequired": "You need to log in",
     "createError": "Article could not be created",
     "unexpectedError": "An unexpected error occurred"
+  },
+  "bioCircularProcess": {
+    "title": "Complete Circular Waste Management Technology",
+    "description": "Our complete circular waste management technology that doesn't require any separation or disposal costs for all types and tonnages of waste from small and medium-sized enterprises to large integrated facilities and, at an advanced stage, municipal institutions. In addition to obtaining clean water and fuel with 100% conversion, it produces solid outputs consisting of strategic nano elements used in the production of next-generation bio products through an additional process chain.",
+    "pageTitle": "Complete Bio-Circular Process Technology",
+    "pageDescription": "Discover our sustainable and innovative complete circular waste management technology.",
+    "imageAlt": "Bio-Circular Process Technology Image",
+    "backButton": "Back to Our Activities",
+    "tags": {
+      "circular": "100% Circular",
+      "innovative": "Innovative",
+      "sustainable": "Sustainable"
+    },
+    "advantages": {
+      "noProcessing": {
+        "title": "No Separation Required",
+        "description": "Innovative technology that doesn't require separation and disposal costs for all types of waste."
+      },
+      "efficiency": {
+        "title": "100% Conversion",
+        "description": "Produces clean water, fuel, and solid outputs containing strategic nano elements."
+      },
+      "scalable": {
+        "title": "Scalable Solution",
+        "description": "Applicable at all scales from small businesses to large integrated facilities and municipal institutions."
+      }
+    }
+  },
+  "nanoProducts": {
+    "title": "Next-Gen Nano Products",
+    "description": "Our next-generation production technology that yields products of unique durability and quality such as bio-isolation, bio-polymer, bio-cement, and bio-glass after a process setup with strategic raw materials obtained from our complete circular waste technology.",
+    "pageTitle": "Strategic Nano Products",
+    "pageDescription": "Discover our next-generation products of unique quality made from raw materials obtained through our complete circular waste technology.",
+    "imageAlt": "Next-Gen Nano Products Image",
+    "backButton": "Back to Our Activities",
+    "tags": {
+      "bioIsolation": "Bio-Isolation",
+      "bioPolymer": "Bio-Polymer",
+      "bioCement": "Bio-Cement",
+      "bioGlass": "Bio-Glass"
+    },
+    "products": {
+      "bioIsolation": {
+        "title": "Bio-Isolation",
+        "description": "Our environmentally friendly bio-isolation materials offer superior thermal and acoustic insulation properties, maximizing energy efficiency.",
+        "feature": "Thermal & Sound Insulation"
+      },
+      "bioPolymer": {
+        "title": "Bio-Polymer",
+        "description": "Our biopolymers provide an eco-friendly alternative to traditional plastics, combining durability and sustainability.",
+        "feature": "Biodegradable"
+      },
+      "bioCement": {
+        "title": "Bio-Cement",
+        "description": "Our bio-cement solutions with high durability reduce carbon footprint, bringing a new dimension to the construction industry.",
+        "feature": "Low Carbon Emission"
+      },
+      "bioGlass": {
+        "title": "Bio-Glass",
+        "description": "Our bio-glass products, produced with special techniques, offer lighter and more durable properties compared to traditional glass.",
+        "feature": "Enhanced Durability"
+      }
+    }
+  },
+  "radiatorSystems": {
+    "title": "Next-Gen Radiator Systems",
+    "description": "Our energy-efficient, fast and homogeneous heating technology with electric connectivity to nano-paint containing panels and radiators that contain no water or oil, eliminating the need for boiler and natural gas lines in buildings.",
+    "pageTitle": "Next-Gen Radiator Systems",
+    "pageDescription": "Discover our energy-efficient heating solutions beyond traditional systems, using electricity without water or oil.",
+    "imageAlt": "Next-Gen Radiator Systems Image",
+    "backButton": "Back to Our Activities",
+    "tags": {
+      "energyEfficient": "Energy Efficient",
+      "fastHeating": "Fast Heating",
+      "noWater": "No Water/Oil"
+    },
+    "features": {
+      "efficiency": {
+        "title": "Energy Efficiency",
+        "description": "New generation technology that provides greater energy savings compared to traditional systems."
+      },
+      "installation": {
+        "title": "Easy Installation",
+        "description": "Simplified installation process that doesn't require boilers, pipelines, or natural gas connections."
+      },
+      "materials": {
+        "title": "Innovative Materials",
+        "description": "Electrically-connected panels and radiators containing nano-paint technology instead of water or oil."
+      }
+    },
+    "applications": {
+      "title": "Application Areas",
+      "residential": {
+        "title": "Residential Buildings",
+        "description": "Easily installable heating solutions ideal for apartment units and private homes."
+      },
+      "commercial": {
+        "title": "Commercial Spaces",
+        "description": "Systems providing homogeneous and fast heating for office buildings and commercial venues."
+      },
+      "industrial": {
+        "title": "Industrial Facilities",
+        "description": "Customized heating solutions for production areas and storage facilities."
+      },
+      "retrofit": {
+        "title": "Renovation Projects",
+        "description": "Systems that can be easily integrated into existing structures with minimal structural intervention."
+      }
+    }
+  },
+  "agricultureGreenhouse": {
+    "title": "Agricultural Greenhouse Heating Technology",
+    "description": "Our agricultural heating technology that provides fast and homogeneous stable temperature in greenhouse units using far infrared rays, maintains humidity balance, prevents fungus and mold formation, and increases photosynthesis rate and crop yield by a minimum of 30%.",
+    "pageTitle": "Next-Gen Agriculture & Greenhouse Systems",
+    "pageDescription": "Discover our agricultural heating technology that offers efficient, stable, and healthy plant growing environments with infrared rays.",
+    "imageAlt": "Agricultural Greenhouse Heating Technology Image",
+    "backButton": "Back to Our Activities",
+    "tags": {
+      "infrared": "Infrared Technology",
+      "yieldIncrease": "Yield Increase",
+      "stableHumidity": "Humidity Balance"
+    },
+    "benefits": {
+      "title": "Benefits",
+      "infrared": {
+        "title": "Infrared Technology",
+        "description": "Provides fast and homogeneous temperature distribution using far infrared rays.",
+        "stat": "Faster Heating"
+      },
+      "productivity": {
+        "title": "Yield Increase",
+        "description": "Accelerates plant growth by increasing photosynthesis rate and improves crop yield.",
+        "stat": "Min. 30% Yield Increase"
+      },
+      "humidity": {
+        "title": "Humidity Balance",
+        "description": "Maintains optimal humidity level in the greenhouse, providing ideal conditions for plants.",
+        "stat": "Stable Humidity Ratio"
+      },
+      "prevention": {
+        "title": "Mold & Fungus Prevention",
+        "description": "Prevents fungus and mold formation, supporting healthy plant development.",
+        "stat": "Reduced Pathogen Formation"
+      }
+    },
+    "comparison": {
+      "title": "Comparison with Traditional Systems",
+      "feature": "Feature",
+      "traditional": "Traditional Systems",
+      "our": "Our Technology",
+      "rows": {
+        "heating": {
+          "feature": "Heating Speed and Homogeneity",
+          "traditional": "Slow and uneven",
+          "our": "Fast and homogeneous"
+        },
+        "humidity": {
+          "feature": "Humidity Balance",
+          "traditional": "Unstable, requires constant intervention",
+          "our": "Self-balancing"
+        },
+        "mold": {
+          "feature": "Mold & Fungus Formation",
+          "traditional": "Common, requires treatment",
+          "our": "Formation prevented"
+        },
+        "yield": {
+          "feature": "Yield Increase",
+          "traditional": "Standard",
+          "our": "Minimum 30% increase"
+        }
+      }
+    }
+  },
+  "airPurification": {
+    "title": "Nano Air Purification Technology",
+    "description": "Our nano air purification technology that can disinfect 450 m3 area per hour and clean 4500 m2 area in 10 hours from all virus and other pollution factors without performance loss in area expansion, prevents the entry of these factors, can stabilize the oxygen balance in the environment, and can maximize fruit productivity especially in agriculture.",
+    "pageTitle": "Next-Gen Air Purification Systems",
+    "pageDescription": "Discover our nano technology-based air purification systems that eliminate virus and pollution factors, maintain oxygen balance, and increase fruit productivity.",
+    "imageAlt": "Nano Air Purification Technology Image",
+    "backButton": "Back to Our Activities",
+    "tags": {
+      "highCapacity": "High Capacity",
+      "nanoTechnology": "Nano Technology",
+      "oxygenBalance": "Oxygen Balance"
+    },
+    "stats": {
+      "hourlyCapacity": {
+        "title": "Hourly Capacity",
+        "description": "Fully disinfects 450 m³ area per hour"
+      },
+      "largeArea": {
+        "title": "Large Area Cleaning",
+        "description": "Cleans 4500 m² area in 10 hours"
+      },
+      "purification": {
+        "title": "Complete Purification",
+        "description": "Eliminates all virus and pollution factors"
+      },
+      "performance": {
+        "title": "Performance",
+        "description": "No performance loss in area expansion"
+      }
+    },
+    "applications": {
+      "title": "Application Areas",
+      "indoor": {
+        "title": "Indoor Applications",
+        "description": "For creating healthy environments in homes, offices, and public spaces.",
+        "items": {
+          "offices": "Offices and Workplaces",
+          "hospitals": "Hospitals and Healthcare Facilities",
+          "schools": "Schools and Educational Institutions"
+        }
+      },
+      "industrial": {
+        "title": "Industrial Applications",
+        "description": "For protecting product quality and employee health in production and storage areas.",
+        "items": {
+          "factories": "Factories",
+          "warehouses": "Warehouses",
+          "foodProcessing": "Food Processing Facilities"
+        }
+      },
+      "agriculture": {
+        "title": "Agricultural Applications",
+        "description": "For increasing fruit productivity and preserving harvest quality in greenhouse and storage areas.",
+        "items": {
+          "fruitProduction": "Fruit Production",
+          "greenhouses": "Greenhouses",
+          "storage": "Agricultural Product Storage"
+        }
+      }
+    }
+  },
+  "construction": {
+    "title": "Our Construction Services",
+    "description": "Comprehensive construction solutions for all your building needs",
+    "categories": {
+      "buildingConstruction": "Building Construction",
+      "infrastructure": "Infrastructure Construction",
+      "industrialFacilities": "Industrial Facilities and Plants",
+      "urbanRenewal": "Urban Renewal and Renovation Projects",
+      "landscaping": "Landscaping and Environmental Design",
+      "transportation": "Transportation and Mobility Projects",
+      "specializedSolutions": "Specialized Construction Solutions",
+      "mechanicalSystems": "Mechanical, Electrical and Electronic Systems"
+    }
   }
 
 
