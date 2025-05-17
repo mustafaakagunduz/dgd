@@ -1,4 +1,3 @@
-// FounderCard.jsx
 "use client";
 
 import { useState } from "react";
@@ -31,7 +30,7 @@ const FounderCard = ({ imageSrc, name, title, bio, showMore, showLess }: Founder
     const { truncated, hasMore } = truncateText(bio, 150); // Bio için 150 karakter limiti
 
     return (
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:shadow-xl">
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300">
             <div className="relative h-80 w-full">
                 <Image
                     src={imageSrc}
