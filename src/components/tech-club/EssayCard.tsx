@@ -11,6 +11,44 @@ interface EssayCardProps {
     index: number;
 }
 
+// HTML içeriğinden metin çıkaran yardımcı fonksiyon
+const stripHtml = (html: string): string => {
+    // Geçici bir div oluşturup HTML içeriği set edelim
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    // İçeriğini düz metin olarak alalım
+    const text = tempDiv.textContent || tempDiv.innerText || '';
+
+    // Fazla boşlukları temizleyelim
+    return text.replace(/\s+/g, ' ').trim();
+};
+
+// İçeriğin ilk kısmını almak için
+const getContentExcerpt = (content: string, maxLength: number = 150): string => {
+    try {
+        const strippedContent = stripHtml(content);
+        if (strippedContent.length <= maxLength) {
+            return strippedContent;
+        }
+
+        // Metin çok uzunsa, kelime bazında keselim
+        const truncated = strippedContent.substring(0, maxLength);
+        const lastSpace = truncated.lastIndexOf(' ');
+
+        // Son kelimeyi kesmeden döndürelim
+        if (lastSpace > 0) {
+            return truncated.substring(0, lastSpace) + '...';
+        }
+
+        return truncated + '...';
+    } catch (error) {
+        // Client-side rendering için güvenlik önlemi
+        // SSR sırasında document tanımlı olmayacak
+        return 'Loading content...';
+    }
+};
+
 const EssayCard: React.FC<EssayCardProps> = ({ essay, index }) => {
     const cardVariants = {
         hidden: {
@@ -34,6 +72,16 @@ const EssayCard: React.FC<EssayCardProps> = ({ essay, index }) => {
 
     // Author name'i güvenli şekilde al
     const authorName = essay.profiles?.name || 'Unknown Author';
+
+    // Client-side'da çalışması için React.useState kullanıyoruz
+    const [contentExcerpt, setContentExcerpt] = React.useState<string>('');
+
+    // Client tarafında içerik yüklenir yüklenmez parsing işlemi yapılsın
+    React.useEffect(() => {
+        if (essay.content) {
+            setContentExcerpt(getContentExcerpt(essay.content));
+        }
+    }, [essay.content]);
 
     return (
         <motion.div
@@ -72,7 +120,7 @@ const EssayCard: React.FC<EssayCardProps> = ({ essay, index }) => {
                         </p>
 
                         <p className="text-gray-200 text-sm leading-relaxed line-clamp-3">
-                            {essay.summary}
+                            {contentExcerpt}
                         </p>
                     </div>
                 </div>

@@ -46,15 +46,18 @@ export const staticDataTR: StaticHomeData = {
         items: [
             {
                 title: "DÖNGÜSELLİK",
-                content: "Başta iklim değişimleri olmak üzere küresel çapta yaşanan ve günden güne kendisini daha çok hissettiren çevre ve atmosfer sorunları, tüm gelişmiş ülkelerce başta karbon ayak izi yaklaşımı olmak üzere çok sayıda düzenleme ve yaptırımlarla başa çıkılmaya çalışılan; ancak yine de önüne geçilemeyen bir felaket senaryosu olarak karşımızda duruyor."
+                content: "Başta iklim değişiklikleri olmak üzere küresel çapta yaşanan ve her geçen gün etkisini daha fazla hissettiren çevre ve atmosfer sorunları, gelişmiş ülkeler tarafından karbon ayak izi yaklaşımı başta olmak üzere çeşitli düzenleme ve yaptırımlarla kontrol altına alınmaya çalışılmaktadır. Ancak tüm bu çabalara rağmen bu sorunların önüne geçilememektedir ve bu durum, insanlık için bir felaket senaryosu olarak karşımızda durmaktadır.\n" +
+                    "DGD Global Teknoloji A.Ş., işte tam da bu noktada, özellikle atık yönetimi politikalarını kökten değiştirmeye yönelik cesur adımlarıyla öne çıkmaktadır. 7C Basalia tam döngüsel atık yönetimi ve ürün bazlı döngüsel teknolojileri yaşama kazandırma projeleri ile, yaşamın her alanına etki edecek oyun değiştirici stratejilerini sizlerle birlikte hayata geçirmektedir."
             },
             {
                 title: "İNOVASYON",
-                content: "Tüm faaliyet konularında geçerli olmak üzere yaşamın tüm sahalarında yenilikçi ve katma değerli ürün, hizmet ve teknolojileri temel kabul eden şirket politikamız, yaşadığımız çevreden başlayıp küresel çapta etkiler oluşturmak üzere yoğun çalışmalar yürütür."
+                content: "Tüm faaliyet alanlarında, yaşamın her sahasında yenilikçi ve katma değerli ürün, hizmet ve teknolojileri temel kabul eden şirket politikamız; yaşadığımız çevreden başlayıp küresel ölçekte etkiler oluşturmayı amaçlayan yoğun çalışmalar yürütmektedir.\n" +
+                    "İnovatif yaklaşımımızı yalnızca belirli bir ürün ya da branşla sınırlı tutmadan, farklı sektörlere yayılmış konseptler halinde sunarak; bu stratejiyi ülkesel kalkınma politikalarına dönüştürmek, buna yönelik mevzuatlar oluşturulmasını sağlamak ve sonunda küresel etkiler yaratmak hedefindeyiz. Bu stratejiye katılımınızı memnuniyetle bekliyoruz."
             },
             {
                 title: "ÇÖZÜM ORTAKLIĞI",
-                content: "Gerek yeni nesil teknolojiler gerekse tam döngüsel atık yönetimi projelerini çözüm ortağı olduğu tüm inovatif teknoloji odakları ile yaptığı güçlü protokoller ve sözleşmeler ile kayıt altına alan DGD Global Teknoloji A.Ş."
+                content: "Gerek yeni nesil teknolojiler gerekse tam döngüsel atık yönetimi projelerinde, çözüm ortağı olduğu tüm inovatif teknoloji odakları ile yaptığı güçlü protokoller ve sözleşmelerle iş birliklerini kayıt altına alan DGD Global Teknoloji A.Ş., hem kendi bünyesinde hem de tam paylaşımcılık ilkesi çerçevesinde çalışmaktadır.\n" +
+                    "Gerek bilgi birikimi (know-how) gerekse girişimci kimliğiyle; bu süreçlere katılım sağlamak isteyen tüm kişi, firma ve kurumlarla ortak insani değerler ve toplumsal-ekonomik kazanımlar doğrultusunda birlikte çalışmaktan onur duyar."
             }
         ]
     }
@@ -71,15 +74,18 @@ export const staticDataEN: StaticHomeData = {
         items: [
             {
                 title: "CIRCULARITY",
-                content: "Environmental and atmospheric problems, especially climate change, which are experienced globally and felt more intensely day by day, are a disaster scenario that developed countries try to tackle through numerous regulations and sanctions, primarily with carbon footprint approaches."
+                content: "Environmental and atmospheric problems—especially climate change—are increasingly making their presence felt on a global scale. Developed countries are trying to manage these crises through various regulations and sanctions, particularly focusing on reducing carbon footprints. However, despite all efforts, these issues persist as a looming disaster scenario.\n" +
+                    "At this critical juncture, DGD Global Teknoloji A.Ş. stands out with bold steps aimed at fundamentally transforming waste management policies. Through its 7C Basalia full circular waste management and product-based circular technology projects, it brings game-changing strategies to all areas of life—together with you."
             },
             {
                 title: "INNOVATION",
-                content: "Our company policy, which considers innovative and value-added products, services, and technologies as fundamental in all areas of life for all business fields, carries out intensive work to create global impacts starting from our immediate environment."
+                content: "In all areas of operation, our company policy is based on offering innovative and value-added products, services, and technologies across all aspects of life. Starting from our immediate environment and aiming to create global impact, we carry out intensive work driven by this principle.\n" +
+                    "We do not confine our innovative approach to a single product or field. Instead, we present it through sectorally diverse concepts that cover all aspects of life. Our goal is to transform this strategy into a national development policy, contribute to the creation of relevant legislation, and ultimately achieve global influence. We are happy to invite you to be part of this vision."
             },
             {
                 title: "SOLUTION PARTNERSHIP",
-                content: "DGD Global Technology Inc., which records both next-generation technologies and complete circular waste management projects through strong protocols and agreements with all innovative technology hubs it partners with."
+                content: "In both next-generation technologies and fully circular waste management projects, DGD Global Teknoloji A.Ş. formalizes its collaborations through strong protocols and agreements with its innovative technology partners.\n" +
+                    "Operating within its own structure and under the principle of full cooperation, the company takes pride in working together with individuals, companies, and institutions interested in participating—whether through know-how or entrepreneurial contribution—towards shared human values and collective social and economic benefits."
             }
         ]
     }

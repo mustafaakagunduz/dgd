@@ -1,55 +1,46 @@
-// src/components/homepage/About.tsx
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
+import { getStaticHomeData } from "@/lib/static-data";
 
-interface AboutItem {
-    imageSrc: string;
-    titleKey: string;
-    contentKey: string;
-    altText: string;
-}
-
-// İçeriği static olarak tanımla
-const aboutItems: AboutItem[] = [
+// Resim verilerini bir sabit olarak tutuyoruz
+const aboutImages = [
     {
         imageSrc: "/assets/images/dongusellik.png",
-        titleKey: "about.circulation.title",
-        contentKey: "about.circulation.content",
         altText: "Döngüsellik"
     },
     {
         imageSrc: "/assets/images/inovasyon.png",
-        titleKey: "about.innovation.title",
-        contentKey: "about.innovation.content",
         altText: "İnovasyon"
     },
     {
         imageSrc: "/assets/images/cozum-ortakligi.png",
-        titleKey: "about.partnership.title",
-        contentKey: "about.partnership.content",
         altText: "Çözüm Ortaklığı"
     }
 ];
 
-interface AboutProps {
-    // Statik veri için prop
-    initialData?: {
-        sectionDescription?: string;
-        items?: Array<{
-            title: string;
-            content: string;
-        }>;
-    };
-}
-
-const About: React.FC<AboutProps> = ({ initialData }) => {
-    const { t } = useLanguage();
+const About: React.FC = () => {
+    const { language, t } = useLanguage();
     const [expandedItems, setExpandedItems] = useState<boolean[]>([false, false, false]);
+    const [content, setContent] = useState({
+        sectionDescription: "",
+        items: [] as {title: string, content: string}[]
+    });
+    const [mounted, setMounted] = useState(false);
+
+    // Dil değiştiğinde içeriği güncelle
+    useEffect(() => {
+        setMounted(true);
+        const data = getStaticHomeData(language as 'tr' | 'en');
+        setContent({
+            sectionDescription: data.about.sectionDescription,
+            items: data.about.items
+        });
+    }, [language]);
 
     const toggleExpansion = (index: number) => {
         setExpandedItems(prev => {
@@ -70,8 +61,10 @@ const About: React.FC<AboutProps> = ({ initialData }) => {
         return { truncated: finalText, hasMore: true };
     }, []);
 
-    // Fallback content
-    const sectionDescription = initialData?.sectionDescription || t("about.sectionDescription");
+    // Hydration mismatch önlemek için
+    if (!mounted) {
+        return null;
+    }
 
     return (
         <section
@@ -84,28 +77,30 @@ const About: React.FC<AboutProps> = ({ initialData }) => {
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <p className="text-white text-2xl font-bold max-w-full mx-auto">
-                        {sectionDescription}
+                        {content.sectionDescription}
                     </p>
                 </div>
 
                 {/* Three Column Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-                    {aboutItems.map((item, index) => {
-                        const content = initialData?.items?.[index]?.content || t(item.contentKey);
-                        const title = initialData?.items?.[index]?.title || t(item.titleKey);
-                        const { truncated, hasMore } = truncateText(content, 300);
+                    {content.items.map((item, index) => {
+                        const { truncated, hasMore } = truncateText(item.content, 300);
                         const isExpanded = expandedItems[index];
+                        const imageData = aboutImages[index] || {
+                            imageSrc: "/assets/images/placeholder.png",
+                            altText: "Placeholder"
+                        };
 
                         return (
                             <div
-                                key={item.titleKey}
-                                className="bg-gradient-to-br from-green-800/80 to-green-900/90 backdrop-blur-sm rounded-xl overflow-hidden transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/30 border border-green-600/30"
+                                key={index}
+                                className="bg-gradient-to-br from-green-800/80 to-green-900/90 backdrop-blur-sm rounded-xl overflow-hidden transition-all duration-300 shadow-lg border border-green-600/30"
                             >
                                 {/* Image with priority loading for above-fold content */}
                                 <div className="relative h-64 w-full overflow-hidden">
                                     <Image
-                                        src={item.imageSrc}
-                                        alt={item.altText}
+                                        src={imageData.imageSrc}
+                                        alt={imageData.altText}
                                         fill
                                         className="object-cover transition-transform duration-300 hover:scale-110"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -117,13 +112,13 @@ const About: React.FC<AboutProps> = ({ initialData }) => {
                                 {/* Content */}
                                 <div className="p-6">
                                     <h3 className="text-xl font-bold text-white mb-4 flex justify-center">
-                                        {title}
+                                        {item.title}
                                     </h3>
 
                                     <div className="relative">
                                         <div className="overflow-hidden transition-all duration-500 ease-in-out">
                                             <p className="text-gray-100 leading-relaxed">
-                                                {isExpanded ? content : truncated}
+                                                {isExpanded ? item.content : truncated}
                                                 {hasMore && !isExpanded && <span className="text-green-400 ml-1">...</span>}
                                             </p>
                                         </div>

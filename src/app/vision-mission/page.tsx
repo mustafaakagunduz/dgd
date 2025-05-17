@@ -1,9 +1,9 @@
 // src/app/vision-mission/page.tsx - Fixed SSG version
-import VisionMissionClient from './VisionMissionClient';
 import { getStaticVisionMissionData } from '@/lib/static-data';
 import { Metadata } from 'next';
+import ClientPage from './client-page';
 
-// SSG için gerekli exportlarr
+// SSG için gerekli exportlar
 export const dynamic = 'force-static';
 export const revalidate = false;
 
@@ -35,16 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-// Server Component - statik veri ile render
+// Server Component - Client bileşenini render ediyor
 export default function VisionMissionPage() {
-  // Build time'da statik verileri al
-  const staticDataTR = getStaticVisionMissionData('tr');
-  const staticDataEN = getStaticVisionMissionData('en');
-
-  return (
-      <VisionMissionClient
-          initialData={staticDataTR}
-          // Eğer çoklu dil desteği gerekiyorsa, burada language prop'u da ekleyebilirsiniz
-      />
-  );
+  return <ClientPage />;
 }

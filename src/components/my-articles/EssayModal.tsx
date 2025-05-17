@@ -38,6 +38,25 @@ const EssayModal: React.FC<EssayModalProps> = ({
     const authorName = essay.profiles?.name || 'Unknown Author';
     const authorInitials = authorName.split(' ').map((name: string) => name[0]).join('');
 
+    // Metin içeriğini düzenle - tüm metni beyaz yap
+    const formatContent = (content: string) => {
+        // Önce temel stillerle başlayalım
+        let formattedContent = content
+            .replace(/<h2>/g, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">')
+            .replace(/<h3>/g, '<h3 class="text-xl font-semibold text-white mt-6 mb-3">')
+            .replace(/<p>/g, '<p class="text-gray-200 leading-relaxed mb-4">');
+
+        // Diğer içerik türlerini de beyaza çevirelim
+        formattedContent = formattedContent
+            .replace(/<span/g, '<span class="text-white" ')
+            .replace(/<li/g, '<li class="text-white" ')
+            .replace(/<ul/g, '<ul class="text-white list-disc pl-5 mb-4 space-y-2" ')
+            .replace(/<ol/g, '<ol class="text-white list-decimal pl-5 mb-4 space-y-2" ')
+            .replace(/<a /g, '<a class="text-green-400 hover:underline" ');
+
+        return formattedContent;
+    };
+
     return (
         <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
@@ -103,12 +122,9 @@ const EssayModal: React.FC<EssayModalProps> = ({
                                 {t("myArticles.content")}:
                             </h3>
                             <div
-                                className="prose prose-invert max-w-none space-y-4"
+                                className="prose prose-invert max-w-none space-y-4 essay-content text-white"
                                 dangerouslySetInnerHTML={{
-                                    __html: essay.content
-                                        .replace(/<h2>/g, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">')
-                                        .replace(/<h3>/g, '<h3 class="text-xl font-semibold text-white mt-6 mb-3">')
-                                        .replace(/<p>/g, '<p class="text-gray-200 leading-relaxed mb-4">')
+                                    __html: formatContent(essay.content)
                                 }}
                             />
                         </div>

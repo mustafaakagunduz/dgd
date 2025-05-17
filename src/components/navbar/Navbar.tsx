@@ -27,11 +27,11 @@ const navItems = [
                             { key: "navbar.aboutSubmenu.teamSubmenu.technicalTeam", href: "/technical-team" }
                         ]},
                     { key: "navbar.aboutSubmenu.advisors", href: "/advisors" },
-                    { key: "navbar.aboutSubmenu.partners", href: "/solution-partners" }
+                    { key: "navbar.aboutSubmenu.partners", href: "/commercial-partnerships" }
                 ]
             },
             { key: "navbar.aboutDropdown.history", href: "/history" },
-            { key: "navbar.aboutDropdown.partners", href: "/solution-partners" }
+            { key: "navbar.aboutDropdown.partners", href: "/commercial-partnerships" }
         ]
     },
     {
@@ -108,8 +108,13 @@ export default function Navbar() {
     const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
     const [activeSecondSubmenu, setActiveSecondSubmenu] = useState<string | null>(null);
     const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
+    const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null);
+    const [activeMobileSecondSubmenu, setActiveMobileSecondSubmenu] = useState<string | null>(null);
     const languageDropdownRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
     const submenuRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
     useEffect(() => {
@@ -136,10 +141,31 @@ export default function Navbar() {
                 setActiveSubmenu(null);
                 setActiveSecondSubmenu(null);
             }
+            if (
+                mobileMenuOpen &&
+                mobileMenuRef.current &&
+                !mobileMenuRef.current.contains(e.target as Node) &&
+                // Mobil menü açma butonuna tıklamamak için kontrol
+                !(e.target as HTMLElement).closest('[data-mobile-toggle]')
+            ) {
+                setMobileMenuOpen(false);
+            }
         };
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [languageMenuOpen, activeDropdown]);
+    }, [languageMenuOpen, activeDropdown, mobileMenuOpen]);
+
+    // Mobil menü açıkken body scroll'u engellemek için
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [mobileMenuOpen]);
 
     const getNavText = (key: string) => t(key) || key.split('.').pop() || key;
 
@@ -147,6 +173,10 @@ export default function Navbar() {
         setActiveDropdown(null);
         setActiveSubmenu(null);
         setActiveSecondSubmenu(null);
+        setMobileMenuOpen(false);
+        setActiveMobileDropdown(null);
+        setActiveMobileSubmenu(null);
+        setActiveMobileSecondSubmenu(null);
     };
 
     const isNodeInstance = (target: any): target is Node => {
@@ -173,6 +203,27 @@ export default function Navbar() {
         return false;
     };
 
+    const toggleMobileDropdown = (key: string) => {
+        setActiveMobileDropdown(activeMobileDropdown === key ? null : key);
+        // Alt menüleri sıfırla
+        if (activeMobileDropdown !== key) {
+            setActiveMobileSubmenu(null);
+            setActiveMobileSecondSubmenu(null);
+        }
+    };
+
+    const toggleMobileSubmenu = (key: string) => {
+        setActiveMobileSubmenu(activeMobileSubmenu === key ? null : key);
+        // Alt-alt menüyü sıfırla
+        if (activeMobileSubmenu !== key) {
+            setActiveMobileSecondSubmenu(null);
+        }
+    };
+
+    const toggleMobileSecondSubmenu = (key: string) => {
+        setActiveMobileSecondSubmenu(activeMobileSecondSubmenu === key ? null : key);
+    };
+
     return (
         <nav
             className={cn(
@@ -196,7 +247,7 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    {/* Navigation items - Ortada */}
+                    {/* Navigation items - Ortada (Desktop) */}
                     <div className="hidden lg:flex items-center space-x-6" ref={dropdownRef}>
                         {navItems.map((item) => (
                             <div
@@ -343,7 +394,6 @@ export default function Navbar() {
                                                                                     </>
                                                                                 ) : (
                                                                                     <Link
-                                                                                        key={submenuItem.key}
                                                                                         href={submenuItem.href}
                                                                                         className="block px-4 py-2 text-white hover:bg-white/10 transition-colors"
                                                                                         onClick={closeDropdowns}
@@ -382,8 +432,9 @@ export default function Navbar() {
                         ))}
                     </div>
 
-                    {/* Language selector - Sağ taraf */}
-                    <div>
+                    {/* Language & Mobile Menu Button */}
+                    <div className="flex items-center space-x-2">
+                        {/* Language selector - Sağ taraf (Desktop) */}
                         <div className="relative hidden lg:block" ref={languageDropdownRef}>
                             <button
                                 onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
@@ -415,6 +466,184 @@ export default function Navbar() {
                                     </div>
                                 </div>
                             )}
+                        </div>
+
+                        {/* Mobile Menu Toggle Button */}
+                        <button
+                            data-mobile-toggle
+                            className="lg:hidden flex items-center justify-center text-white hover:bg-white/10 p-2 rounded-md"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        >
+                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile Menu */}
+            <div
+                ref={mobileMenuRef}
+                className={cn(
+                    "fixed inset-0 z-40 bg-black/95 backdrop-blur-md transition-all duration-300 lg:hidden overflow-auto pt-20",
+                    mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+                )}
+            >
+                <div className="container mx-auto px-4 py-8">
+                    <div className="flex flex-col space-y-4">
+                        {navItems.map((item) => (
+                            <div key={item.key} className="border-b border-white/10 pb-4">
+                                {item.hasDropdown ? (
+                                    <>
+                                        <button
+                                            className="flex items-center justify-between w-full text-white font-medium py-2"
+                                            onClick={() => toggleMobileDropdown(item.key)}
+                                        >
+                                            <span>{getNavText(item.key)}</span>
+                                            <ChevronDown
+                                                size={18}
+                                                className="transition-transform duration-200"
+                                                style={{
+                                                    transform: activeMobileDropdown === item.key ? 'rotate(180deg)' : 'rotate(0)'
+                                                }}
+                                            />
+                                        </button>
+
+                                        {/* Mobile Dropdown */}
+                                        <div className={cn(
+                                            "overflow-hidden transition-all duration-200",
+                                            activeMobileDropdown === item.key ? "max-h-screen opacity-100 visible mt-2" : "max-h-0 opacity-0"
+                                        )}>
+                                            <div className="pl-4 border-l border-white/10 space-y-2">
+                                                {item.dropdownItems?.map((dropdownItem) => (
+                                                    <div key={dropdownItem.key} className="py-1">
+                                                        {dropdownItem.hasSubmenu ? (
+                                                            <>
+                                                                <button
+                                                                    className="flex items-center justify-between w-full text-white py-2"
+                                                                    onClick={() => toggleMobileSubmenu(dropdownItem.key)}
+                                                                >
+                                                                    <span>{getNavText(dropdownItem.key)}</span>
+                                                                    <ChevronDown
+                                                                        size={16}
+                                                                        className="transition-transform duration-200"
+                                                                        style={{
+                                                                            transform: activeMobileSubmenu === dropdownItem.key ? 'rotate(180deg)' : 'rotate(0)'
+                                                                        }}
+                                                                    />
+                                                                </button>
+
+                                                                {/* Mobile Submenu */}
+                                                                <div className={cn(
+                                                                    "overflow-hidden transition-all duration-200",
+                                                                    activeMobileSubmenu === dropdownItem.key ? "max-h-screen opacity-100 visible mt-2" : "max-h-0 opacity-0"
+                                                                )}>
+                                                                    <div className="pl-4 border-l border-white/10 space-y-2">
+                                                                        {dropdownItem.submenuItems?.map((submenuItem) => (
+                                                                            <div key={submenuItem.key} className="py-1">
+                                                                                {submenuItem.hasSubmenu ? (
+                                                                                    <>
+                                                                                        <button
+                                                                                            className="flex items-center justify-between w-full text-white py-2"
+                                                                                            onClick={() => toggleMobileSecondSubmenu(submenuItem.key)}
+                                                                                        >
+                                                                                            <span>{getNavText(submenuItem.key)}</span>
+                                                                                            <ChevronDown
+                                                                                                size={16}
+                                                                                                className="transition-transform duration-200"
+                                                                                                style={{
+                                                                                                    transform: activeMobileSecondSubmenu === submenuItem.key ? 'rotate(180deg)' : 'rotate(0)'
+                                                                                                }}
+                                                                                            />
+                                                                                        </button>
+
+                                                                                        {/* Mobile Second Submenu */}
+                                                                                        <div className={cn(
+                                                                                            "overflow-hidden transition-all duration-200",
+                                                                                            activeMobileSecondSubmenu === submenuItem.key ? "max-h-screen opacity-100 visible mt-2" : "max-h-0 opacity-0"
+                                                                                        )}>
+                                                                                            <div className="pl-4 border-l border-white/10 space-y-2">
+                                                                                                {submenuItem.submenuItems?.map((secondSubmenuItem) => (
+                                                                                                    <div key={secondSubmenuItem.key} className="py-1">
+                                                                                                        <Link
+                                                                                                            href={secondSubmenuItem.href}
+                                                                                                            className="block text-white py-2"
+                                                                                                            onClick={closeDropdowns}
+                                                                                                        >
+                                                                                                            {getNavText(secondSubmenuItem.key)}
+                                                                                                        </Link>
+                                                                                                    </div>
+                                                                                                ))}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </>
+                                                                                ) : (
+                                                                                    <Link
+                                                                                        href={submenuItem.href}
+                                                                                        className="block text-white py-2"
+                                                                                        onClick={closeDropdowns}
+                                                                                    >
+                                                                                        {getNavText(submenuItem.key)}
+                                                                                    </Link>
+                                                                                )}
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+                                                            </>
+                                                        ) : (
+                                                            <Link
+                                                                href={dropdownItem.href}
+                                                                className="block text-white py-2"
+                                                                onClick={closeDropdowns}
+                                                            >
+                                                                {getNavText(dropdownItem.key)}
+                                                            </Link>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <Link
+                                        href={item.href}
+                                        className="block text-white font-medium py-2"
+                                        onClick={closeDropdowns}
+                                    >
+                                        {getNavText(item.key)}
+                                    </Link>
+                                )}
+                            </div>
+                        ))}
+
+                        {/* Mobile Language Selector */}
+                        <div className="pt-4">
+                            <div className="flex flex-col">
+                                <div className="text-white font-medium mb-2 flex items-center">
+                                    <Globe size={18} className="mr-2" />
+                                    <span>{t("languages.selectLanguage") || "Select Language"}</span>
+                                </div>
+                                <div className="flex flex-col space-y-2 pl-7">
+                                    {languages.map((lang) => (
+                                        <button
+                                            key={lang.code}
+                                            onClick={() => {
+                                                setLanguage(lang.code as "tr" | "en");
+                                                setMobileMenuOpen(false);
+                                            }}
+                                            className={cn(
+                                                "flex items-center text-white py-2",
+                                                language === lang.code && "font-medium"
+                                            )}
+                                        >
+                                            <span className="w-6 h-6 flex items-center justify-center mr-2 rounded-full border border-white/20">
+                                                {language === lang.code && "✓"}
+                                            </span>
+                                            {t(lang.key) || lang.code}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

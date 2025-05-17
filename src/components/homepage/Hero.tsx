@@ -1,31 +1,34 @@
-// src/components/homepage/Hero.tsx
 "use client";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
+import { getStaticHomeData } from "@/lib/static-data";
 
-interface HeroProps {
-    // Static props için hazırlık
-    initialData?: {
-        title?: string;
-        description?: string;
-    };
-}
-
-export default function Hero({ initialData }: HeroProps) {
-    const { t } = useLanguage();
+export default function Hero() {
+    const { language } = useLanguage();
     const [isVisible, setIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [content, setContent] = useState({
+        title: "",
+        description: ""
+    });
 
     useEffect(() => {
         setMounted(true);
+        // Dil değişikliklerini takip et
+        const data = getStaticHomeData(language as 'tr' | 'en');
+        setContent({
+            title: data.hero.title,
+            description: data.hero.description
+        });
+
         // Component yüklendikten kısa bir süre sonra animasyonu başlat
         const timer = setTimeout(() => {
             setIsVisible(true);
         }, 300);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [language]); // language değiştiğinde effect'i tekrar çalıştır
 
     // Hydration mismatch'i önlemek için mounted kontrolü
     if (!mounted) {
@@ -41,10 +44,6 @@ export default function Hero({ initialData }: HeroProps) {
             </div>
         );
     }
-
-    // Fallback değerler için initial data kullan
-    const title = initialData?.title || t("hero.title");
-    const description = initialData?.description || t("hero.description");
 
     return (
         <div className="relative w-full h-screen">
@@ -74,10 +73,10 @@ export default function Hero({ initialData }: HeroProps) {
                     `}
                 >
                     <h1 className="text-white text-4xl md:text-5xl font-bold mb-6">
-                        {title}
+                        {content.title}
                     </h1>
                     <p className="text-white/90 text-lg md:text-xl leading-relaxed">
-                        {description}
+                        {content.description}
                     </p>
                 </div>
             </div>

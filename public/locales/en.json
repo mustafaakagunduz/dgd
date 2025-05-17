@@ -1,8 +1,5 @@
 {
-  "hero": {
-    "title": "DGD GLOBAL",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
-  },
+
   "navbar": {
     "about": "ABOUT US",
     "activities": "OUR ACTIVITIES",
@@ -53,7 +50,8 @@
   },
   "languages": {
     "tr": "Turkish",
-    "en": "English"
+    "en": "English",
+    "selectLanguage": "Select Language"
   },
   "about": {
     "sectionDescription": "Discover DGD Global's core values",

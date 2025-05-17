@@ -36,7 +36,7 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center hover:bg-white/15 transition-all duration-300 w-full"
+                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center transition-all duration-300 w-full"
             >
                 <div className="flex flex-col items-center space-y-4">
                     {/* Title */}
@@ -54,7 +54,7 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
                         {/* Add Button */}
                         <button
                             onClick={handleCreateArticle}
-                            className="px-8 py-3 bg-gradient-to-r from-green-700 to-green-800 text-white font-semibold rounded-xl hover:from-green-400 hover:to-green-500 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+                            className="px-8 py-3 bg-gradient-to-r from-green-700 to-green-800 text-white font-semibold rounded-xl hover:from-green-400 hover:to-green-500 transition-all duration-300 flex items-center gap-2"
                         >
                             <svg
                                 className="w-5 h-5"
@@ -76,7 +76,7 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
                         {isLoggedIn && (
                             <Link
                                 href="/tech-club/my-articles"
-                                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+                                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 flex items-center gap-2"
                             >
                                 <svg
                                     className="w-5 h-5"
@@ -99,7 +99,7 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
                         {isLoggedIn && isAdmin && (
                             <Link
                                 href="/tech-club/all-articles"
-                                className="px-6 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold rounded-xl hover:from-purple-400 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+                                className="px-6 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold rounded-xl hover:from-purple-400 hover:to-purple-500 transition-all duration-300 flex items-center gap-2"
                             >
                                 <svg
                                     className="w-5 h-5"
@@ -122,7 +122,7 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
                         {isLoggedIn && (
                             <button
                                 onClick={handleLogout}
-                                className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-xl hover:from-red-400 hover:to-red-500 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+                                className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-xl hover:from-red-400 hover:to-red-500 transition-all duration-300 flex items-center gap-2"
                             >
                                 <svg
                                     className="w-5 h-5"

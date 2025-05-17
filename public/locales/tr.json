@@ -1,8 +1,5 @@
 {
-  "hero": {
-    "title": "DGD GLOBAL",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
-  },
+
   "navbar": {
     "about": "HAKKIMIZDA",
     "activities": "FAALİYET ALANLARIMIZ",
@@ -55,7 +52,8 @@
   },
   "languages": {
     "tr": "Türkçe",
-    "en": "English"
+    "en": "English",
+    "selectLanguage": "Dil Seçiniz"
   },
   "about": {
     "sectionDescription": "DGD Global'in temel değerlerini keşfedin..",
