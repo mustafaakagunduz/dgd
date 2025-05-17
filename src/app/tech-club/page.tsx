@@ -7,31 +7,48 @@ import EssayCard from "@/components/tech-club/EssayCard";
 import AddEssayCard from "@/components/tech-club/AddEssayCard";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
+import { testSupabaseConnection } from '@/lib/supabase';
+import Link from 'next/link';
 
-// Auth bilgisini ayrı bir component olarak yönetiyoruz
-// Bu sayede auth yüklenmesi ana içeriği bloke etmiyor
-const AuthAwareAddEssay = () => {
+// Placeholder makale kartı - veri yüklenirken veya hata durumunda gösterilir
+const PlaceholderCard = () => (
+    <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden shadow-lg h-full animate-pulse">
+        <div className="h-48 w-full bg-gray-700"></div>
+        <div className="p-6">
+            <div className="h-6 bg-gray-700 rounded w-3/4 mb-3"></div>
+            <div className="h-4 bg-gray-700 rounded w-1/4 mb-3"></div>
+            <div className="h-4 bg-gray-700 rounded w-full mb-2"></div>
+            <div className="h-4 bg-gray-700 rounded w-full mb-2"></div>
+            <div className="h-4 bg-gray-700 rounded w-2/3"></div>
+        </div>
+    </div>
+);
+
+// Auth bilgisini ayrı component olarak yönetiyoruz
+const AuthAwareAddEssay = ({ onEssayCreated }: { onEssayCreated?: () => void }) => {
     const { isLoggedIn, currentUser, loading: authLoading } = useAuth();
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
         // Auth yüklendikten sonra bileşeni göster
         if (!authLoading) {
-            setIsReady(true);
+            // Kısa bir gecikme ekleyerek daha düzgün bir geçiş sağla
+            const timer = setTimeout(() => setIsReady(true), 100);
+            return () => clearTimeout(timer);
         }
     }, [authLoading]);
 
     // Auth işlemi devam ederken basit bir placeholder göster
     if (!isReady) {
         return (
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center transition-all duration-300 w-full min-h-[200px] flex items-center justify-center">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center transition-all duration-300 w-full h-[200px] flex items-center justify-center">
                 <div className="text-white text-opacity-70">Yükleniyor...</div>
             </div>
         );
     }
 
     // Auth yüklendikten sonra gerçek componenti göster
-    return <AddEssayCard />;
+    return <AddEssayCard onEssayCreated={onEssayCreated} />;
 };
 
 const TechClubPage = () => {
@@ -39,30 +56,56 @@ const TechClubPage = () => {
     const [essays, setEssays] = useState<Essay[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [connectionStatus, setConnectionStatus] = useState<boolean | null>(null);
 
-    // useCallback ile memoize edilmiş essays yükleme fonksiyonu
+    // Önce bağlantıyı kontrol et
+    useEffect(() => {
+        const checkConnection = async () => {
+            try {
+                const isConnected = await testSupabaseConnection();
+                setConnectionStatus(isConnected);
+                console.log('Supabase bağlantı durumu:', isConnected ? 'Bağlı' : 'Bağlantı hatası');
+            } catch (error) {
+                console.error('Bağlantı kontrolü sırasında hata:', error);
+                setConnectionStatus(false);
+            }
+        };
+
+        checkConnection();
+    }, []);
+
+    // Makaleleri yükle
     const loadEssays = useCallback(async () => {
         try {
+            console.log('Makaleler yükleniyor...');
             setLoading(true);
             setError(null);
 
-            console.log("Fetching approved essays...");
             const approvedEssays = await getApprovedEssays();
 
-            console.log(`Fetched ${approvedEssays.length} essays successfully`);
+            console.log(`${approvedEssays.length} makale başarıyla yüklendi`);
             setEssays(approvedEssays);
         } catch (error) {
-            console.error('Error loading essays:', error);
-            setError('Makaleleri yüklerken bir hata oluştu. Lütfen sayfayı yenileyin veya daha sonra tekrar deneyin.');
+            console.error('Makaleleri yüklerken hata:', error);
+            setError('Makaleleri yüklerken bir sorun oluştu. Lütfen sayfayı yenileyin veya daha sonra tekrar deneyin.');
         } finally {
             setLoading(false);
         }
     }, []);
 
-    // Component mount olduğunda içeriği yükle
+    // Component mount olduğunda ve bağlantı durumu değiştiğinde içeriği yükle
     useEffect(() => {
-        loadEssays();
-    }, [loadEssays]);
+        // Bağlantı durumu biliniyorsa ve bağlı ise makaleleri yükle
+        if (connectionStatus === true) {
+            loadEssays();
+        }
+        // Bağlantı durumu biliniyorsa ve bağlı değilse hata mesajı göster
+        else if (connectionStatus === false) {
+            setError('Veritabanına bağlanılamadı. Lütfen internet bağlantınızı kontrol edin ve sayfayı yenileyin.');
+            setLoading(false);
+        }
+        // Bağlantı durumu henüz bilinmiyorsa bekle
+    }, [connectionStatus, loadEssays]);
 
     // Container animation variants
     const containerVariants = {
@@ -76,6 +119,31 @@ const TechClubPage = () => {
         }
     };
 
+    // Bağlantı kontrolü yapılıyor
+    if (connectionStatus === null) {
+        return (
+            <div className="min-h-screen py-20">
+                {/* Header Section - Her zaman göster */}
+                <div className="text-center mb-16">
+                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                        {t("techClub.title")}
+                    </h1>
+                    <p className="text-gray-200 text-lg md:text-xl max-w-3xl mx-auto px-4">
+                        {t("techClub.description")}
+                    </p>
+                </div>
+
+                {/* Bağlantı kontrolü yapılıyor ekranı */}
+                <div className="container mx-auto px-4 py-8 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                        <div className="text-white text-xl">Bağlantı kontrol ediliyor...</div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen py-20">
             {/* Header Section - Her zaman göster */}
@@ -88,24 +156,43 @@ const TechClubPage = () => {
                 </p>
             </div>
 
-            {/* Essays Grid - Loading durumuna göre farklı içerik göster */}
+            {/* Essays Grid - Loading veya error durumuna göre farklı içerikler göster */}
             <div className="container mx-auto px-4">
-                {loading && essays.length === 0 ? (
-                    <div className="py-12 flex justify-center">
-                        <div className="flex flex-col items-center">
-                            <div className="w-10 h-10 border-3 border-green-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-                            <div className="text-white">Makaleler yükleniyor...</div>
-                        </div>
+                {loading ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[1, 2, 3, 4].map((i) => (
+                            <PlaceholderCard key={i} />
+                        ))}
                     </div>
                 ) : error ? (
                     <div className="py-12 text-center">
-                        <div className="text-white mb-4">{error}</div>
-                        <button
-                            onClick={() => loadEssays()}
-                            className="px-5 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-lg hover:from-green-400 hover:to-green-500 transition-all duration-300"
-                        >
-                            Yeniden Dene
-                        </button>
+                        <div className="flex flex-col items-center space-y-4">
+                            <div className="text-yellow-400 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <div className="text-white text-xl mb-4">{error}</div>
+                            <button
+                                onClick={() => {
+                                    setLoading(true);
+                                    setError(null);
+                                    // Bağlantıyı yeniden kontrol et ve makaleleri yükle
+                                    testSupabaseConnection().then(isConnected => {
+                                        setConnectionStatus(isConnected);
+                                        if (isConnected) {
+                                            loadEssays();
+                                        } else {
+                                            setError('Veritabanına bağlanılamadı. Lütfen daha sonra tekrar deneyin.');
+                                            setLoading(false);
+                                        }
+                                    });
+                                }}
+                                className="px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-xl hover:from-green-400 hover:to-green-500 transition-all duration-300"
+                            >
+                                Yeniden Dene
+                            </button>
+                        </div>
                     </div>
                 ) : (
                     <motion.div
@@ -123,8 +210,11 @@ const TechClubPage = () => {
                                 />
                             ))
                         ) : (
-                            <div className="col-span-full text-center text-white py-8">
-                                <p>Henüz makale bulunmamaktadır.</p>
+                            <div className="col-span-full text-center py-8">
+                                <p className="text-white text-lg">Henüz makale bulunmamaktadır.</p>
+                                <p className="text-gray-300 mt-2">
+                                    İlk makaleyi yazmak için "Makale Oluştur" butonuna tıklayabilirsiniz.
+                                </p>
                             </div>
                         )}
                     </motion.div>
@@ -132,7 +222,7 @@ const TechClubPage = () => {
 
                 {/* Add Essay Section - Auth durumundan bağımsız bir şekilde yükle */}
                 <div className="mt-16">
-                    <AuthAwareAddEssay />
+                    <AuthAwareAddEssay onEssayCreated={loadEssays} />
                 </div>
             </div>
         </div>

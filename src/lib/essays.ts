@@ -1,82 +1,142 @@
-import { supabase, Essay as SupabaseEssay, Profile } from './supabase';
+// src/lib/essays.ts - Hata yönetimi iyileştirilmiş sürüm
+import { supabase, Essay as SupabaseEssay, testSupabaseConnection } from './supabase';
 
 // Re-export Essay from supabase
 export type Essay = SupabaseEssay;
 
-// Essay getirme fonksiyonları
+// Essay getirme fonksiyonları - gelişmiş hata yönetimi ile
 export const getApprovedEssays = async (): Promise<Essay[]> => {
-    const { data, error } = await supabase
-        .from('essays')
-        .select(`
-            *,
-            profiles(name)
-        `)
-        .eq('approved', true)
-        .order('created_at', { ascending: false });
+    try {
+        // İlk olarak bağlantıyı kontrol et
+        const isConnected = await testSupabaseConnection();
+        if (!isConnected) {
+            throw new Error('Veritabanı bağlantısı kurulamadı');
+        }
 
-    if (error) {
-        console.error('Error fetching approved essays:', error);
-        return [];
+        // RPC çağrısında timeout ayarla
+        const timeoutPromise = new Promise<null>((_, reject) => {
+            setTimeout(() => reject(new Error('Veritabanı sorgusu zaman aşımına uğradı')), 10000);
+        });
+
+        // Asıl veri çekme işlemi
+        const dataPromise = supabase
+            .from('essays')
+            .select(`
+                *,
+                profiles(name)
+            `)
+            .eq('approved', true)
+            .order('created_at', { ascending: false });
+
+        // İki promise'i yarıştır
+        const { data, error } = await Promise.race([
+            dataPromise,
+            timeoutPromise.then(() => ({ data: null, error: new Error('Timeout') })),
+        ]) as any;
+
+        // Hata kontrolü
+        if (error) {
+            console.error('Onaylı makaleleri getirirken hata oluştu:', error);
+            console.error('Hata detayları:', JSON.stringify(error, null, 2));
+            throw error;
+        }
+
+        // Veriyi kontrol et
+        if (!data) {
+            console.warn('Veri bulunamadı veya boş dizi döndü');
+            return [];
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Onaylı makaleleri getirirken beklenmeyen bir hata oluştu:', error);
+
+        // Fallback olarak sabit veri dön
+        return getFallbackEssays();
     }
-
-    return data || [];
 };
 
+// Diğer fonksiyonların iyileştirilmiş sürümleri...
 export const getPendingEssays = async (): Promise<Essay[]> => {
-    const { data, error } = await supabase
-        .from('essays')
-        .select(`
-            *,
-            profiles(name)
-        `)
-        .eq('approved', false)
-        .order('created_at', { ascending: false });
+    try {
+        const { data, error } = await supabase
+            .from('essays')
+            .select(`
+                *,
+                profiles(name)
+            `)
+            .eq('approved', false)
+            .order('created_at', { ascending: false });
 
-    if (error) {
-        console.error('Error fetching pending essays:', error);
+        if (error) {
+            console.error('Onay bekleyen makaleleri getirirken hata oluştu:', error);
+            throw error;
+        }
+
+        return data || [];
+    } catch (error) {
+        console.error('Onay bekleyen makaleleri getirirken beklenmeyen bir hata oluştu:', error);
         return [];
     }
-
-    return data || [];
 };
 
 export const getEssaysByUserId = async (userId: string): Promise<Essay[]> => {
-    const { data, error } = await supabase
-        .from('essays')
-        .select(`
-            *,
-            profiles(name)
-        `)
-        .eq('author_id', userId)
-        .order('created_at', { ascending: false });
-
-    if (error) {
-        console.error('Error fetching user essays:', error);
+    if (!userId) {
+        console.error('Kullanıcı ID\'si belirtilmedi');
         return [];
     }
 
-    return data || [];
+    try {
+        const { data, error } = await supabase
+            .from('essays')
+            .select(`
+                *,
+                profiles(name)
+            `)
+            .eq('author_id', userId)
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error(`Kullanıcı (${userId}) makalelerini getirirken hata oluştu:`, error);
+            throw error;
+        }
+
+        return data || [];
+    } catch (error) {
+        console.error(`Kullanıcı (${userId}) makalelerini getirirken beklenmeyen bir hata oluştu:`, error);
+        return [];
+    }
 };
 
 export const getEssayById = async (id: string): Promise<Essay | null> => {
-    const { data, error } = await supabase
-        .from('essays')
-        .select(`
-            *,
-            profiles(name)
-        `)
-        .eq('id', id)
-        .single();
-
-    if (error) {
-        console.error('Error fetching essay by id:', error);
+    if (!id) {
+        console.error('Makale ID\'si belirtilmedi');
         return null;
     }
 
-    return data;
+    try {
+        const { data, error } = await supabase
+            .from('essays')
+            .select(`
+                *,
+                profiles(name)
+            `)
+            .eq('id', id)
+            .single();
+
+        if (error) {
+            console.error(`ID'si ${id} olan makaleyi getirirken hata oluştu:`, error);
+            throw error;
+        }
+
+        return data;
+    } catch (error) {
+        console.error(`ID'si ${id} olan makaleyi getirirken beklenmeyen bir hata oluştu:`, error);
+        return null;
+    }
 };
 
-// Resim optimizasyon fonksiyonu
+// Resim optimizasyon fonksiyonu - mevcut
 const compressImage = (file: File, maxWidth: number = 1200, quality: number = 0.8): Promise<Blob> => {
     return new Promise((resolve, reject) => {
         const canvas = document.createElement('canvas');
@@ -119,6 +179,7 @@ const compressImage = (file: File, maxWidth: number = 1200, quality: number = 0.
     });
 };
 
+// Eski fonksiyonlar da korundu...
 export const createEssayWithImage = async (essayData: {
     title: string;
     summary: string;
@@ -137,7 +198,7 @@ export const createEssayWithImage = async (essayData: {
                 author_id: essayData.author_id,
                 approved: false
             })
-            .select('*') // Tüm alanları al, TypeScript Essay tipiyle uyuşur
+            .select('*')
             .single();
 
         if (insertError || !insertData) {
@@ -161,12 +222,11 @@ export const createEssayWithImage = async (essayData: {
                         .from('essays')
                         .update({ image_url: imageResult.url })
                         .eq('id', insertData.id)
-                        .select('*') // Güncellenmiş tam essay'i geri al
+                        .select('*')
                         .single();
 
                     if (updateError || !updatedData) {
                         console.warn('Image uploaded but essay update failed:', updateError);
-                        // Essay image'siz dönsün
                         return { success: true, essay: insertData };
                     }
 
@@ -179,19 +239,14 @@ export const createEssayWithImage = async (essayData: {
             }
         }
 
-        // Image yoksa ya da yükleme başarısızsa ilk haliyle dön
         return { success: true, essay: insertData };
-
     } catch (error) {
         console.error('createEssayWithImage failed:', error);
         return { success: false, error: 'Makaleyi oluştururken beklenmeyen bir hata oluştu.' };
     }
 };
 
-
-
-
-// Eski fonksiyonları koru (backward compatibility)
+// Eski fonksiyonlar aynı şekilde korundu
 export const createEssay = async (essay: {
     title: string;
     summary: string;
@@ -216,7 +271,7 @@ export const createEssay = async (essay: {
     return { success: true, essay: data };
 };
 
-// Essay güncelleme
+// Diğer fonksiyonlar aynı şekilde korundu
 export const updateEssay = async (
     id: string,
     updates: {
@@ -242,7 +297,6 @@ export const updateEssay = async (
     return { success: true };
 };
 
-// Essay silme
 export const deleteEssay = async (id: string): Promise<{ success: boolean; error?: string }> => {
     const { error } = await supabase
         .from('essays')
@@ -257,7 +311,6 @@ export const deleteEssay = async (id: string): Promise<{ success: boolean; error
     return { success: true };
 };
 
-// Essay onaylama/reddetme (admin)
 export const updateEssayApproval = async (
     id: string,
     approved: boolean
@@ -275,7 +328,6 @@ export const updateEssayApproval = async (
     return { success: true };
 };
 
-// Optimized resim yükleme
 export const uploadEssayImage = async (
     file: File,
     essayId: string
@@ -307,4 +359,28 @@ export const uploadEssayImage = async (
         console.error('Error in uploadEssayImage:', error);
         return { success: false, error: 'Image upload failed' };
     }
+};
+
+// Fallback veri - Supabase bağlantısı başarısız olduğunda kullanılır
+const getFallbackEssays = (): Essay[] => {
+    return [
+        {
+            id: 'fallback-1',
+            title: 'Bağlantı Hatası',
+            summary: 'Veritabanına bağlantı kurulamadı. Lütfen daha sonra tekrar deneyiniz.',
+            content: '<p>Veritabanına bağlantı kurulamadı. Lütfen daha sonra tekrar deneyiniz.</p>',
+            author_id: 'system',
+            approved: true,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            profiles: {
+                id: 'system',
+                email: 'system@dgd.com',
+                name: 'Sistem',
+                role: 'admin',
+                email_verified: true,
+                created_at: new Date().toISOString()
+            }
+        }
+    ];
 };
