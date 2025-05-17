@@ -1,11 +1,13 @@
+// src/lib/fonts.ts
 import { Geist, Geist_Mono } from "next/font/google";
 
-// Font'ları ayrı ayrı yükle
+// Fontları optimize edelim
 export const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
     preload: true,
-    display: "swap", // Font yüklenene kadar sistem fontunu kullan
+    display: "swap", // Fontlar yüklenirken sistem fontunu kullan
+    adjustFontFallback: false, // Bu, fallback fontların ayarlanmasını önler
 });
 
 export const geistMono = Geist_Mono({
@@ -13,4 +15,5 @@ export const geistMono = Geist_Mono({
     subsets: ["latin"],
     preload: false, // Sadece gerektiğinde yükle
     display: "swap",
+    adjustFontFallback: false,
 });

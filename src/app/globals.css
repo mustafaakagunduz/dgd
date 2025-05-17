@@ -11,6 +11,23 @@
   color: white !important;
 }
 
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; /* Bu önemli */
+  src: local('Geist');
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; /* Bu önemli */
+  src: local('Geist Mono');
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

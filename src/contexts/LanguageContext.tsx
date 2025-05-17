@@ -1,3 +1,4 @@
+// src/contexts/LanguageContext.tsx (güncelleme)
 "use client";
 
 import React, { createContext, useState, useContext, useEffect, ReactNode } from "react";
@@ -10,6 +11,7 @@ interface LanguageContextType {
     translations: Translations;
     setLanguage: (lang: Language) => void;
     t: (key: string) => string;
+    isLoading: boolean; // İsLoading durumunu ekleyelim
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -25,28 +27,23 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
 
     // Handle localStorage - must be in useEffect due to SSR
     useEffect(() => {
-        // Async localStorage erişimi, sayfa bloke olmadan yüklensin
-        const timeoutId = setTimeout(() => {
-            try {
-                const savedLanguage = localStorage.getItem("language") as Language;
-                if (savedLanguage && (savedLanguage === "en" || savedLanguage === "tr")) {
-                    setLanguage(savedLanguage);
-                }
-            } catch (error) {
-                console.error("Error accessing localStorage:", error);
+        try {
+            const savedLanguage = localStorage.getItem("language") as Language;
+            if (savedLanguage && (savedLanguage === "en" || savedLanguage === "tr")) {
+                setLanguage(savedLanguage);
             }
-        }, 0);
-
-        return () => clearTimeout(timeoutId);
+        } catch (error) {
+            console.error("Error accessing localStorage:", error);
+        }
     }, []);
 
     useEffect(() => {
         const loadTranslations = async () => {
             try {
                 setIsLoading(true);
-                // Use absolute path to ensure correct resolution
+                // Preload edilmiş çevirileri kullanmak için
                 const response = await fetch(`/locales/${language}.json`, {
-                    cache: "no-store", // Prevent caching issues
+                    cache: "no-store",
                     headers: {
                         "Content-Type": "application/json",
                         "Cache-Control": "no-cache"
@@ -60,7 +57,6 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
                 const data = await response.json();
                 setTranslations(data);
 
-                // Save to localStorage inside try/catch
                 try {
                     localStorage.setItem("language", language);
                 } catch (error) {
@@ -68,10 +64,12 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
                 }
             } catch (error) {
                 console.error("Failed to load translations:", error);
-                // Fallback to empty translations rather than blocking render
                 setTranslations({});
             } finally {
-                setIsLoading(false);
+                // Çok kısa bir gecikme ekleyelim ki kullanıcı arayüzü kendini toparlayabilsin
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 300);
             }
         };
 
@@ -79,7 +77,6 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     }, [language]);
 
     const changeLanguage = (lang: Language) => {
-        console.log("Changing language to:", lang); // Debug log
         setLanguage(lang);
     };
 
@@ -108,17 +105,11 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
                 language,
                 translations,
                 setLanguage: changeLanguage,
-                t
+                t,
+                isLoading
             }}
         >
-            {isLoading ? (
-                // Simple loading placeholder (can be replaced with a proper loading component)
-                <div className="min-h-screen flex items-center justify-center">
-                    Loading...
-                </div>
-            ) : (
-                children
-            )}
+            {children}
         </LanguageContext.Provider>
     );
 };
