@@ -1,21 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-
-// Font'ları ayrı ayrı yükle
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-    preload: true,
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-    preload: false, // Sadece gerektiğinde yükle
-});
+import { geistSans, geistMono } from "@/lib/fonts";
 
 // Components'i lazy load yap
 const Navbar = dynamic(() => import("@/components/navbar/Navbar"), {
@@ -23,7 +10,7 @@ const Navbar = dynamic(() => import("@/components/navbar/Navbar"), {
     ssr: true, // Server-side rendering için gerekli
 });
 
-// Provider'ları ayrı component'e çıkarr
+// Provider'ları ayrı component'e çıkar
 const Providers = dynamic(() => import("@/components/providers/Providers"), {
     ssr: true,
 });

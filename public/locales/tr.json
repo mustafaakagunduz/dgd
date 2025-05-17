@@ -133,10 +133,12 @@
       "title": "Kişisel Verilerin Korunması Hakkında Aydınlatma ve Açık Rıza Metni",
       "introduction": "İşbu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") uyarınca, DGD Global Teknoloji A.Ş. tarafından hazırlanmıştır.",
       "dataTypes": "Tarafınızca bu iletişim formu aracılığıyla iletilen ad-soyad, e-posta adresi, telefon numarası ve mesaj içeriği gibi kişisel verileriniz;",
+      "acceptButton": "Okudum, Anladım",
       "purposes": {
         "communication": "İletişim faaliyetlerinin yürütülmesi,",
         "support": "Talep ve şikayetlerinizin alınması ve sonuçlandırılması,",
         "response": "Geri dönüş sağlanabilmesi"
+
       },
       "dataSharing": "amaçlarıyla sınırlı olarak işlenmekte ve yalnızca yetkili kişilerle paylaşılmaktadır.",
       "rights": "KVKK'nın 11. maddesi kapsamında kişisel verilerinize ilişkin haklarınızı kullanmak isterseniz, info@dgdglobal.com adresi üzerinden bizimle iletişime geçebilirsiniz.",

@@ -1,4 +1,3 @@
-// ContactForm.tsx
 "use client";
 
 import { useState } from "react";
@@ -76,9 +75,25 @@ export function ContactForm() {
         }
     };
 
-
+    // Modal kapatıldığında checkbox'ı otomatik olarak tikle
     const handleKvkClose = () => {
         setShowKvkModal(false);
+        setFormData(prev => ({
+            ...prev,
+            kvkApproval: true
+        }));
+    };
+
+    // Modal kapatıldığında checkbox'ı otomatik olarak tikle
+    const handleKvkModalChange = (open: boolean) => {
+        setShowKvkModal(open);
+        // Eğer modal kapatılıyorsa ve önceki durumu açıksa, checkbox'ı tikle
+        if (!open && showKvkModal) {
+            setFormData(prev => ({
+                ...prev,
+                kvkApproval: true
+            }));
+        }
     };
 
     return (
@@ -198,8 +213,8 @@ export function ContactForm() {
                 </button>
             </form>
 
-            {/* KVK Modal */}
-            <Dialog open={showKvkModal} onOpenChange={setShowKvkModal}>
+            {/* KVK Modal - Modal kapatıldığında checkbox'ı otomatik olarak tikle */}
+            <Dialog open={showKvkModal} onOpenChange={handleKvkModalChange}>
                 <DialogContent className="sm:max-w-2xl bg-gradient-to-br from-green-800 to-green-900 border-green-600 text-white">
                     <DialogHeader>
                         <DialogTitle className="text-white text-lg">
@@ -225,7 +240,7 @@ export function ContactForm() {
                             onClick={handleKvkClose}
                             className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2.5 px-4 rounded transition-all duration-300"
                         >
-                            Okudum, Anladım
+                            {t("kvk.modal.acceptButton")}
                         </button>
                     </DialogFooter>
                 </DialogContent>
