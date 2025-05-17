@@ -14,8 +14,8 @@ export async function POST(req: Request) {
         }
 
         const result = await resend.emails.send({
-            from: 'İletişim Formu <onboarding@resend.dev>',
-            to: ['akagunduzmustafa00@gmail.com'],
+            from: 'İletişim Formundan <onboarding@resend.dev>',
+            to: ['dgd.global.2025@gmail.com'],
             subject: 'Yeni İletişim Mesajı',
             replyTo: email,  // ✅ Doğru kullanım
             text: `
