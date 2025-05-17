@@ -266,7 +266,9 @@
   "addEssay": {
     "title": "Create Your Own Article",
     "description": "Share your thoughts and experiences from the tech world with us. Your new article will be published in the community.",
-    "button": "Create Article"
+    "button": "Create Article",
+    "loginRequired": "You need to log in or register to create an article.",
+    "loginButton": "Log In / Register"
   },
   "auth": {
     "logout": "Log out",
@@ -274,6 +276,7 @@
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
+    "name": "Full Name",
     "login": {
       "title": "Login",
       "button": "Login"

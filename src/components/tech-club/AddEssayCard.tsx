@@ -46,12 +46,14 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
 
                     {/* Description */}
                     <p className="text-gray-300 text-base">
-                        {t("addEssay.description")}
+                        {isLoggedIn
+                            ? t("addEssay.description")
+                            : t("addEssay.loginRequired")}
                     </p>
 
                     {/* Buttons */}
                     <div className="flex gap-3 flex-wrap justify-center">
-                        {/* Add Button */}
+                        {/* Add Button or Login Button based on auth state */}
                         <button
                             onClick={handleCreateArticle}
                             className="px-8 py-3 bg-gradient-to-r from-green-700 to-green-800 text-white font-semibold rounded-xl hover:from-green-400 hover:to-green-500 transition-all duration-300 flex items-center gap-2"
@@ -62,14 +64,23 @@ const AddEssayCard: React.FC<AddEssayCardProps> = ({ onEssayCreated }) => {
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                             >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M15.232 5.232l3.536 3.536M9 11l3 3 6-6M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
+                                {isLoggedIn ? (
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M15.232 5.232l3.536 3.536M9 11l3 3 6-6M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                ) : (
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                                    />
+                                )}
                             </svg>
-                            {t("addEssay.button")}
+                            {isLoggedIn ? t("addEssay.button") : t("addEssay.loginButton")}
                         </button>
 
                         {/* My Articles Button - Tüm login olan kullanıcılar için */}

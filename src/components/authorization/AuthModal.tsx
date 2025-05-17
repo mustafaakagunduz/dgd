@@ -90,17 +90,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                     </button>
                 </div>
 
-                {/* Notice */}
-                <p className="text-gray-300 text-center mb-6">
-                    {t("auth.notice")}
-                </p>
+
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {!isLoginMode && (
                         <div>
                             <label className="block text-gray-300 text-sm font-medium mb-2">
-                                İsim Soyisim
+                                {t("auth.name")}
                             </label>
                             <input
                                 type="text"

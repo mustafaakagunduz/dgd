@@ -8,7 +8,6 @@ import AddEssayCard from "@/components/tech-club/AddEssayCard";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { testSupabaseConnection } from '@/lib/supabase';
-import Link from 'next/link';
 
 // Placeholder makale kartı - veri yüklenirken veya hata durumunda gösterilir
 const PlaceholderCard = () => (
