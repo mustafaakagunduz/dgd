@@ -4,23 +4,33 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import { getStaticHomeData } from "@/lib/static-data";
 
-export default function Hero() {
+interface HeroProps {
+    initialData?: {
+        title: string;
+        description: string;
+    };
+}
+
+export default function Hero({ initialData }: HeroProps) {
     const { language } = useLanguage();
     const [isVisible, setIsVisible] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [content, setContent] = useState({
-        title: "",
-        description: ""
+        title: initialData?.title || "",
+        description: initialData?.description || ""
     });
 
     useEffect(() => {
         setMounted(true);
-        // Dil değişikliklerini takip et
-        const data = getStaticHomeData(language as 'tr' | 'en');
-        setContent({
-            title: data.hero.title,
-            description: data.hero.description
-        });
+
+        // Only fetch data if initialData is not provided
+        if (!initialData) {
+            const data = getStaticHomeData(language as 'tr' | 'en');
+            setContent({
+                title: data.hero.title,
+                description: data.hero.description
+            });
+        }
 
         // Component yüklendikten kısa bir süre sonra animasyonu başlat
         const timer = setTimeout(() => {
@@ -28,7 +38,7 @@ export default function Hero() {
         }, 300);
 
         return () => clearTimeout(timer);
-    }, [language]); // language değiştiğinde effect'i tekrar çalıştır
+    }, [language, initialData]);
 
     // Hydration mismatch'i önlemek için mounted kontrolü
     if (!mounted) {

@@ -7,6 +7,16 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
 import { getStaticHomeData } from "@/lib/static-data";
 
+interface AboutProps {
+    initialData?: {
+        sectionDescription: string;
+        items: Array<{
+            title: string;
+            content: string;
+        }>;
+    };
+}
+
 // Resim verilerini bir sabit olarak tutuyoruz
 const aboutImages = [
     {
@@ -23,24 +33,28 @@ const aboutImages = [
     }
 ];
 
-const About: React.FC = () => {
+const About: React.FC<AboutProps> = ({ initialData }) => {
     const { language, t } = useLanguage();
     const [expandedItems, setExpandedItems] = useState<boolean[]>([false, false, false]);
     const [content, setContent] = useState({
-        sectionDescription: "",
-        items: [] as {title: string, content: string}[]
+        sectionDescription: initialData?.sectionDescription || "",
+        items: initialData?.items || []
     });
     const [mounted, setMounted] = useState(false);
 
     // Dil değiştiğinde içeriği güncelle
     useEffect(() => {
         setMounted(true);
-        const data = getStaticHomeData(language as 'tr' | 'en');
-        setContent({
-            sectionDescription: data.about.sectionDescription,
-            items: data.about.items
-        });
-    }, [language]);
+
+        // Only fetch data if initialData is not provided
+        if (!initialData) {
+            const data = getStaticHomeData(language as 'tr' | 'en');
+            setContent({
+                sectionDescription: data.about.sectionDescription,
+                items: data.about.items
+            });
+        }
+    }, [language, initialData]);
 
     const toggleExpansion = (index: number) => {
         setExpandedItems(prev => {
