@@ -428,6 +428,255 @@
     "loginRequired": "Giriş yapmanız gerekiyor",
     "createError": "Makale oluşturulamadı",
     "unexpectedError": "Beklenmeyen bir hata oluştu"
+  },
+  "bioCircularProcess": {
+    "title": "Tam Döngüsel Atık Yönetimi Teknolojisi",
+    "description": "Küçük ve orta ölçekli işletmelerden büyük entegre tesislere ve ileri aşamada ise belediye kurumlarına kadar her türlü ve her tonajda atık için herhangi bir ayrıştırma ve bertaraf maliyeti gerektirmeyen, %100 dönüşümle temiz su ve yakıt eldesine ek olarak ek bir proses zinciri ile yeni nesil biyo ürünlerin üretiminde kullanılan stratejik nano elementlerin oluşturduğu katı çıktıların elde edildiği tam döngüsel atık yönetimi teknolojimiz.",
+    "pageTitle": "Tam Biyo-Döngüsel Proses Teknolojisi",
+    "pageDescription": "Sürdürülebilir ve yenilikçi tam döngüsel atık yönetimi teknolojimizi keşfedin.",
+    "imageAlt": "Biyo-Döngüsel Proses Teknolojisi Görseli",
+    "backButton": "Faaliyet Alanlarımıza Dön",
+    "tags": {
+      "circular": "%100 Döngüsel",
+      "innovative": "Yenilikçi",
+      "sustainable": "Sürdürülebilir"
+    },
+    "advantages": {
+      "noProcessing": {
+        "title": "Ayrıştırma Gerektirmez",
+        "description": "Her türlü atık için ayrıştırma ve bertaraf maliyeti gerektirmeyen yenilikçi teknoloji."
+      },
+      "efficiency": {
+        "title": "%100 Dönüşüm",
+        "description": "Temiz su ve yakıt eldesine ek olarak stratejik nano elementler içeren katı çıktılar elde edilir."
+      },
+      "scalable": {
+        "title": "Ölçeklenebilir Çözüm",
+        "description": "Küçük işletmelerden büyük entegre tesislere ve belediye kurumlarına kadar her ölçekte uygulanabilir."
+      }
+    }
+  },
+  "nanoProducts": {
+    "title": "Yeni Nesil Nano Ürünler",
+    "description": "Tam döngüsel atık teknolojimiz sonucu elde edilmiş olan stratejik hammadde ile bir proses kurulumu sonrası biyo-izolasyon, biyo-polimer, biyo-çimento, biyo-cam gibi benzersiz dayanıklılık ve kalitede ürünlerin elde edildiği yeni nesil üretim teknolojimiz.",
+    "pageTitle": "Stratejik Nano Ürünler",
+    "pageDescription": "Tam döngüsel atık teknolojimizden elde edilen hammaddelerle üretilen benzersiz kalitedeki yeni nesil ürünlerimizi keşfedin.",
+    "imageAlt": "Yeni Nesil Nano Ürünler Görseli",
+    "backButton": "Faaliyet Alanlarımıza Dön",
+    "tags": {
+      "bioIsolation": "Biyo-İzolasyon",
+      "bioPolymer": "Biyo-Polimer",
+      "bioCement": "Biyo-Çimento",
+      "bioGlass": "Biyo-Cam"
+    },
+    "products": {
+      "bioIsolation": {
+        "title": "Biyo-İzolasyon",
+        "description": "Üstün ısı ve ses yalıtım özellikleri sunan, çevre dostu biyo-izolasyon malzemelerimiz, enerji verimliliğini maksimize eder.",
+        "feature": "Isı ve Ses İzolasyonu"
+      },
+      "bioPolymer": {
+        "title": "Biyo-Polimer",
+        "description": "Geleneksel plastiklere çevreci bir alternatif olan biyopolimerlerimiz, dayanıklılık ve sürdürülebilirliği bir araya getirir.",
+        "feature": "Biyolojik Olarak Parçalanabilir"
+      },
+      "bioCement": {
+        "title": "Biyo-Çimento",
+        "description": "Karbon ayak izini azaltan, yüksek dayanıklılığa sahip biyo-çimento çözümlerimiz inşaat sektörüne yeni bir boyut kazandırır.",
+        "feature": "Düşük Karbon Emisyonu"
+      },
+      "bioGlass": {
+        "title": "Biyo-Cam",
+        "description": "Özel tekniklerle üretilen biyo-cam ürünlerimiz, geleneksel camlara göre daha hafif ve dayanıklı özellikler sunar.",
+        "feature": "Gelişmiş Dayanıklılık"
+      }
+    }
+  },
+  "radiatorSystems": {
+    "title": "Yeni Nesil Radyatör Sistemleri",
+    "description": "Binalarda kalorifer tesisatı kazan ve doğalgaz hatlarına gerek olmadan sistem kurulumu ile içinde su veya yağ olmayan nano boya içerikli petek ve panellere elektrik bağlantısıyla, enerji tasarruflu, hızlı ve homojen ısıtma teknolojimiz.",
+    "pageTitle": "Yeni Nesil Radyatör Sistemleri",
+    "pageDescription": "Geleneksel ısıtma sistemlerinin ötesinde, su ve yağ kullanmadan elektrik bağlantılı, enerji tasarruflu ısıtma çözümlerimizi keşfedin.",
+    "imageAlt": "Yeni Nesil Radyatör Sistemleri Görseli",
+    "backButton": "Faaliyet Alanlarımıza Dön",
+    "tags": {
+      "energyEfficient": "Enerji Tasarruflu",
+      "fastHeating": "Hızlı Isıtma",
+      "noWater": "Su/Yağ İçermez"
+    },
+    "features": {
+      "efficiency": {
+        "title": "Enerji Verimliliği",
+        "description": "Geleneksel sistemlere kıyasla daha fazla enerji tasarrufu sağlayan yeni nesil teknoloji."
+      },
+      "installation": {
+        "title": "Kolay Kurulum",
+        "description": "Kazan, boru hattı veya doğalgaz bağlantısı gerektirmeyen basitleştirilmiş kurulum süreci."
+      },
+      "materials": {
+        "title": "Yenilikçi Malzemeler",
+        "description": "Su veya yağ yerine nano boya teknolojisi içeren, elektrik bağlantılı panel ve petekler."
+      }
+    },
+    "applications": {
+      "title": "Uygulama Alanları",
+      "residential": {
+        "title": "Konut Binaları",
+        "description": "Apartman daireleri ve müstakil evler için ideal, kolay kurulabilen ısıtma çözümleri."
+      },
+      "commercial": {
+        "title": "Ticari Alanlar",
+        "description": "Ofis binaları ve ticari mekânlar için homojen ve hızlı ısıtma sağlayan sistemler."
+      },
+      "industrial": {
+        "title": "Endüstriyel Tesisler",
+        "description": "Üretim alanları ve depolama tesisleri için özelleştirilmiş ısıtma çözümleri."
+      },
+      "retrofit": {
+        "title": "Renovasyon Projeleri",
+        "description": "Mevcut yapılara kolayca entegre edilebilen, düşük yapısal müdahale gerektiren sistemler."
+      }
+    }
+  },
+  "agricultureGreenhouse": {
+    "title": "Tarımsal Sera Isıtma Teknolojisi",
+    "description": "Sera ünitelerinde uzak kızılötesi ışınlarla hızlı ve homojen stabil sıcaklık eldesi sağlayan nem dengesini koruyan, mantar, küf oluşumunu engelleyen, fotosentez hızını ve rekolte verimliliğini minimum %30 artıran tarımsal ısıtma teknolojimiz.",
+    "pageTitle": "Yeni Nesil Tarım ve Seracılık Sistemleri",
+    "pageDescription": "Kızılötesi ışınlarla verimli, stabil ve sağlıklı bitki yetiştirme ortamları sunan tarımsal ısıtma teknolojimizi keşfedin.",
+    "imageAlt": "Tarımsal Sera Isıtma Teknolojisi Görseli",
+    "backButton": "Faaliyet Alanlarımıza Dön",
+    "tags": {
+      "infrared": "Kızılötesi Teknoloji",
+      "yieldIncrease": "Verim Artışı",
+      "stableHumidity": "Nem Dengesi"
+    },
+    "benefits": {
+      "title": "Avantajlar",
+      "infrared": {
+        "title": "Kızılötesi Teknoloji",
+        "description": "Uzak kızılötesi ışınlarla hızlı ve homojen sıcaklık dağılımı sağlar.",
+        "stat": "Daha Hızlı Isıtma"
+      },
+      "productivity": {
+        "title": "Verim Artışı",
+        "description": "Fotosentez hızını artırarak bitki gelişimini hızlandırır ve rekolteyi artırır.",
+        "stat": "Min. %30 Verim Artışı"
+      },
+      "humidity": {
+        "title": "Nem Dengesi",
+        "description": "Sera içerisinde optimum nem seviyesini koruyarak bitkiler için ideal ortam sağlar.",
+        "stat": "Stabil Nem Oranı"
+      },
+      "prevention": {
+        "title": "Mantar ve Küf Önleme",
+        "description": "Mantar ve küf oluşumunu engelleyerek bitkilerin sağlıklı gelişimini destekler.",
+        "stat": "Patojen Oluşumunda Azalma"
+      }
+    },
+    "comparison": {
+      "title": "Geleneksel Sistemlerle Karşılaştırma",
+      "feature": "Özellik",
+      "traditional": "Geleneksel Sistemler",
+      "our": "Bizim Teknolojimiz",
+      "rows": {
+        "heating": {
+          "feature": "Isıtma Hızı ve Homojenliği",
+          "traditional": "Yavaş ve dengesiz",
+          "our": "Hızlı ve homojen"
+        },
+        "humidity": {
+          "feature": "Nem Dengesi",
+          "traditional": "Dengesiz, sürekli müdahale gerektirir",
+          "our": "Kendiliğinden dengede kalır"
+        },
+        "mold": {
+          "feature": "Mantar ve Küf Oluşumu",
+          "traditional": "Sık görülür, ilaçlama gerektirir",
+          "our": "Oluşumu engellenir"
+        },
+        "yield": {
+          "feature": "Verim Artışı",
+          "traditional": "Standart",
+          "our": "Minimum %30 artış"
+        }
+      }
+    }
+  },
+  "airPurification": {
+    "title": "Nano Hava Temizleme Teknolojisi",
+    "description": "Saatte 450 m3 alanı dezenfekte edebilen ve alan genişlemesinde performans kaybı olmadan 4500 m2 alanı 10 saatte tüm virüs ve diğer kirlilik faktörlerinden temizleyen, bu faktörlerin içeri girişini engelleyen, ortamdaki oksijen dengesini stabilize edebilen, tarımda da özellikle meyve verimliliğini maksimum oranlara çıkarabilen nano hava temizleme teknolojimiz.",
+    "pageTitle": "Yeni Nesil Hava Temizleme Sistemleri",
+    "pageDescription": "Virüs ve kirlilik faktörlerini elimine eden, oksijen dengesini koruyan ve meyve verimliliğini artıran nano teknoloji temelli hava temizleme sistemlerimizi keşfedin.",
+    "imageAlt": "Nano Hava Temizleme Teknolojisi Görseli",
+    "backButton": "Faaliyet Alanlarımıza Dön",
+    "tags": {
+      "highCapacity": "Yüksek Kapasite",
+      "nanoTechnology": "Nano Teknoloji",
+      "oxygenBalance": "Oksijen Dengesi"
+    },
+    "stats": {
+      "hourlyCapacity": {
+        "title": "Saatlik Kapasite",
+        "description": "Saatte 450 m³ alanı tam dezenfekte eder"
+      },
+      "largeArea": {
+        "title": "Geniş Alan Temizliği",
+        "description": "10 saatte 4500 m² alanı temizler"
+      },
+      "purification": {
+        "title": "Tam Temizlik",
+        "description": "Tüm virüs ve kirlilik faktörlerini yok eder"
+      },
+      "performance": {
+        "title": "Performans",
+        "description": "Alan genişlemesinde performans kaybı olmaz"
+      }
+    },
+    "applications": {
+      "title": "Kullanım Alanları",
+      "indoor": {
+        "title": "İç Mekan Uygulamaları",
+        "description": "Evlerde, ofislerde ve halka açık alanlarda sağlıklı ortamlar oluşturmak için.",
+        "items": {
+          "offices": "Ofisler ve İş Yerleri",
+          "hospitals": "Hastaneler ve Sağlık Kurumları",
+          "schools": "Okullar ve Eğitim Kurumları"
+        }
+      },
+      "industrial": {
+        "title": "Endüstriyel Uygulamalar",
+        "description": "Üretim ve depolama alanlarında ürün kalitesini ve çalışan sağlığını korumak için.",
+        "items": {
+          "factories": "Fabrikalar",
+          "warehouses": "Depolar",
+          "foodProcessing": "Gıda İşleme Tesisleri"
+        }
+      },
+      "agriculture": {
+        "title": "Tarımsal Uygulamalar",
+        "description": "Sera ve depolama alanlarında meyve verimliliğini artırmak ve hasat kalitesini korumak için.",
+        "items": {
+          "fruitProduction": "Meyve Üretimi",
+          "greenhouses": "Seralar",
+          "storage": "Tarımsal Ürün Depoları"
+        }
+      }
+    }
+  },
+  "construction": {
+    "title": "İnşaat Hizmetlerimiz",
+    "description": "Tüm yapı ihtiyaçlarınız için kapsamlı inşaat çözümleri",
+    "categories": {
+      "buildingConstruction": "Bina İnşaatı",
+      "infrastructure": "Altyapı İnşaatı",
+      "industrialFacilities": "Endüstriyel Yapılar ve Tesisler",
+      "urbanRenewal": "Kentsel Dönüşüm ve Yenileme Projeleri",
+      "landscaping": "Peyzaj ve Çevre Düzenleme",
+      "transportation": "Ulaşım ve Taşımacılık Projeleri",
+      "specializedSolutions": "Özel Yapı ve İnşaat Çözümleri",
+      "mechanicalSystems": "Mekanik, Elektrik ve Elektronik Sistemleri"
+    }
   }
+   
 }
   
