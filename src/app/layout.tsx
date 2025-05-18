@@ -19,6 +19,10 @@ const Providers = dynamic(() => import("@/components/providers/Providers"), {
 export const metadata: Metadata = {
     title: "DGD",
     description: "DGD Website",
+    icons: {
+        icon: "/favicon.ico",
+        apple: '/favicon.ico'
+    }
 };
 
 export default function RootLayout({
