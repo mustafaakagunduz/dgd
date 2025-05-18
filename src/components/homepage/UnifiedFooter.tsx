@@ -310,7 +310,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                     {[
                                         { href: "/vision-mission", tr: "Vizyon & Misyon", en: "Vision & Mission" },
                                         { href: "/founders", tr: "Kurucularımız", en: "Our Founders" },
-                                        { href: "/team", tr: "Ekibimiz", en: "Our Team" },
+                                        { href: "#", tr: "Ekibimiz", en: "Our Team" },
                                         { href: "/tech-club", tr: "DGD Tech Club", en: "DGD Tech Club" },
                                         { href: "/commercial-partnerships", tr: "İş Birliklerimiz", en: "Our Partnerships" },
                                     ].map(({ href, tr, en }, index) => (
@@ -334,22 +334,22 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                 <ul className="space-y-3">
                                     {[
                                         {
-                                            href: "/green-technologies",
+                                            href: "#",
                                             tr: "Yeşil ve Biyo-Döngüsel Teknolojiler",
                                             en: "Green & Bio-Circular Technologies",
                                         },
                                         {
-                                            href: "/hvac-technologies",
+                                            href: "#",
                                             tr: "Isıtma ve Havalandırma Teknolojileri",
                                             en: "Heating & Ventilation Technologies",
                                         },
                                         {
-                                            href: "/architecture-technologies",
+                                            href: "#",
                                             tr: "Yapı ve Mimari Teknolojiler",
                                             en: "Building & Architecture Technologies",
                                         },
                                         {
-                                            href: "/pr-consulting",
+                                            href: "#",
                                             tr: "İletişim ve PR Danışmanlığı",
                                             en: "Communication & PR Consulting",
                                         },
