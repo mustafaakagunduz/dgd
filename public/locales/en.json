@@ -671,6 +671,74 @@
       "specializedSolutions": "Specialized Construction Solutions",
       "mechanicalSystems": "Mechanical, Electrical and Electronic Systems"
     }
+  },
+  "consultingServices": {
+    "title": "CONSULTING SERVICES",
+    "description": "We provide comprehensive consulting services in various areas to help businesses achieve their goals sustainably and efficiently.",
+    "categories": {
+      "sustainabilityReports": "Sustainability Reports and Documentation",
+      "environmentalImpact": "Environmental Impact Assessment Reports",
+      "qualityManagement": "Quality Management Systems Consulting",
+      "informationTechnology": "Information Technology Consulting",
+      "communicationConsulting": "Communication Consulting"
+    },
+    "details": {
+      "sustainabilityReports": {
+        "title": "Sustainability Reports and Documentation",
+        "description": "We prepare comprehensive sustainability reports and documentation that help organizations track, measure, and communicate their environmental and social impact. Our team of experts follows international standards and best practices to ensure your sustainability reporting meets global requirements.",
+        "services": [
+          "GRI-compliant sustainability reporting",
+          "Carbon footprint assessment and reporting",
+          "Environmental performance documentation",
+          "Social impact analysis",
+          "Stakeholder engagement strategies"
+        ]
+      },
+      "environmentalImpact": {
+        "title": "Environmental Impact Assessment Reports",
+        "description": "Our environmental impact assessment (EIA) services provide detailed analysis of potential environmental effects of proposed projects. We help organizations navigate regulatory requirements and develop strategies to minimize negative environmental impacts while maximizing project benefits.",
+        "services": [
+          "Comprehensive environmental impact assessments",
+          "Regulatory compliance documentation",
+          "Impact mitigation planning",
+          "Public consultation support",
+          "Post-implementation monitoring frameworks"
+        ]
+      },
+      "qualityManagement": {
+        "title": "Quality Management Systems Consulting",
+        "description": "We offer expert guidance on implementing and maintaining effective quality management systems that improve operational efficiency and ensure consistent product and service quality. Our consulting services cover international standards such as ISO 9001 and industry-specific quality frameworks.",
+        "services": [
+          "ISO 9001 implementation and certification support",
+          "Process improvement consulting",
+          "Quality system documentation",
+          "Internal audit preparation",
+          "Training and capacity building"
+        ]
+      },
+      "informationTechnology": {
+        "title": "Information Technology Consulting",
+        "description": "Our IT consulting services help organizations leverage technology to achieve their business objectives. From digital transformation to cybersecurity, our team of IT experts provides strategic guidance and practical solutions tailored to your specific needs.",
+        "services": [
+          "Digital transformation strategy",
+          "IT infrastructure assessment and planning",
+          "Cybersecurity consulting",
+          "Data management and analytics",
+          "Cloud migration strategies"
+        ]
+      },
+      "communicationConsulting": {
+        "title": "Communication Consulting",
+        "description": "We provide strategic communication consulting to help organizations effectively reach their target audiences and achieve their communication objectives. Our services include corporate communications, marketing strategy, public relations, and crisis communication planning.",
+        "services": [
+          "Corporate communication strategy development",
+          "Brand positioning and messaging",
+          "Public relations planning",
+          "Crisis communication preparedness",
+          "Internal communication improvement"
+        ]
+      }
+    }
   }
 
 

@@ -103,7 +103,7 @@ export default function AgricultureGreenhousePage() {
               <div className="bg-gradient-to-br from-green-900/20 to-green-800/10 rounded-xl p-6 border border-green-500/20 text-center hover:border-green-400/40 transition-all duration-300 hover:bg-green-800/20">
                 <div className="w-16 h-16 bg-green-800/40 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500/30">
                   <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 14c1 1.5 5 1.5 6 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">{t("agricultureGreenhouse.benefits.prevention.title")}</h3>
@@ -165,7 +165,7 @@ export default function AgricultureGreenhousePage() {
           className="text-center"
         >
           <Link
-            href="/faaliyet-alanlarimiz"
+            href="/"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105"
           >
             <svg
