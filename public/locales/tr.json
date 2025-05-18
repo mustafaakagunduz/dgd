@@ -676,6 +676,25 @@
       "specializedSolutions": "Özel Yapı ve İnşaat Çözümleri",
       "mechanicalSystems": "Mekanik, Elektrik ve Elektronik Sistemleri"
     }
+  },
+  "architecture": {
+    "title": "Mimarlık Hizmetlerimiz",
+    "description": "Modern tasarım anlayışı ile yaşam alanlarınız için estetik ve fonksiyonel mimari çözümler",
+    "categories": {
+      "buildingDesign": "Bina Tasarımı ve Planlama",
+      "urbanDesign": "Kentsel Tasarım",
+      "furnitureDesign": "Mobilya ve Aksesuar Tasarımı",
+      "lightingDesign": "Aydınlatma Tasarımı",
+      "decoration": "Dekorasyon (Renk/Malzeme/Tüm Planlama)",
+      "restoration": "Restorasyon ve Yenileme",
+      "facadeDesign": "Cephe Tasarımı",
+      "facadeEngineering": "Cephe Mühendisliği",
+      "energyEfficiency": "Enerji Verimliliği ve Sürdürülebilirlik",
+      "facadeSystems": "Cephe Kaplama Sistemleri ve Teknolojileri",
+      "facadeLighting": "Cephe Aydınlatma Tasarımları",
+      "facadeRestoration": "Cephe Renovasyon ve Restorasyon",
+      "projectManagement": "Proje Yönetimi ve Uygulama Danışmanlığı"
+    }
   }
    
 }

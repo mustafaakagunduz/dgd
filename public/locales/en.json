@@ -671,6 +671,25 @@
       "specializedSolutions": "Specialized Construction Solutions",
       "mechanicalSystems": "Mechanical, Electrical and Electronic Systems"
     }
+  },
+  "architecture": {
+    "title": "Our Architectural Services",
+    "description": "Aesthetic and functional architectural solutions for your living spaces with a modern design approach",
+    "categories": {
+      "buildingDesign": "Building Design and Planning",
+      "urbanDesign": "Urban Design",
+      "furnitureDesign": "Furniture and Accessory Design",
+      "lightingDesign": "Lighting Design",
+      "decoration": "Decoration (Color/Material/Full Planning)",
+      "restoration": "Restoration and Renovation",
+      "facadeDesign": "Facade Design",
+      "facadeEngineering": "Facade Engineering",
+      "energyEfficiency": "Energy Efficiency and Sustainability",
+      "facadeSystems": "Facade Cladding Systems and Technologies",
+      "facadeLighting": "Facade Lighting Designs",
+      "facadeRestoration": "Facade Renovation and Restoration",
+      "projectManagement": "Project Management and Implementation Consulting"
+    }
   }
 
 
