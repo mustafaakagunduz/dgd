@@ -1,9 +1,10 @@
 // src/app/page.tsx - Geliştirilmiş SSG versiyonu
 import Hero from "@/components/homepage/Hero";
 import About from "@/components/homepage/About";
-import Newsletter from "@/components/homepage/Newsletter";
 import { getStaticHomeData } from "@/lib/static-data";
 import { Metadata } from "next";
+import UnifiedFooter from "@/components/homepage/UnifiedFooter";
+
 
 // generateMetadata fonksiyonu - dinamik metadata
 export async function generateMetadata(): Promise<Metadata> {
@@ -70,8 +71,9 @@ export default function Home() {
             {/* About'a statik veri geçir */}
             <About initialData={staticDataTR.about} />
 
-            {/* Newsletter component'i zaten optimize */}
-            <Newsletter />
+            <UnifiedFooter/>
+
+
 
             {/* JSON-LD Structured Data */}
             <script
