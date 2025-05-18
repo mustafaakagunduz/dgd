@@ -68,7 +68,7 @@ export default function Home() {
                 />
             </div>
 
-            {/* About'a statik veri geçir */}
+            {/* About'a statik veri geçirr */}
             <About initialData={staticDataTR.about} />
 
             <UnifiedFooter/>
