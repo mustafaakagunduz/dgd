@@ -690,8 +690,23 @@
       "facadeRestoration": "Facade Renovation and Restoration",
       "projectManagement": "Project Management and Implementation Consulting"
     }
-  }
+  },
+  "facadeEngineering.subcategories.structuralCalculations": "Structural System Calculations",
+  "facadeEngineering.subcategories.insulation": "Heat, Water and Sound Insulation",
+  "energyEfficiency.subcategories.sunControlSystems": "Sun Control Systems",
+  "energyEfficiency.subcategories.smartFacadeSystems": "Smart Facade Systems",
+  "energyEfficiency.subcategories.naturalVentilation": "Natural Ventilation and Lighting",
+  "facadeSystems.subcategories.ventilatedFacadeSystems": "Ventilated Facade Systems",
+  "facadeSystems.subcategories.glassFacadeSystems": "Glass Facade Systems",
+  "facadeSystems.subcategories.prefabFacadeElements": "Prefabricated Facade Elements",
+  "facadeLighting.subcategories.nightLighting": "Night Lighting",
+  "facadeLighting.subcategories.aestheticLighting": "Aesthetic Lighting",
+  "facadeRestoration.subcategories.facadeRenovation": "Facade Renovation",
+  "facadeRestoration.subcategories.historicFacadeRestoration": "Historic Building Facade Restoration",
+  "projectManagement.subcategories.projectManagement": "Project Management",
+  "projectManagement.subcategories.materialSupply": "Material Supply",
+  "projectManagement.subcategories.implementationConsulting": "Implementation Consulting"
+
 
 
 }
-  

@@ -695,7 +695,22 @@
       "facadeRestoration": "Cephe Renovasyon ve Restorasyon",
       "projectManagement": "Proje Yönetimi ve Uygulama Danışmanlığı"
     }
-  }
+  },
+  "facadeEngineering.subcategories.structuralCalculations": "Taşıyıcı Sistem Hesapları",
+  "facadeEngineering.subcategories.insulation": "Isı, Su ve Ses Yalıtımları",
+  "energyEfficiency.subcategories.sunControlSystems": "Güneş Kontrol Sistemleri",
+  "energyEfficiency.subcategories.smartFacadeSystems": "Akıllı Cephe Sistemleri",
+  "energyEfficiency.subcategories.naturalVentilation": "Doğal Havalandırma ve Işıklandırma",
+  "facadeSystems.subcategories.ventilatedFacadeSystems": "Havalandırmalı Cephe Sistemleri",
+  "facadeSystems.subcategories.glassFacadeSystems": "Cam Cephe Sistemleri",
+  "facadeSystems.subcategories.prefabFacadeElements": "Prefabrik Cephe Elemanları",
+  "facadeLighting.subcategories.nightLighting": "Gece Aydınlatması",
+  "facadeLighting.subcategories.aestheticLighting": "Estetik Aydınlatma",
+  "facadeRestoration.subcategories.facadeRenovation": "Cephe Yenileme",
+  "facadeRestoration.subcategories.historicFacadeRestoration": "Tarihi Yapı Cephe Restorasyonu",
+  "projectManagement.subcategories.projectManagement": "Proje Yönetimi",
+  "projectManagement.subcategories.materialSupply": "Malzeme Tedariği",
+  "projectManagement.subcategories.implementationConsulting": "Uygulama Danışmanlığı"
    
 }
   

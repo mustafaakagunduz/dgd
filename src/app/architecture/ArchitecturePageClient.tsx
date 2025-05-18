@@ -1,69 +1,84 @@
 // src/app/architecture/ArchitecturePageClient.tsx
 "use client";
-
 import React from 'react';
 import ArchitectureCard from "@/app/architecture/ArchitectureCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 // Client-side component with translations
 export default function ArchitecturePageClient() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     // Architecture categories with image paths
     const architectureCategories = [
         {
-            key: "architecture.categories.buildingDesign",
+            key: "buildingDesign",
+            translationKey: "architecture.categories.buildingDesign",
             imagePath: "/assets/images/architecture/1.jpg"
         },
         {
-            key: "architecture.categories.urbanDesign",
+            key: "urbanDesign",
+            translationKey: "architecture.categories.urbanDesign",
             imagePath: "/assets/images/architecture/2.jpg"
         },
         {
-            key: "architecture.categories.furnitureDesign",
+            key: "furnitureDesign",
+            translationKey: "architecture.categories.furnitureDesign",
             imagePath: "/assets/images/architecture/3.jpg"
         },
         {
-            key: "architecture.categories.lightingDesign",
+            key: "lightingDesign",
+            translationKey: "architecture.categories.lightingDesign",
             imagePath: "/assets/images/architecture/4.jpg"
         },
         {
-            key: "architecture.categories.decoration",
+            key: "decoration",
+            translationKey: "architecture.categories.decoration",
             imagePath: "/assets/images/architecture/5.jpg"
         },
         {
-            key: "architecture.categories.restoration",
+            key: "restoration",
+            translationKey: "architecture.categories.restoration",
             imagePath: "/assets/images/architecture/6.jpg"
         },
         {
-            key: "architecture.categories.facadeDesign",
+            key: "facadeDesign",
+            translationKey: "architecture.categories.facadeDesign",
             imagePath: "/assets/images/architecture/7.jpg"
         },
         {
-            key: "architecture.categories.facadeEngineering",
+            key: "facadeEngineering",
+            translationKey: "architecture.categories.facadeEngineering",
             imagePath: "/assets/images/architecture/8.jpg"
         },
         {
-            key: "architecture.categories.energyEfficiency",
+            key: "energyEfficiency",
+            translationKey: "architecture.categories.energyEfficiency",
             imagePath: "/assets/images/architecture/9.jpg"
         },
         {
-            key: "architecture.categories.facadeSystems",
+            key: "facadeSystems",
+            translationKey: "architecture.categories.facadeSystems",
             imagePath: "/assets/images/architecture/10.jpg"
         },
         {
-            key: "architecture.categories.facadeLighting",
+            key: "facadeLighting",
+            translationKey: "architecture.categories.facadeLighting",
             imagePath: "/assets/images/architecture/11.jpg"
         },
         {
-            key: "architecture.categories.facadeRestoration",
+            key: "facadeRestoration",
+            translationKey: "architecture.categories.facadeRestoration",
             imagePath: "/assets/images/architecture/12.jpg"
         },
         {
-            key: "architecture.categories.projectManagement",
+            key: "projectManagement",
+            translationKey: "architecture.categories.projectManagement",
             imagePath: "/assets/images/architecture/13.jpg"
         }
     ];
+
+    // "Geri" butonunun dil desteği için çeviri anahtarı eklenmesi gerekiyor
+    const backButtonText = language === 'tr' ? 'Geri' : 'Back';
 
     return (
         <div
@@ -88,7 +103,8 @@ export default function ArchitecturePageClient() {
                     {architectureCategories.map((category, index) => (
                         <ArchitectureCard
                             key={index}
-                            translationKey={category.key}
+                            translationKey={category.translationKey}
+                            categoryKey={category.key}
                             imagePath={category.imagePath}
                         />
                     ))}
