@@ -676,6 +676,74 @@
       "specializedSolutions": "Özel Yapı ve İnşaat Çözümleri",
       "mechanicalSystems": "Mekanik, Elektrik ve Elektronik Sistemleri"
     }
+  },
+  "consultingServices": {
+    "title": "DANIŞMANLIK HİZMETLERİMİZ",
+    "description": "İşletmelerin sürdürülebilir ve verimli bir şekilde hedeflerine ulaşmasına yardımcı olmak için çeşitli alanlarda kapsamlı danışmanlık hizmetleri sunuyoruz.",
+    "categories": {
+      "sustainabilityReports": "Sürdürülebilirlik Rapor ve Belgeleri",
+      "environmentalImpact": "ÇED Raporları",
+      "qualityManagement": "Kalite Yönetim Sistemleri Danışmanlığı",
+      "informationTechnology": "Bilgi Teknolojileri Danışmanlığı",
+      "communicationConsulting": "İletişim Danışmanlığı"
+    },
+    "details": {
+      "sustainabilityReports": {
+        "title": "Sürdürülebilirlik Rapor ve Belgeleri",
+        "description": "Kuruluşların çevresel ve sosyal etkilerini izlemelerine, ölçmelerine ve iletmelerine yardımcı olan kapsamlı sürdürülebilirlik raporları ve belgeleri hazırlıyoruz. Uzman ekibimiz, sürdürülebilirlik raporlamanızın küresel gereksinimleri karşılamasını sağlamak için uluslararası standartları ve en iyi uygulamaları takip eder.",
+        "services": [
+          "GRI uyumlu sürdürülebilirlik raporlaması",
+          "Karbon ayak izi değerlendirmesi ve raporlama",
+          "Çevresel performans belgelendirme",
+          "Sosyal etki analizi",
+          "Paydaş katılım stratejileri"
+        ]
+      },
+      "environmentalImpact": {
+        "title": "ÇED Raporları",
+        "description": "Çevresel Etki Değerlendirme (ÇED) hizmetlerimiz, önerilen projelerin potansiyel çevresel etkilerinin detaylı analizini sağlar. Kuruluşların yasal gereklilikleri karşılamasına ve proje faydalarını en üst düzeye çıkarırken olumsuz çevresel etkileri en aza indirmeye yönelik stratejiler geliştirmesine yardımcı oluyoruz.",
+        "services": [
+          "Kapsamlı çevresel etki değerlendirmeleri",
+          "Mevzuata uygunluk belgelendirmesi",
+          "Etki azaltma planlaması",
+          "Halkın katılımı desteği",
+          "Uygulama sonrası izleme çerçeveleri"
+        ]
+      },
+      "qualityManagement": {
+        "title": "Kalite Yönetim Sistemleri Danışmanlığı",
+        "description": "Operasyonel verimliliği artıran ve tutarlı ürün ve hizmet kalitesini sağlayan etkili kalite yönetim sistemlerinin uygulanması ve sürdürülmesi konusunda uzman rehberlik sunuyoruz. Danışmanlık hizmetlerimiz, ISO 9001 gibi uluslararası standartları ve sektöre özgü kalite çerçevelerini kapsar.",
+        "services": [
+          "ISO 9001 uygulama ve belgelendirme desteği",
+          "Süreç iyileştirme danışmanlığı",
+          "Kalite sistemi dokümantasyonu",
+          "İç denetim hazırlığı",
+          "Eğitim ve kapasite geliştirme"
+        ]
+      },
+      "informationTechnology": {
+        "title": "Bilgi Teknolojileri Danışmanlığı",
+        "description": "BT danışmanlık hizmetlerimiz, kuruluşların iş hedeflerine ulaşmak için teknolojiyi kullanmalarına yardımcı olur. Dijital dönüşümden siber güvenliğe kadar, BT uzmanlarımız ekibi, belirli ihtiyaçlarınıza göre uyarlanmış stratejik rehberlik ve pratik çözümler sunar.",
+        "services": [
+          "Dijital dönüşüm stratejisi",
+          "BT altyapı değerlendirmesi ve planlaması",
+          "Siber güvenlik danışmanlığı",
+          "Veri yönetimi ve analitiği",
+          "Bulut geçiş stratejileri"
+        ]
+      },
+      "communicationConsulting": {
+        "title": "İletişim Danışmanlığı",
+        "description": "Kuruluşların hedef kitlelerine etkili bir şekilde ulaşmalarına ve iletişim hedeflerine ulaşmalarına yardımcı olmak için stratejik iletişim danışmanlığı sağlıyoruz. Hizmetlerimiz kurumsal iletişim, pazarlama stratejisi, halkla ilişkiler ve kriz iletişimi planlamasını içerir.",
+        "services": [
+          "Kurumsal iletişim stratejisi geliştirme",
+          "Marka konumlandırma ve mesajlaşma",
+          "Halkla ilişkiler planlaması",
+          "Kriz iletişimi hazırlığı",
+          "İç iletişim iyileştirme"
+        ]
+      }
+    }
   }
    
 }

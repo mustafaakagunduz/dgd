@@ -155,7 +155,7 @@ export default function RadiatorSystemsPage() {
           className="text-center"
         >
           <Link
-            href="/faaliyet-alanlarimiz"
+            href="/"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-semibold rounded-xl hover:from-orange-400 hover:to-red-500 transition-all duration-300 transform hover:scale-105"
           >
             <svg
