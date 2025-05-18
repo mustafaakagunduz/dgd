@@ -705,9 +705,7 @@
   "facadeRestoration.subcategories.historicFacadeRestoration": "Historic Building Facade Restoration",
   "projectManagement.subcategories.projectManagement": "Project Management",
   "projectManagement.subcategories.materialSupply": "Material Supply",
-  "projectManagement.subcategories.implementationConsulting": "Implementation Consulting"
-
-  },
+  "projectManagement.subcategories.implementationConsulting": "Implementation Consulting",
   "consultingServices": {
     "title": "CONSULTING SERVICES",
     "description": "We provide comprehensive consulting services in various areas to help businesses achieve their goals sustainably and efficiently.",
