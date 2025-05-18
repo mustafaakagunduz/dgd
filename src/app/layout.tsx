@@ -35,7 +35,7 @@ export default function RootLayout({
         <body
             className="antialiased"
             style={{
-                background: 'linear-gradient(to bottom, #4b8224, #374151, #000000)'
+                background: 'linear-gradient(to bottom, #6cbc34, #374151, #000000)'
             }}
         >
         <Providers>
