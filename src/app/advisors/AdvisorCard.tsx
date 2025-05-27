@@ -4,27 +4,24 @@ interface AdvisorCardProps {
     imageSrc: string;
     name: string;
     title: string;
-    bio: string;
+
 }
 
-const AdvisorCard = ({ imageSrc, name, title, bio }: AdvisorCardProps) => {
+const AdvisorCard = ({ imageSrc, name, title }: AdvisorCardProps) => {
     return (
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300">
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 w-full max-w-md">
             <div className="relative h-80 w-full">
                 <Image
                     src={imageSrc}
                     alt={name}
                     fill
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", objectPosition: "top" }}
                     className="transition-transform duration-300"
                 />
             </div>
             <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-1">{name}</h3>
-                <p className="text-sm text-green-300 mb-3">{title}</p>
-                <div className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">
-                    {bio}
-                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">{name}</h3>
+                <p className="text-md text-green-300 mb-4">{title}</p>
             </div>
         </div>
     );

@@ -7,8 +7,29 @@ import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Image from "next/image";
 
+interface SubmenuItem {
+    key: string;
+    href: string;
+    hasSubmenu?: boolean;
+    submenuItems?: SubmenuItem[];
+}
+
+interface DropdownItem {
+    key: string;
+    href: string;
+    hasSubmenu?: boolean;
+    submenuItems?: SubmenuItem[];
+}
+
+interface NavItem {
+    key: string;
+    href: string;
+    hasDropdown?: boolean;
+    dropdownItems?: DropdownItem[];
+}
+
 // Navigation config
-const navItems = [
+const navItems: NavItem[] = [
     {
         key: "navbar.about",
         href: "#",
@@ -21,17 +42,13 @@ const navItems = [
                 hasSubmenu: true,
                 submenuItems: [
                     { key: "navbar.aboutSubmenu.founders", href: "/founders" },
-                    { key: "navbar.aboutSubmenu.team", href: "/team", hasSubmenu: true, submenuItems: [
-                            { key: "navbar.aboutSubmenu.teamSubmenu.productDevelopment", href: "/product-development" },
-                            { key: "navbar.aboutSubmenu.teamSubmenu.marketResearch", href: "/market-research" },
-                            { key: "navbar.aboutSubmenu.teamSubmenu.technicalTeam", href: "/technical-team" }
-                        ]},
+                    { key: "navbar.aboutSubmenu.team", href: "/product-development" },
                     { key: "navbar.aboutSubmenu.advisors", href: "/advisors" },
-                    { key: "navbar.aboutSubmenu.partners", href: "/commercial-partnerships" }
+
                 ]
             },
             { key: "navbar.aboutDropdown.history", href: "/history" },
-            { key: "navbar.aboutDropdown.partners", href: "/commercial-partnerships" }
+
         ]
     },
     {
@@ -74,22 +91,18 @@ const navItems = [
                 hasSubmenu: true,
                 submenuItems: [
                     { key: "navbar.activitiesSubmenu.consultingServices", href: "/consulting-services" },
-                    { key: "navbar.activitiesSubmenu.socialMedia", href: "/social-media" },
-                    { key: "navbar.activitiesSubmenu.adPR", href: "/advertising-pr" },
-                    { key: "navbar.activitiesSubmenu.production", href: "/production-services" }
+                    // { key: "navbar.activitiesSubmenu.socialMedia", href: "/social-media" },
+                    // { key: "navbar.activitiesSubmenu.adPR", href: "/advertising-pr" },
+                    // { key: "navbar.activitiesSubmenu.production", href: "/production-services" }
                 ]
             }
         ]
     },
     {
         key: "navbar.commercial-partnerships",
-        href: "#",
-        hasDropdown: true,
-        dropdownItems: [
-            { key: "navbar.partnershipsDropdown.solutionPartnerships", href: "/solution-partnerships" },
-            { key: "navbar.partnershipsDropdown.commercialPartnerships", href: "/commercial-partnerships" },
-            { key: "navbar.partnershipsDropdown.socialPartnerships", href: "/social-partnerships" }
-        ]
+        href: "/commercial-partnerships",
+        hasDropdown: false,
+
     },
 
     { key: "navbar.techClub", href: "/tech-club" },
@@ -234,15 +247,15 @@ export default function Navbar() {
             <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between">
+
                     {/* Logo - Sol taraf */}
-                    <div>
-                        <Link href="/" className="flex items-center">
+                    <div className="flex items-center">
+                        <Link href="/" className="block relative h-12 w-32">
                             <Image
                                 src="/assets/images/logo.png"
                                 alt="DGD-GLOBAL"
-                                width={120}
-                                height={40}
-                                className="object-contain"
+                                fill
+                                className="object-contain object-left"
                             />
                         </Link>
                     </div>

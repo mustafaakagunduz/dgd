@@ -7,46 +7,46 @@ const ProductDevRDPage = () => {
 
     const teamMembers = [
         {
-            key: "gurhan",
-            imageSrc: "/assets/images/gurhan-dural.jpg",
-            nameKey: "team.gurhan.name",
-            titleKey: "team.gurhan.title",
-            bioKey: "team.gurhan.bio"
+            key: "aydemir",
+            imageSrc: "/assets/images/aydemir-oz.jpg",
+            nameKey: "team.aydemir.name",
+            titleKey: "team.aydemir.title",
+
         },
         {
             key: "ferkan",
             imageSrc: "/assets/images/ferkan-celik.jpg",
             nameKey: "team.ferkan.name",
             titleKey: "team.ferkan.title",
-            bioKey: "team.ferkan.bio"
+
         },
         {
-            key: "mucahit",
-            imageSrc: "/assets/images/mucahit-unal.jpg",
-            nameKey: "team.mucahit.name",
-            titleKey: "team.mucahit.title",
-            bioKey: "team.mucahit.bio"
+            key: "samed",
+            imageSrc: "/assets/images/samed-kizilhan.jpg",
+            nameKey: "team.samed.name",
+            titleKey: "team.samed.title",
+
         },
         {
             key: "baris",
             imageSrc: "/assets/images/baris-dincer.jpg",
             nameKey: "team.baris.name",
             titleKey: "team.baris.title",
-            bioKey: "team.baris.bio"
+
         },
         {
             key: "ugur",
             imageSrc: "/assets/images/ugur-aksoy.jpg",
             nameKey: "team.ugur.name",
             titleKey: "team.ugur.title",
-            bioKey: "team.ugur.bio"
+
         },
         {
             key: "ahmet",
             imageSrc: "/assets/images/ahmet-fidanci.jpg",
             nameKey: "team.ahmet.name",
             titleKey: "team.ahmet.title",
-            bioKey: "team.ahmet.bio"
+
         }
     ];
 
@@ -56,16 +56,13 @@ const ProductDevRDPage = () => {
                 <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-16">
                     {t("team.title")}
                 </h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
                     {teamMembers.map((member) => (
                         <ProductDevRDCard
                             key={member.key}
                             imageSrc={member.imageSrc}
                             name={t(member.nameKey)}
                             title={t(member.titleKey)}
-                            bio={t(member.bioKey)}
-                            showMore={t("about.showMore")}
-                            showLess={t("about.showLess")}
                         />
                     ))}
                 </div>

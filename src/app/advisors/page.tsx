@@ -12,14 +12,14 @@ const AdvisorsPage = () => {
             imageSrc: "/assets/images/ece-balcan.jpg",
             nameKey: "advisors.advisor1.name",
             titleKey: "advisors.advisor1.title",
-            bioKey: "advisors.advisor1.bio"
+
         },
         {
             key: "advisor2",
             imageSrc: "/assets/images/metin-balcan.jpg",
             nameKey: "advisors.advisor2.name",
             titleKey: "advisors.advisor2.title",
-            bioKey: "advisors.advisor2.bio"
+
         }
     ];
 
@@ -30,17 +30,14 @@ const AdvisorsPage = () => {
                     {t("advisors.title")}
                 </h1>
 
-                {/* İki danışman için ortalanmış grid */}
-                <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 justify-items-center">
                     {advisors.map((advisor) => (
-                        <div key={advisor.key} className="w-full sm:w-auto sm:max-w-[350px]">
-                            <AdvisorCard
-                                imageSrc={advisor.imageSrc}
-                                name={t(advisor.nameKey)}
-                                title={t(advisor.titleKey)}
-                                bio={t(advisor.bioKey)}
-                            />
-                        </div>
+                        <AdvisorCard
+                            key={advisor.key}
+                            imageSrc={advisor.imageSrc}
+                            name={t(advisor.nameKey)}
+                            title={t(advisor.titleKey)}
+                        />
                     ))}
                 </div>
             </div>

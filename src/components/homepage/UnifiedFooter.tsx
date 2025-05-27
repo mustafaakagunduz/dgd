@@ -237,7 +237,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                 <div className="flex space-x-4">
                                     {/* Twitter */}
                                     <a
-                                        href="https://twitter.com/dgdglobal"
+                                        href="https://x.com/dgd_global_"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-green-500/50 transition-colors"
@@ -253,7 +253,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
 
                                     {/* LinkedIn */}
                                     <a
-                                        href="https://linkedin.com/company/dgdglobal"
+                                        href="https://www.linkedin.com/in/dgd-global-teknoloji-a-ş-9326ab335"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-green-500/50 transition-colors"
@@ -269,7 +269,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
 
                                     {/* Instagram */}
                                     <a
-                                        href="https://instagram.com/dgdglobal"
+                                        href="https://www.instagram.com/dgdglobalteknoloji?igsh=aW1hM2JhcGtkcnhp"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-green-500/50 transition-colors"
@@ -283,21 +283,22 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                         </svg>
                                     </a>
 
-                                    {/* Facebook */}
-                                    <a
-                                        href="https://facebook.com/dgdglobal"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-green-500/50 transition-colors"
-                                    >
-                                        <svg
-                                            className="w-5 h-5 text-white"
-                                            fill="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                                        </svg>
-                                    </a>
+                                    {/* Facebook
+
+    href="https://facebook.com/dgdglobal"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-green-500/50 transition-colors"
+>
+    <svg
+        className="w-5 h-5 text-white"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+    >
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+</a>
+*/}
                                 </div>
                             </div>
 
@@ -393,13 +394,18 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                             />
                                         </svg>
                                         <span>
-                                            DGD Global Teknoloji A.Ş.<br />
+   DGD Global Teknoloji A.Ş.<br />
                                             {language === "tr"
-                                                ? "İnovasyon Caddesi No:123"
-                                                : "Innovation Street No:123"}
+                                                ? "İkitelli OSB Mahallesi"
+                                                : "İkitelli OSB District"}
                                             <br />
-                                            {language === "tr" ? "İstanbul, Türkiye" : "Istanbul, Turkey"}
-                                        </span>
+                                            {language === "tr"
+                                                ? "Masko Sanayi 5B Blok No: 28"
+                                                : "Masko Industrial 5B Block No: 28"}
+                                            <br />
+                                            {language === "tr" ? "Başakşehir / İstanbul" : "Başakşehir / Istanbul"}
+</span>
+
                                     </li>
                                     <li className="flex items-center">
                                         <svg
@@ -431,7 +437,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                                             />
                                         </svg>
-                                        <span>info@dgdglobal.com</span>
+                                        <span>info@dgdglobal.com.tr</span>
                                     </li>
                                 </ul>
                             </div>

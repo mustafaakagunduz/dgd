@@ -39,7 +39,7 @@ export interface StaticVisionMissionData {
 export const staticDataTR: StaticHomeData = {
     hero: {
         title: "DGD GLOBAL",
-        description: "Çevre duyarlılığı odağında yerli üretim ekseninde yeşil ve biyo-döngüsel, sürdürülebilir yaşam modeli geliştiren teknoloji şirketidir."
+        description: "Küresel Çözüm Ortağınız"
     },
     about: {
         sectionDescription: "DGD Global'in temel değerlerini keşfedin.",
@@ -67,7 +67,7 @@ export const staticDataTR: StaticHomeData = {
 export const staticDataEN: StaticHomeData = {
     hero: {
         title: "DGD GLOBAL",
-        description: "A technology company focused on environmental awareness, developing green and bio-circular, sustainable life models based on domestic production."
+        description: "Your Global Solution Partner"
     },
     about: {
         sectionDescription: "Discover DGD Global's core values.",

@@ -1,5 +1,4 @@
 {
-
   "navbar": {
     "about": "ABOUT US",
     "activities": "OUR ACTIVITIES",
@@ -93,9 +92,9 @@
     "getInTouch": "Get in Touch",
     "address": {
       "title": "Address",
-      "line1": "DGD Global Technology Inc.",
-      "line2": "123 Innovation Drive",
-      "city": "Istanbul, Turkey"
+      "line1": "İkitelli OSB District",
+      "line2": "Masko Industrial 5B Block No: 28",
+      "city": "Başakşehir / Istanbul / Turkey"
     },
     "phone": {
       "title": "Phone",
@@ -103,7 +102,7 @@
     },
     "email": {
       "title": "Email",
-      "address": "info@dgdglobal.com"
+      "address": "info@dgdglobal.com.tr"
     },
     "mapPlaceholder": "Interactive map will be integrated here",
     "form": {
@@ -136,7 +135,7 @@
         "response": "Enabling feedback"
       },
       "dataSharing": "are processed exclusively for these purposes and shared only with authorized personnel.",
-      "rights": "If you wish to exercise your rights regarding your personal data under Article 11 of the PDPL, you can contact us at info@dgdglobal.com.",
+      "rights": "If you wish to exercise your rights regarding your personal data under Article 11 of the PDPL, you can contact us at info@dgdglobal.com.tr",
       "consentStatement": "By clicking the \"Send Message\" button, you declare that you consent to the processing of your personal data for the purposes specified above.",
       "consent": "I have read the above information and give my explicit consent to the processing of my personal data."
     }
@@ -145,22 +144,22 @@
     "title": "OUR COMMERCIAL PARTNERS",
     "partners": {
       "7cbasalia": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+        "description": " "
       },
       "alba": {
-        "description": "Duis aute irure dolor in reprehenderit in voluptate velit..."
+        "description": " "
       },
       "dc": {
-        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem..."
+        "description": " "
       },
       "dps": {
-        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur..."
+        "description": " "
       },
       "element": {
-        "description": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt..."
+        "description": " "
       },
       "iqPartners": {
-        "description": "Duis aute irure dolor in reprehenderit in voluptate velit..."
+        "description": " "
       }
     }
   },
@@ -197,8 +196,8 @@
   },
   "team": {
   "title": "PRODUCT DEVELOPMENT AND R&D TEAM",
-  "gurhan": {
-    "name": "GÜRHAN DURAL",
+  "aydemir": {
+    "name": "AYDEMİR ÖZ",
     "title": "Projects and R&D Director",
     "bio": "Biography text for the Projects and R&D Director will be placed here..."
   },
@@ -207,9 +206,9 @@
     "title": "Business Development and Market Director",
     "bio": "Biography text for the Business Development and Market Director will be placed here..."
   },
-  "mucahit": {
-    "name": "MÜCAHİT ÜNAL",
-    "title": "Director",
+  "samed": {
+    "name": "SAMED KIZILHAN",
+    "title": "IT Director",
     "bio": "Biography text for the Director will be placed here..."
   },
   "baris": {
@@ -774,6 +773,4 @@
       }
     }
   }
-
-
 }

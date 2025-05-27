@@ -1,5 +1,4 @@
 {
-
   "navbar": {
     "about": "HAKKIMIZDA",
     "activities": "FAALİYET ALANLARIMIZ",
@@ -95,9 +94,9 @@
     "getInTouch": "İletişime Geçin",
     "address": {
       "title": "Adres",
-      "line1": "DGD Global Teknoloji A.Ş.",
-      "line2": "İnovasyon Caddesi No:123",
-      "city": "İstanbul, Türkiye"
+      "line1": "İkitelli OSB Mahallesi",
+      "line2": "Masko Sanayi 5B Blok No: 28",
+      "city": "Başakşehir / İstanbul / Türkiye"
     },
     "phone": {
       "title": "Telefon",
@@ -105,7 +104,7 @@
     },
     "email": {
       "title": "E-posta",
-      "address": "info@dgdglobal.com"
+      "address": "info@dgdglobal.com.tr"
     },
     "mapPlaceholder": "İnteraktif harita buraya entegre edilecek",
     "form": {
@@ -139,7 +138,7 @@
 
       },
       "dataSharing": "amaçlarıyla sınırlı olarak işlenmekte ve yalnızca yetkili kişilerle paylaşılmaktadır.",
-      "rights": "KVKK'nın 11. maddesi kapsamında kişisel verilerinize ilişkin haklarınızı kullanmak isterseniz, info@dgdglobal.com adresi üzerinden bizimle iletişime geçebilirsiniz.",
+      "rights": "KVKK'nın 11. maddesi kapsamında kişisel verilerinize ilişkin haklarınızı kullanmak isterseniz, info@dgdglobal.com.tr adresi üzerinden bizimle iletişime geçebilirsiniz.",
       "consentStatement": "\"Mesaj Gönder\" butonuna basmadan önce, kişisel verilerinizin yukarıda belirtilen amaçlarla işlenmesine onay verdiğinizi beyan etmiş olursunuz.",
       "consent": "Yukarıdaki bilgilendirmeyi okudum ve kişisel verilerimin işlenmesine açık rıza gösteriyorum."
     }
@@ -148,22 +147,22 @@
     "title": "TİCARİ İŞ BİRLİKLERİMİZ",
     "partners": {
       "7cbasalia": {
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+        "description": " "
       },
       "alba": {
-        "description": "Duis aute irure dolor in reprehenderit in voluptate velit..."
+        "description": " "
       },
       "dc": {
-        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem..."
+        "description": " "
       },
       "dps": {
-        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur..."
+        "description": " "
       },
       "element": {
-        "description": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt..."
+        "description": " "
       },
       "iqPartners": {
-        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        "description": " "
       }
     }
 
@@ -190,20 +189,20 @@
     "title": "DANIŞMANLARIMIZ",
     "advisor1": {
       "name": "Çağlayan Ece BALCAN",
-      "title": " ",
+      "title": "Danışman",
       "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     "advisor2": {
       "name": "Metin BALCAN",
-      "title": " ",
+      "title": "Danışman",
       "bio": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.\n\nEaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores."
     }
   
   },
   "team": {
   "title": "ÜRETİM GELİŞTİRME VE AR-GE EKİBİMİZ",
-  "gurhan": {
-    "name": "GÜRHAN DURAL",
+  "aydemir": {
+    "name": "AYDEMİR ÖZ",
     "title": "Projeler ve AR-GE Direktörü",
     "bio": "Projeler ve AR-GE direktörü olarak görev yapmak üzere hazırlanacak biyografi metni buraya gelecek..."
   },
@@ -212,9 +211,9 @@
     "title": "İş Geliştirme ve Pazar Direktörü",
     "bio": "İş geliştirme ve pazar direktörü olarak görev yapmak üzere hazırlanacak biyografi metni buraya gelecek..."
   },
-  "mucahit": {
-    "name": "MÜCAHİT ÜNAL",
-    "title": "Direktör",
+  "samed": {
+    "name": "SAMED KIZILHAN",
+    "title": "BT Direktörü",
     "bio": "Direktör olarak görev yapmak üzere hazırlanacak biyografi metni buraya gelecek..."
   },
   "baris": {
@@ -745,7 +744,6 @@
       }
     }
   },
-
   "architecture": {
     "title": "Mimarlık Hizmetlerimiz",
     "description": "Modern tasarım anlayışı ile yaşam alanlarınız için estetik ve fonksiyonel mimari çözümler",
@@ -780,6 +778,5 @@
   "projectManagement.subcategories.projectManagement": "Proje Yönetimi",
   "projectManagement.subcategories.materialSupply": "Malzeme Tedariği",
   "projectManagement.subcategories.implementationConsulting": "Uygulama Danışmanlığı"
-
 }
   

@@ -11,22 +11,19 @@ const FoundersPage = () => {
             key: "dilek",
             imageSrc: "/assets/images/dilek-koca.jpg",
             nameKey: "founders.dilek.name",
-            titleKey: "founders.dilek.title",
-            bioKey: "founders.dilek.bio"
+            titleKey: "founders.dilek.title"
         },
         {
             key: "devir",
             imageSrc: "/assets/images/devir-dincer.jpg",
             nameKey: "founders.devir.name",
-            titleKey: "founders.devir.title",
-            bioKey: "founders.devir.bio"
+            titleKey: "founders.devir.title"
         },
         {
             key: "gokhan",
             imageSrc: "/assets/images/gokhan-celik.jpg",
             nameKey: "founders.gokhan.name",
-            titleKey: "founders.gokhan.title",
-            bioKey: "founders.gokhan.bio"
+            titleKey: "founders.gokhan.title"
         }
     ];
 
@@ -37,16 +34,13 @@ const FoundersPage = () => {
                     {t("founders.title")}
                 </h1>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 justify-items-center">
                     {founders.map((founder) => (
                         <FounderCard
                             key={founder.key}
                             imageSrc={founder.imageSrc}
                             name={t(founder.nameKey)}
                             title={t(founder.titleKey)}
-                            bio={t(founder.bioKey)}
-                            showMore={t("about.showMore")}
-                            showLess={t("about.showLess")}
                         />
                     ))}
                 </div>
