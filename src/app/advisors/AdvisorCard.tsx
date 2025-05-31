@@ -10,7 +10,7 @@ interface AdvisorCardProps {
 const AdvisorCard = ({ imageSrc, name, title }: AdvisorCardProps) => {
     return (
         <div className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 w-full max-w-md">
-            <div className="relative h-80 w-full">
+            <div className="relative h-90 w-full">
                 <Image
                     src={imageSrc}
                     alt={name}

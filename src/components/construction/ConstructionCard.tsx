@@ -21,7 +21,7 @@ const ConstructionCard: React.FC<ConstructionCardProps> = ({
     <div className="cursor-pointer transition-all duration-300 h-full">
       <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-green-500/50 hover:border-green-500/50 transition-all duration-300 h-full">
         {/* Basit resim kısmı */}
-        <div className="relative h-48 w-full bg-gray-700 overflow-hidden">
+        <div className="relative h-65 w-full bg-gray-700 overflow-hidden">
           {/* Daha basit bir Image kullanımı, görüntü yoksa hata gösterme */}
           <div className="relative h-full w-full">
             <img

@@ -98,7 +98,7 @@ const ArchitectureCard: React.FC<ArchitectureCardProps> = ({
                 className={`bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 hover:border-blue-500/50 h-full transition-all duration-500 ${isFlipped ? 'opacity-10' : 'opacity-100'}`}
             >
                 {/* Resim ve Başlık Bölümü */}
-                <div className="relative h-48 w-full bg-gray-700 overflow-hidden">
+                <div className="relative h-65 w-full bg-gray-700 overflow-hidden">
                     <div className="relative h-full w-full">
                         <img
                             src={imagePath || placeholderImage}
