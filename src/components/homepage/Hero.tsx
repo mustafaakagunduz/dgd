@@ -85,7 +85,7 @@ export default function Hero({ initialData }: HeroProps) {
                     <h1 className="text-white text-4xl md:text-5xl font-bold mb-6">
                         {content.title}
                     </h1>
-                    <p className="text-white/90 text-lg md:text-xl leading-relaxed">
+                    <p className="text-white/90 text-lg md:text-2xl font-bold leading-relaxed">
                         {content.description}
                     </p>
                 </div>

@@ -1,6 +1,7 @@
 // src/components/architecture/ArchitectureCard.tsx
 "use client";
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { hasSubcategories, architectureSubcategories } from '@/app/architecture/data';
 
@@ -100,10 +101,11 @@ const ArchitectureCard: React.FC<ArchitectureCardProps> = ({
                 {/* Resim ve Başlık Bölümü */}
                 <div className="relative h-65 w-full bg-gray-700 overflow-hidden">
                     <div className="relative h-full w-full">
-                        <img
+                        <Image
                             src={imagePath || placeholderImage}
                             alt={t(translationKey)}
-                            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                            fill
+                            className="object-cover transition-transform duration-500 hover:scale-110"
                             onError={(e) => {
                                 e.currentTarget.src = placeholderImage;
                             }}

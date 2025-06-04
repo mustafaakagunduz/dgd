@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface NewsletterProps {
@@ -15,7 +15,7 @@ const Newsletter = ({ variant = 'hero', showIcon = true }: NewsletterProps) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [error, setError] = useState('');
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         setError('');
@@ -41,14 +41,14 @@ const Newsletter = ({ variant = 'hero', showIcon = true }: NewsletterProps) => {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [email, t]);
 
-    const validateEmail = (email: string) => {
+    const validateEmail = useCallback((email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
-    };
+    }, []);
 
-    const getSizeClasses = () => {
+    const getSizeClasses = useCallback(() => {
         switch (variant) {
             case 'sidebar':
                 return 'max-w-sm text-sm';
@@ -57,7 +57,7 @@ const Newsletter = ({ variant = 'hero', showIcon = true }: NewsletterProps) => {
             default:
                 return 'max-w-4xl text-base md:text-lg';
         }
-    };
+    }, [variant]);
 
     if (isSubmitted) {
         return (
@@ -86,8 +86,6 @@ const Newsletter = ({ variant = 'hero', showIcon = true }: NewsletterProps) => {
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blue-500/20 to-transparent rounded-full blur-2xl pointer-events-none" />
 
             <div className="relative text-center">
-
-
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
                     {t('newsletter.title')}
                 </h2>
