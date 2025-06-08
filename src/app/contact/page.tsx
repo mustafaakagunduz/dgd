@@ -22,7 +22,7 @@ export default function Contact() {
 
     return (
         <div className="relative min-h-screen">
-            {/* Hero Background Image */}
+            {/* Hero Background Imagee */}
             <div className="fixed inset-0 w-full h-full">
                 <Image
                     src="/assets/images/heroimage.webp"
