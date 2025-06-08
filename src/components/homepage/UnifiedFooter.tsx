@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,6 +10,167 @@ interface NewsletterProps {
     showIcon?: boolean;
 }
 
+// NewsletterSection'ı ayrı bir bileşen olarak bileşen dışında tanımlayın
+const NewsletterSection = React.memo(({ 
+    variant, 
+    t, 
+    email, 
+    setEmail, 
+    isLoading, 
+    isSubmitted, 
+    error, 
+    handleSubmit,
+    validateEmail
+}: {
+    variant: 'hero' | 'sidebar' | 'footer';
+    t: any;
+    email: string;
+    setEmail: (email: string) => void;
+    isLoading: boolean;
+    isSubmitted: boolean;
+    error: string;
+    handleSubmit: (e: React.FormEvent) => void;
+    validateEmail: (email: string) => boolean;
+}) => {
+    const getSizeClasses = () => {
+        switch (variant) {
+            case 'sidebar':
+                return 'max-w-sm text-sm';
+            case 'footer':
+                return 'max-w-md text-sm';
+            default:
+                return 'max-w-4xl text-base md:text-lg';
+        }
+    };
+
+    if (isSubmitted) {
+        return (
+            <div className={`relative ${getSizeClasses()} mx-auto text-center`}>
+                {/* Success Icon */}
+                <div className="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-r from-green-500/20 to-green-600/20 backdrop-blur-md rounded-full border border-green-500/30">
+                    <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+
+                <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
+                    {t('newsletter.success.title')}
+                </h3>
+                <p className="text-gray-300">
+                    {t('newsletter.success.message')}
+                </p>
+            </div>
+        );
+    }
+
+    return (
+        <div className={`relative ${getSizeClasses()} mx-auto`}>
+            <div className="relative text-center">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
+                    {t('newsletter.title')}
+                </h2>
+
+                <p className="text-gray-300 mb-4 leading-relaxed">
+                    {t('newsletter.description')}
+                </p>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="relative">
+                        <div className="relative flex flex-col sm:flex-row gap-3 justify-center items-center max-w-md mx-auto">
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder={t('newsletter.placeholder')}
+                                className="flex-1 w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md rounded-xl border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500/50 transition-all duration-300"
+                                required
+                            />
+                            <button
+                                type="submit"
+                                disabled={isLoading || !validateEmail(email)}
+                                className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-xl hover:from-green-400 hover:to-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 active:scale-95"
+                            >
+                                {isLoading ? (
+                                    <div className="flex items-center justify-center gap-2">
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                        {t('newsletter.sending')}
+                                    </div>
+                                ) : (
+                                    t('newsletter.subscribe')
+                                )}
+                            </button>
+                        </div>
+
+                        {error && (
+                            <p className="mt-2 text-red-400 text-sm text-center">{error}</p>
+                        )}
+                    </div>
+                </form>
+
+                <p className="mt-3 text-gray-400 text-xs">
+                    {t('newsletter.privacy')}
+                </p>
+            </div>
+        </div>
+    );
+});
+
+NewsletterSection.displayName = 'NewsletterSection';
+
+// TransitionWave bileşenini de bileşen dışında tanımlayın
+const TransitionWave = React.memo(() => {
+    return (
+        <div className="relative py-6">
+            {/* Dalgalı SVG Geçiş Efekti */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute bottom-0 left-0 w-full">
+                    <svg
+                        viewBox="0 0 1200 120"
+                        preserveAspectRatio="none"
+                        className="relative block w-full h-32 rotate-180"
+                    >
+                        <path
+                            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                            className="fill-green-800/30 opacity-80"
+                        />
+                        <path
+                            d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+                            className="fill-green-900/30 opacity-75"
+                        />
+                        <path
+                            d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+                            className="fill-black opacity-95"
+                        />
+                    </svg>
+                </div>
+            </div>
+
+            {/* Yıldız parçacıkları */}
+            {[...Array(10)].map((_, i) => (
+                <div
+                    key={i}
+                    className="absolute w-1 h-1 bg-green-400 rounded-full"
+                    style={{
+                        top: `${Math.random() * 100}%`,
+                        left: `${Math.random() * 100}%`,
+                        opacity: Math.random() * 0.7 + 0.3,
+                        animation: `pulse ${2 + Math.random() * 2}s ${Math.random() * 3}s infinite`
+                    }}
+                />
+            ))}
+
+            <style jsx>{`
+                @keyframes pulse {
+                    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+                    50% { opacity: 0.8; transform: scale(1.5); }
+                }
+            `}</style>
+        </div>
+    );
+});
+
+TransitionWave.displayName = 'TransitionWave';
+
 const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps) => {
     const { t, language } = useLanguage();
     const [email, setEmail] = useState('');
@@ -18,7 +179,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
     const [error, setError] = useState('');
     const currentYear = new Date().getFullYear();
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         setError('');
@@ -44,149 +205,12 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [email, t]);
 
-    const validateEmail = (email: string) => {
+    const validateEmail = useCallback((email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
-    };
-
-    const getSizeClasses = () => {
-        switch (variant) {
-            case 'sidebar':
-                return 'max-w-sm text-sm';
-            case 'footer':
-                return 'max-w-md text-sm';
-            default:
-                return 'max-w-4xl text-base md:text-lg';
-        }
-    };
-
-    // Newsletter Component that will be embedded in Footer
-    const NewsletterSection = () => {
-        if (isSubmitted) {
-            return (
-                <div className={`relative ${getSizeClasses()} mx-auto text-center`}>
-                    {/* Success Icon */}
-                    <div className="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-r from-green-500/20 to-green-600/20 backdrop-blur-md rounded-full border border-green-500/30">
-                        <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                    </div>
-
-                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
-                        {t('newsletter.success.title')}
-                    </h3>
-                    <p className="text-gray-300">
-                        {t('newsletter.success.message')}
-                    </p>
-                </div>
-            );
-        }
-
-        return (
-            <div className={`relative ${getSizeClasses()} mx-auto`}>
-                <div className="relative text-center">
-                    <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
-                        {t('newsletter.title')}
-                    </h2>
-
-                    <p className="text-gray-300 mb-4 leading-relaxed">
-                        {t('newsletter.description')}
-                    </p>
-
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="relative">
-                            <div className="relative flex flex-col sm:flex-row gap-3 justify-center items-center max-w-md mx-auto">
-                                <input
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    placeholder={t('newsletter.placeholder')}
-                                    className="flex-1 w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md rounded-xl border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500/50 transition-all duration-300"
-                                    required
-                                />
-                                <button
-                                    type="submit"
-                                    disabled={isLoading || !validateEmail(email)}
-                                    className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-xl hover:from-green-400 hover:to-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 active:scale-95"
-                                >
-                                    {isLoading ? (
-                                        <div className="flex items-center justify-center gap-2">
-                                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                                            {t('newsletter.sending')}
-                                        </div>
-                                    ) : (
-                                        t('newsletter.subscribe')
-                                    )}
-                                </button>
-                            </div>
-
-                            {error && (
-                                <p className="mt-2 text-red-400 text-sm text-center">{error}</p>
-                            )}
-                        </div>
-                    </form>
-
-                    <p className="mt-3 text-gray-400 text-xs">
-                        {t('newsletter.privacy')}
-                    </p>
-                </div>
-            </div>
-        );
-    };
-
-    // Transition Wave Component integrated directly
-    const TransitionWave = () => {
-        return (
-            <div className="relative py-6">
-                {/* Dalgalı SVG Geçiş Efekti */}
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute bottom-0 left-0 w-full">
-                        <svg
-                            viewBox="0 0 1200 120"
-                            preserveAspectRatio="none"
-                            className="relative block w-full h-32 rotate-180"
-                        >
-                            <path
-                                d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-                                className="fill-green-800/30 opacity-80"
-                            />
-                            <path
-                                d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
-                                className="fill-green-900/30 opacity-75"
-                            />
-                            <path
-                                d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
-                                className="fill-black opacity-95"
-                            />
-                        </svg>
-                    </div>
-                </div>
-
-                {/* Yıldız parçacıkları */}
-                {[...Array(10)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute w-1 h-1 bg-green-400 rounded-full"
-                        style={{
-                            top: `${Math.random() * 100}%`,
-                            left: `${Math.random() * 100}%`,
-                            opacity: Math.random() * 0.7 + 0.3,
-                            animation: `pulse ${2 + Math.random() * 2}s ${Math.random() * 3}s infinite`
-                        }}
-                    />
-                ))}
-
-                <style jsx>{`
-                    @keyframes pulse {
-                        0%, 100% { opacity: 0.3; transform: scale(0.8); }
-                        50% { opacity: 0.8; transform: scale(1.5); }
-                    }
-                `}</style>
-            </div>
-        );
-    };
+    }, []);
 
     return (
         <div className="relative">
@@ -211,7 +235,17 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                     <div className="container mx-auto px-4">
                         {/* Newsletter Section above the footer columns */}
                         <div className="mb-16 pb-6 border-b border-gray-800/50">
-                            <NewsletterSection />
+                            <NewsletterSection
+                                variant={variant}
+                                t={t}
+                                email={email}
+                                setEmail={setEmail}
+                                isLoading={isLoading}
+                                isSubmitted={isSubmitted}
+                                error={error}
+                                handleSubmit={handleSubmit}
+                                validateEmail={validateEmail}
+                            />
                         </div>
 
                         {/* Footer Columns */}
@@ -282,23 +316,6 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                                         </svg>
                                     </a>
-
-                                    {/* Facebook
-
-    href="https://facebook.com/dgdglobal"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-green-500/50 transition-colors"
->
-    <svg
-        className="w-5 h-5 text-white"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-    >
-        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-    </svg>
-</a>
-*/}
                                 </div>
                             </div>
 
@@ -311,7 +328,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                     {[
                                         { href: "/vision-mission", tr: "Vizyon & Misyon", en: "Vision & Mission" },
                                         { href: "/founders", tr: "Kurucularımız", en: "Our Founders" },
-                                        { href: "#", tr: "Ekibimiz", en: "Our Team" },
+                                        { href: "/product-development", tr: "Ekibimiz", en: "Our Team" },
                                         { href: "/tech-club", tr: "DGD Tech Club", en: "DGD Tech Club" },
                                         { href: "/commercial-partnerships", tr: "İş Birliklerimiz", en: "Our Partnerships" },
                                     ].map(({ href, tr, en }, index) => (
@@ -335,22 +352,22 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                 <ul className="space-y-3">
                                     {[
                                         {
-                                            href: "#",
+                                            href: "/bio-circular-process",
                                             tr: "Yeşil ve Biyo-Döngüsel Teknolojiler",
                                             en: "Green & Bio-Circular Technologies",
                                         },
                                         {
-                                            href: "#",
+                                            href: "/radiator-systems",
                                             tr: "Isıtma ve Havalandırma Teknolojileri",
                                             en: "Heating & Ventilation Technologies",
                                         },
                                         {
-                                            href: "#",
+                                            href: "/construction",
                                             tr: "Yapı ve Mimari Teknolojiler",
                                             en: "Building & Architecture Technologies",
                                         },
                                         {
-                                            href: "#",
+                                            href: "/consulting-services",
                                             tr: "İletişim ve PR Danışmanlığı",
                                             en: "Communication & PR Consulting",
                                         },
@@ -394,7 +411,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                             />
                                         </svg>
                                         <span>
-   DGD Global Teknoloji A.Ş.<br />
+                                            DGD Global Teknoloji A.Ş.<br />
                                             {language === "tr"
                                                 ? "İkitelli OSB Mahallesi"
                                                 : "İkitelli OSB District"}
@@ -404,8 +421,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                                                 : "Masko Industrial 5B Block No: 28"}
                                             <br />
                                             {language === "tr" ? "Başakşehir / İstanbul" : "Başakşehir / Istanbul"}
-</span>
-
+                                        </span>
                                     </li>
                                     <li className="flex items-center">
                                         <svg
