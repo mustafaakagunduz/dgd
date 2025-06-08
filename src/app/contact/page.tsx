@@ -25,7 +25,7 @@ export default function Contact() {
             {/* Hero Background Image */}
             <div className="fixed inset-0 w-full h-full">
                 <Image
-                    src="/assets/images/heroimage.jpg"
+                    src="/assets/images/heroimage.webp"
                     alt="Contact Background"
                     fill
                     priority

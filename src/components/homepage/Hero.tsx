@@ -45,7 +45,7 @@ export default function Hero({ initialData }: HeroProps) {
         return (
             <div className="relative w-full h-screen opacity-0">
                 <Image
-                    src="/assets/images/heroimage.jpg"
+                    src="/assets/images/heroimage.webp"
                     alt="Hero Image"
                     fill
                     priority
@@ -58,7 +58,7 @@ export default function Hero({ initialData }: HeroProps) {
     return (
         <div className="relative w-full h-screen">
             <Image
-                src="/assets/images/heroimage.jpg"
+                src="/assets/images/heroimage.webp"
                 alt="Hero Image"
                 fill
                 priority

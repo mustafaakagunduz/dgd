@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
         openGraph: {
             title: staticData.hero.title,
             description: staticData.hero.description,
-            images: ['/assets/images/heroimage.jpg'],
+            images: ['/assets/images/heroimage.webp'],
             type: 'website',
             locale: 'tr_TR',
             alternateLocale: ['en_US'],
@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
             card: 'summary_large_image',
             title: staticData.hero.title,
             description: staticData.hero.description,
-            images: ['/assets/images/heroimage.jpg'],
+            images: ['/assets/images/heroimage.webp'],
         },
         robots: {
             index: true,
