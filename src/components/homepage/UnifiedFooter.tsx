@@ -254,7 +254,7 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                             <div className="space-y-6">
                                 <Link href="/" className="inline-block">
                                     <Image
-                                        src="/assets/images/logo.png"
+                                        src="/assets/images/logo.jpeg"
                                         alt="DGD GLOBAL"
                                         width={150}
                                         height={50}

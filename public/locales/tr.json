@@ -8,12 +8,14 @@
       "commercialPartnerships": "Ticari İş Birliklerimiz",
       "socialPartnerships": "Sosyal İş Birliklerimiz"
     },
+    "our-brands": "MARKALARIMIZ",
     "techClub": "DGD TECH CLUB",
     "contact": "İLETİŞİM",
     "aboutDropdown": {
       "visionMission": "Vizyon & Misyon",
       "whoWeAre": "Biz Kimiz",
       "history": "Tarihçe",
+      "commercialPartnerships": "İş Birliklerimiz",
       "partners": "Çözüm Ortaklarımız"
     },
     "aboutSubmenu": {
@@ -47,6 +49,14 @@
       "socialMedia": "Sosyal Medya Yönetimi",
       "adPR": "Reklam ve PR Yönetimi",
       "production": "Prodüksiyon Hizmetleri"
+    },
+    "ourBrandsDropdown": {
+      "decor-center": "Decor Center",
+      "inno-core": "InnoCore",
+      "core-services": "Core Services", 
+      "re-gen-agro": "ReGENAgro",
+      "nexus": "Nexus",
+      "re-gen-stay": "ReGENStay"
     }
   },
   "languages": {
@@ -777,6 +787,100 @@
   "facadeRestoration.subcategories.historicFacadeRestoration": "Tarihi Yapı Cephe Restorasyonu",
   "projectManagement.subcategories.projectManagement": "Proje Yönetimi",
   "projectManagement.subcategories.materialSupply": "Malzeme Tedariği",
-  "projectManagement.subcategories.implementationConsulting": "Uygulama Danışmanlığı"
+  "projectManagement.subcategories.implementationConsulting": "Uygulama Danışmanlığı",
+
+  "innocore": {
+    "title": "InnoCore Teknolojileri",
+    "subtitle": "Sürdürülebilir yaşam için bilimsel çözümler",
+    "intro": {
+      "paragraph1": "InnoCore Teknolojileri, yaşamın doğal döngüsünü temel alan, çevreyle uyumlu ve yüksek etkili çözümler sunar.",
+      "paragraph2": "Her ürün yalnızca problemi çözmekle kalmaz; aynı zamanda sistemin kendini yenilemesini, sürdürülebilirliği ve döngüsel ekonomiyi destekleyecek şekilde tasarlanır.",
+      "paragraph3": "Bu yapı, teknolojiyi doğayla çatıştırmak yerine; biyolojik, enerji ve üretim sistemleriyle bütünleştiren bir yaklaşımla geliştirilmiştir.",
+      "paragraph4": "InnoCore ürünleri, tarım, arıcılık, sağlık, temizlik ve enerji gibi alanlarda bilimsel altyapıya dayalı gerçek çözümler sunar."
+    },
+    "detailButton": "Detay",
+    "status": {
+      "proven": "Kanıtlı Teknoloji",
+      "development": "Ar-Ge Aşamasında"
+    },
+    "categories": {
+      "beekeeping": "Arıcılık, Biyoteknoloji",
+      "smartBeekeeping": "Akıllı Arıcılık ve Tarımsal Mekanizasyon",
+      "digitalBeekeeping": "Arıcılıkta Dijital Takip ve Biyolojik Kontrol",
+      "energyEfficiency": "Tarım ve Arıcılıkta Enerji Verimliliği",
+      "nanoCoating": "Enerji Verimliliği ve Isı Üreten Nano Kaplama",
+      "smartHeating": "Enerji Verimliliği ve Akıllı Isıtma Sistemleri",
+      "agriculturalHeating": "Tarımsal Isıtma Sistemleri ve Enerji Verimli Yüzey",
+      "portableHeating": "Taşınabilir Isıtma Sistemleri",
+      "dryingTechnology": "Enerji Verimliliği ve Doğal Kurutma",
+      "veterinaryTech": "Hayvancılık, Veteriner Teknolojileri",
+      "cleaningTech": "Gıda Güvenliği, Temizlik Teknolojileri",
+      "waterManagement": "Tarım Teknolojileri, Su Yönetimi",
+      "foodHygiene": "Gıda Hijyeni, Temizlik",
+      "healthcare": "Sağlık"
+    },
+    "products": {
+      "oxygenBeeFeeder": {
+        "name": "Oksijen İyonlu Arı Besleme ve Tedavi Makinesi",
+        "description": "Koloni bağışıklığını artırmayı ve Nosema enfeksiyonlarını baskılamayı hedefleyen bu cihaz, thymol, Artemisia absinthium ve nano partikül ozon kombinasyonunu mikronize şekilde arılara sunar. %89 başarı oranı, Fırat Üniversitesi doktora teziyle kanıtlanmıştır."
+      },
+      "autoFrameMachine": {
+        "name": "Otomatik Çıta Çakma ve Telleme Makinesi",
+        "description": "Arıcılık sektöründe manuel işlemleri otomatize eden, verimlilik artışı sağlayan akıllı makine sistemi."
+      },
+      "smartQueenBox": {
+        "name": "Akıllı Otomatik Ana Arı Üretim Kutusu",
+        "description": "Ana arı üretiminde dijital takip ve kontrol sistemiyle donatılmış, biyolojik süreçleri optimize eden akıllı kutu sistemi."
+      },
+      "infraredHiveHeating": {
+        "name": "Uzak Kızılötesi Destekli Arı Kovanı Isıtma Sistemi",
+        "description": "Enerji verimli infrared teknolojisi ile arı kovanlarında optimal sıcaklık kontrolü sağlayan sistem."
+      },
+      "nanoHeatPaint": {
+        "name": "Nano Teknoloji Tabanlı Isıboya",
+        "description": "Nano karbon teknolojisi ile geliştirilmiş, enerji verimli ısı üretimi sağlayan yenilikçi boya sistemi."
+      },
+      "hybridPanelRadiator": {
+        "name": "Isıboyasıyla Geliştirilmiş Hibrit Panel Radyatör",
+        "description": "Geleneksel ısıtma sistemlerine alternatif, enerji tasarruflu akıllı panel radyatör sistemi."
+      },
+      "greenhouseHeatingPanel": {
+        "name": "Isıboyasıyla Geliştirilmiş Sera Isıtma Paneli",
+        "description": "Sera ısıtmasında enerji verimliliği sağlayan, bitki gelişimini destekleyen yüzey teknolojisi."
+      },
+      "underDeskHeating": {
+        "name": "Isı Boyasıyla Geliştirilmiş Masa Altı ve Ayak Altı Isıtma Sistemleri",
+        "description": "Masa altı ve ayak altı gibi lokal alanlarda kullanılmak üzere tasarlanmış, taşınabilir ve enerji tasarruflu bir ısıtma sistemidir. Nano karbon bazlı ısı boya teknolojisiyle kaplı yüzeyi sayesinde doğrudan kızılötesi ısı yayılımı sağlar."
+      },
+      "infraredDryingSystem": {
+        "name": "Kızılötesi Fotonlarla Çalışan Kurutma Sistemi (Isı Tüneli)",
+        "description": "Enerji verimli infrared teknolojisi ile doğal kurutma işlemlerini optimize eden sistem."
+      },
+      "physiotherapyUnit": {
+        "name": "Uzak Kızılötesi Sistemle Geliştirilmiş Fizik Tedavi Destek Ünitesi",
+        "description": "İnfrared dalga boylarıyla çalışan bu sistem, hayvanlarda dolaşımı hızlandırmak ve doku onarımını desteklemek amacıyla tasarlanmıştır. Özellikle ayak problemleri, eklem ağrıları ve stres kaynaklı verim kayıplarında doğal destek sağlar."
+      },
+      "negativeIonAirCleaner": {
+        "name": "Patojen Yok Edici Negatif İyon Teknolojili Hava Temizleyici",
+        "description": "Kapalı alanlardaki zararlı mikroorganizmaları ortadan kaldırmak üzere tasarlanmış bu cihaz, iyonize hava akışıyla patojen yükünü %70 oranında düşürür. Özellikle hayvan barınakları ve gıda üretim tesisleri için uygundur."
+      },
+      "agriculturalWaterCleaner": {
+        "name": "Tarımsal Kullanıma Uygun Su Temizleme Cihazı (Kaba Temizlik Ünitesi)",
+        "description": "Sulama ve tarımsal üretim alanlarında kullanılmak üzere geliştirilen bu sistem, ağır metal ve patojenleri su içerisinden uzaklaştırarak hem bitki hem de toprak sağlığını korur."
+      },
+      "antibacterialCleaningLiquid": {
+        "name": "Aktif Oksijenle Zenginleştirilmiş Antibakteriyel Temizlik Sıvısı",
+        "description": "Kimyasal dezenfektanlara alternatif olarak geliştirilen bu sıvı, aktif oksijen teknolojisi sayesinde etkili ve kalıntısız temizlik sağlar. Gıda ile temas eden yüzeylerde kullanıma uygundur."
+      },
+      "maklorozCream": {
+        "name": "Makloröz Krem – Aktif Oksijen ve Saf Zeytinyağı Tabanlı Kas ve Eklem Ağrısı Giderici",
+        "description": "Makloröz, gaz formda aktif oksijenin saf zeytinyağıyla kontrollü birleşiminden oluşan doğal bir kremdir. Özellikle omuz, diz, bel, boyun gibi kas ve eklem bölgelerinde uygulandığında ağrıyı kısa sürede azaltır."
+      }
+    }
+  },
+  "development": {
+    "title": "Geliştirme Aşamasında",
+    "description": "Bu sayfa şu anda geliştirilmektedir. Lütfen daha sonra tekrar kontrol edin."
+  }
 }
   

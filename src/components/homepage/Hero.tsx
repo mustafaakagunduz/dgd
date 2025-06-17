@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import { getStaticHomeData } from "@/lib/static-data";
+import { ChevronDown } from "lucide-react";
 
 // Add the initialData prop to the component
 interface HeroProps {
@@ -39,6 +40,14 @@ export default function Hero({ initialData }: HeroProps) {
 
         return () => clearTimeout(timer);
     }, [language]); // language değiştiğinde effect'i tekrar çalıştır
+
+    // Scroll to next section function
+    const scrollToNextSection = () => {
+        window.scrollBy({
+            top: window.innerHeight,
+            behavior: 'smooth'
+        });
+    };
 
     // Hydration mismatch'i önlemek için mounted kontrolü
     if (!mounted) {
@@ -82,13 +91,33 @@ export default function Hero({ initialData }: HeroProps) {
                     }
                     `}
                 >
-                    <h1 className="text-white text-4xl md:text-5xl font-bold mb-6">
+                    <h1 className="text-white text-4xl md:text-5xl font-medium tracking-wide mb-6 font-['Sanchez']">
                         {content.title}
                     </h1>
-                    <p className="text-white/90 text-lg md:text-2xl font-bold leading-relaxed">
+                    <p className="text-white text-3xl md:text-3xl font-medium font-['Sanchez']">
                         {content.description}
                     </p>
                 </div>
+            </div>
+
+            {/* Down Arrow - Alt ortada */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+                <button
+                    onClick={scrollToNextSection}
+                    className={`
+                        transition-all duration-1000 ease-out cursor-pointer
+                        ${isVisible
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-4'
+                    }
+                    `}
+                    aria-label="Scroll to next section"
+                >
+                    <ChevronDown 
+                        size={32} 
+                        className="animate-bounce hover:animate-pulse transition-transform hover:scale-110 text-white/90 hover:text-white" 
+                    />
+                </button>
             </div>
         </div>
     );

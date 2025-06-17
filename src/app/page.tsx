@@ -85,7 +85,7 @@ export default function Home() {
                         "name": "DGD Global Technology",
                         "description": staticDataTR.hero.description,
                         "url": "https://dgdglobal.com",
-                        "logo": "https://dgdglobal.com/assets/images/logo.png",
+                        "logo": "https://dgdglobal.com/assets/images/logo.jpeg",
                         "sameAs": [
                             // Sosyal medya hesapları
                         ],

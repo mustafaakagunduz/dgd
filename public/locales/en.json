@@ -8,12 +8,14 @@
       "commercialPartnerships": "Commercial Partnerships",
       "socialPartnerships": "Social Partnerships"
     },
+    "our-brands": "OUR BRANDS",
     "techClub": "DGD TECH CLUB",
     "contact": "CONTACT",
     "aboutDropdown": {
       "visionMission": "Vision & Mission",
       "whoWeAre": "Who We Are",
       "history": "History",
+      "commercialPartnerships": "Partnerships",
       "partners": "Solution Partners"
     },
     "aboutSubmenu": {
@@ -45,6 +47,14 @@
       "socialMedia": "Social Media Management",
       "adPR": "Advertising & PR Management",
       "production": "Production Services"
+    },
+    "ourBrandsDropdown": {
+      "decor-center": "Decor Center",
+      "inno-core": "InnoCore", 
+      "core-services": "Core Services",
+      "re-gen-agro": "ReGENAgro",
+      "nexus": "Nexus",
+      "re-gen-stay": "ReGENStay"
     }
   },
   "languages": {
@@ -772,5 +782,98 @@
         ]
       }
     }
+  },
+  "innocore": {
+    "title": "InnoCore Technologies",
+    "subtitle": "Scientific solutions for sustainable living",
+    "intro": {
+      "paragraph1": "InnoCore Technologies offers environmentally compatible and highly effective solutions based on the natural cycle of life.",
+      "paragraph2": "Each product is designed not only to solve the problem, but also to support the system's self-renewal, sustainability and circular economy.",
+      "paragraph3": "This structure has been developed with an approach that integrates technology with biological, energy and production systems instead of conflicting with nature.",
+      "paragraph4": "InnoCore products offer real solutions based on scientific infrastructure in areas such as agriculture, beekeeping, health, cleaning and energy."
+    },
+    "detailButton": "Details",
+    "status": {
+      "proven": "Proven Technology",
+      "development": "In R&D Phase"
+    },
+    "categories": {
+      "beekeeping": "Beekeeping, Biotechnology",
+      "smartBeekeeping": "Smart Beekeeping and Agricultural Mechanization",
+      "digitalBeekeeping": "Digital Tracking and Biological Control in Beekeeping",
+      "energyEfficiency": "Energy Efficiency in Agriculture and Beekeeping",
+      "nanoCoating": "Energy Efficiency and Heat-Generating Nano Coating",
+      "smartHeating": "Energy Efficiency and Smart Heating Systems",
+      "agriculturalHeating": "Agricultural Heating Systems and Energy Efficient Surface",
+      "portableHeating": "Portable Heating Systems",
+      "dryingTechnology": "Energy Efficiency and Natural Drying",
+      "veterinaryTech": "Livestock, Veterinary Technologies",
+      "cleaningTech": "Food Safety, Cleaning Technologies",
+      "waterManagement": "Agricultural Technologies, Water Management",
+      "foodHygiene": "Food Hygiene, Cleaning",
+      "healthcare": "Healthcare"
+    },
+    "products": {
+      "oxygenBeeFeeder": {
+        "name": "Oxygen Ion Bee Feeding and Treatment Machine",
+        "description": "This device, which aims to increase colony immunity and suppress Nosema infections, offers bees a micronized combination of thymol, Artemisia absinthium and nano particle ozone. 89% success rate has been proven by Fırat University doctoral thesis."
+      },
+      "autoFrameMachine": {
+        "name": "Automatic Frame Installation and Wiring Machine",
+        "description": "Smart machine system that automates manual processes in the beekeeping sector and increases efficiency."
+      },
+      "smartQueenBox": {
+        "name": "Smart Automatic Queen Bee Production Box",
+        "description": "Smart box system equipped with digital tracking and control system in queen bee production, optimizing biological processes."
+      },
+      "infraredHiveHeating": {
+        "name": "Far Infrared Assisted Bee Hive Heating System",
+        "description": "System that provides optimal temperature control in bee hives with energy efficient infrared technology."
+      },
+      "nanoHeatPaint": {
+        "name": "Nano Technology Based Heat Paint",
+        "description": "Innovative paint system developed with nano carbon technology that provides energy efficient heat generation."
+      },
+      "hybridPanelRadiator": {
+        "name": "Heat Paint Enhanced Hybrid Panel Radiator",
+        "description": "Energy-saving smart panel radiator system as an alternative to traditional heating systems."
+      },
+      "greenhouseHeatingPanel": {
+        "name": "Heat Paint Enhanced Greenhouse Heating Panel",
+        "description": "Surface technology that provides energy efficiency in greenhouse heating and supports plant development."
+      },
+      "underDeskHeating": {
+        "name": "Heat Paint Enhanced Under-Desk and Under-Foot Heating Systems",
+        "description": "This is a portable and energy-efficient heating system designed for use in local areas such as under desks and under feet. Thanks to its surface coated with nano carbon-based heat paint technology, it provides direct infrared heat radiation."
+      },
+      "infraredDryingSystem": {
+        "name": "Infrared Photon Drying System (Heat Tunnel)",
+        "description": "System that optimizes natural drying processes with energy efficient infrared technology."
+      },
+      "physiotherapyUnit": {
+        "name": "Far Infrared Enhanced Physiotherapy Support Unit",
+        "description": "This system, which works with infrared wavelengths, is designed to accelerate circulation and support tissue repair in animals. It provides natural support especially for foot problems, joint pain and stress-related productivity losses."
+      },
+      "negativeIonAirCleaner": {
+        "name": "Pathogen Destroying Negative Ion Technology Air Purifier",
+        "description": "Designed to eliminate harmful microorganisms in enclosed spaces, this device reduces pathogen load by 70% with ionized air flow. It is especially suitable for animal shelters and food production facilities."
+      },
+      "agriculturalWaterCleaner": {
+        "name": "Agricultural Water Cleaning Device (Coarse Cleaning Unit)",
+        "description": "Developed for use in irrigation and agricultural production areas, this system protects both plant and soil health by removing heavy metals and pathogens from water."
+      },
+      "antibacterialCleaningLiquid": {
+        "name": "Active Oxygen Enriched Antibacterial Cleaning Liquid",
+        "description": "Developed as an alternative to chemical disinfectants, this liquid provides effective and residue-free cleaning thanks to active oxygen technology. It is suitable for use on surfaces that come into contact with food."
+      },
+      "maklorozCream": {
+        "name": "Maklöroz Cream – Active Oxygen and Pure Olive Oil Based Muscle and Joint Pain Relief",
+        "description": "Maklöroz is a natural cream consisting of the controlled combination of gaseous active oxygen with pure olive oil. When applied especially to muscle and joint areas such as shoulder, knee, waist, neck, it reduces pain in a short time."
+      }
+    }
+  },
+  "development": {
+    "title": "Under Development",
+    "description": "This page is currently under development. Please check back later."
   }
 }
