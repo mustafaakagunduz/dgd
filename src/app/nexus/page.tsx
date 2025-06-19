@@ -1,5 +1,6 @@
 "use client";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Image from "next/image";
 
 export default function Page() {
   const { t } = useLanguage();
@@ -9,9 +10,22 @@ export default function Page() {
       {/* Dark header strip for navbar visibility */}
       <div className="bg-gray-900 h-20 w-full"></div>
       
-      <div className="flex items-center justify-center" style={{minHeight: 'calc(100vh - 80px)'}}>
-        <div className="bg-white rounded-lg shadow-md p-8 text-center">
+      <div className="flex items-start justify-center pt-8" style={{minHeight: 'calc(100vh - 80px)'}}>
+        <div className="text-center">
+          {/* Nexus Logo */}
           <div className="mb-4">
+            <Image
+              src="/assets/images/nexus/nexus.jpeg"
+              alt="Nexus Logo"
+              width={400}
+              height={120}
+              className="mx-auto"
+              priority
+            />
+          </div>
+          
+          {/* Existing card */}
+          <div className="bg-white rounded-lg shadow-md p-8 text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-100 rounded-full mb-4">
               <svg
                 className="w-8 h-8 text-orange-600"
@@ -28,13 +42,13 @@ export default function Page() {
                 />
               </svg>
             </div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+              {t("development.title")}
+            </h1>
+            <p className="text-gray-600">
+              {t("development.description")}
+            </p>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            {t("development.title")}
-          </h1>
-          <p className="text-gray-600">
-            {t("development.description")}
-          </p>
         </div>
       </div>
     </div>
