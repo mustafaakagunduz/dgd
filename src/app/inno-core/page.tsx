@@ -133,7 +133,7 @@ const InnoCorePage = () => {
     return (
         <div className="min-h-screen bg-white">
             {/* Dark header strip for navbar visibility */}
-            <div className="bg-gray-900 h-20 w-full"></div>
+            <div className="bg-gray-900 h-22 w-full"></div>
             
             <div className="pt-8 pb-16 px-6 md:px-12 lg:px-24">
                 <div className="max-w-7xl mx-auto">

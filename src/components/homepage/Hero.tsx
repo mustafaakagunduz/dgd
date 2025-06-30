@@ -80,10 +80,10 @@ export default function Hero({ initialData }: HeroProps) {
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-transparent h-56 pointer-events-none" />
 
             {/* Sol üstteki kart - Animasyonlu */}
-            <div className="absolute top-32 left-8 md:left-16">
+            <div className="absolute top-25 left-8 md:left-16">
                 <div
                     className={`
-                        bg-black/50 backdrop-blur-[1px] rounded-lg p-8 md:p-12 max-w-2xl
+                        bg-black/43 backdrop-blur-[1px] rounded-lg p-8 md:p-12 max-w-2xl
                         transition-all duration-1000 ease-out
                         ${isVisible
                         ? 'opacity-100 translate-x-0'
@@ -94,7 +94,7 @@ export default function Hero({ initialData }: HeroProps) {
                     <h1 className="text-white text-4xl md:text-5xl font-medium tracking-wide mb-6 font-['Sanchez']">
                         {content.title}
                     </h1>
-                    <p className="text-white text-3xl md:text-3xl font-medium font-['Sanchez']">
+                    <p className="text-white text-4xl md:text-3xl font-medium font-['Sanchez']">
                         {content.description}
                     </p>
                 </div>

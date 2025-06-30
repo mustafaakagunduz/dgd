@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Dark header strip for navbar visibility */}
-      <div className="bg-gray-900 h-20 w-full"></div>
+      <div className="bg-gray-900 h-22 w-full"></div>
       
       <div className="flex items-start justify-center pt-8" style={{minHeight: 'calc(100vh - 80px)'}}>
         <div className="text-center">

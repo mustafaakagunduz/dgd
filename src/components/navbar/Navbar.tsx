@@ -288,7 +288,7 @@ export default function Navbar() {
 
                     {/* Logo - Sol taraf */}
                     <div className="flex items-center">
-                        <div className="relative h-15 w-15 bg-black/55 rounded">
+                        <div className="relative h-15 w-15 bg-white/80 rounded">
                             <Link href="/" className="block relative h-full w-full">
                                 <Image
                                     src="/assets/images/logo.jpeg"
