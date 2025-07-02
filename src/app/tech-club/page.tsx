@@ -147,7 +147,7 @@ const TechClubPage = () => {
         <div className="min-h-screen py-20">
             {/* Header Section - Her zaman göster */}
             <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                <h1 className="mt-8 text-3xl md:text-4xl font-bold text-white text-center mb-6">
                     {t("techClub.title")}
                 </h1>
                 <p className="text-gray-200 text-lg md:text-xl max-w-3xl mx-auto px-4">

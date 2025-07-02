@@ -43,11 +43,12 @@ const navItems: NavItem[] = [
                 submenuItems: [
                     { key: "navbar.aboutSubmenu.founders", href: "/founders" },
                     { key: "navbar.aboutSubmenu.team", href: "/product-development" },
-                    { key: "navbar.aboutSubmenu.advisors", href: "/advisors" },
+                    // { key: "navbar.aboutSubmenu.advisors", href: "/advisors" },
 
                 ]
             },
             { key: "navbar.aboutDropdown.history", href: "/history" },
+            { key: "navbar.aboutDropdown.commercialPartnerships", href: "/commercial-partnerships"},
 
         ]
     },
@@ -98,11 +99,48 @@ const navItems: NavItem[] = [
             }
         ]
     },
-    {
-        key: "navbar.commercial-partnerships",
-        href: "/commercial-partnerships",
-        hasDropdown: false,
+    // {
+    //     key: "navbar.commercial-partnerships",
+    //     href: "/commercial-partnerships",
+    //     hasDropdown: false,
 
+    // },
+    {
+        key: "navbar.our-brands",
+        href: "#",
+        hasDropdown: true,
+        dropdownItems: [
+            {
+                key: "navbar.ourBrandsDropdown.decor-center",
+                href: "/decor-center",
+                hasSubmenu: false
+            },
+            {
+                key: "navbar.ourBrandsDropdown.core-services",
+                href: "/core-services",
+                hasSubmenu: false
+            },
+            {
+                key: "navbar.ourBrandsDropdown.inno-core",
+                href: "/inno-core",
+                hasSubmenu: false
+            },
+            {
+                key: "navbar.ourBrandsDropdown.nexus",
+                href: "/nexus",
+                hasSubmenu: false
+            },
+            {
+                key: "navbar.ourBrandsDropdown.re-gen-agro",
+                href: "/re-gen-agro",
+                hasSubmenu: false
+            },
+            {
+                key: "navbar.ourBrandsDropdown.re-gen-stay",
+                href: "/re-gen-stay",
+                hasSubmenu: false
+            }
+        ]
     },
 
     { key: "navbar.techClub", href: "/tech-club" },
@@ -250,14 +288,16 @@ export default function Navbar() {
 
                     {/* Logo - Sol taraf */}
                     <div className="flex items-center">
-                        <Link href="/" className="block relative h-12 w-32">
-                            <Image
-                                src="/assets/images/logo.png"
-                                alt="DGD-GLOBAL"
-                                fill
-                                className="object-contain object-left"
-                            />
-                        </Link>
+                        <div className="relative h-15 w-15 bg-white/80 rounded">
+                            <Link href="/" className="block relative h-full w-full">
+                                <Image
+                                    src="/assets/images/logo.jpeg"
+                                    alt="DGD-GLOBAL"
+                                    fill
+                                    className="object-contain object-left"
+                                />
+                            </Link>
+                        </div>
                     </div>
 
                     {/* Navigation items - Ortada (Desktop) */}

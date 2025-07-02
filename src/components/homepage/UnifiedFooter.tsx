@@ -253,13 +253,15 @@ const UnifiedFooter = ({ variant = 'footer', showIcon = true }: NewsletterProps)
                             {/* Column 1: Logo & About */}
                             <div className="space-y-6">
                                 <Link href="/" className="inline-block">
-                                    <Image
-                                        src="/assets/images/logo.png"
-                                        alt="DGD GLOBAL"
-                                        width={150}
-                                        height={50}
-                                        className="object-contain"
-                                    />
+                                    <div className="bg-white/80 rounded">
+                                        <Image
+                                            src="/assets/images/logo.jpeg"
+                                            alt="DGD GLOBAL"
+                                            width={150}
+                                            height={50}
+                                            className="object-contain"
+                                        />
+                                    </div>
                                 </Link>
                                 <p className="text-gray-300 text-sm">
                                     {language === "tr"
