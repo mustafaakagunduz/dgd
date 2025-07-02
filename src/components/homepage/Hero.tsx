@@ -83,7 +83,7 @@ export default function Hero({ initialData }: HeroProps) {
             <div className="absolute top-25 left-8 md:left-16">
                 <div
                     className={`
-                        bg-black/43 backdrop-blur-[1px] rounded-lg p-8 md:p-12 max-w-2xl
+                        bg-white/47 backdrop-blur-[1px] rounded-lg p-8 md:p-12 max-w-2xl
                         transition-all duration-1000 ease-out
                         ${isVisible
                         ? 'opacity-100 translate-x-0'
@@ -91,10 +91,10 @@ export default function Hero({ initialData }: HeroProps) {
                     }
                     `}
                 >
-                    <h1 className="text-white text-4xl md:text-5xl font-medium tracking-wide mb-6 font-['Sanchez']">
+                    <h1 className="text-black text-4xl md:text-5xl font-medium tracking-wide mb-6 font-['Sanchez']">
                         {content.title}
                     </h1>
-                    <p className="text-white text-4xl md:text-3xl font-medium font-['Sanchez']">
+                    <p className="text-black text-4xl md:text-3xl font-medium font-['Sanchez']">
                         {content.description}
                     </p>
                 </div>
